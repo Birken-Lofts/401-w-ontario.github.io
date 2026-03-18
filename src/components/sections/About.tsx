@@ -29,10 +29,12 @@ export default function About() {
 
         <ScrollReveal className="flex-1">
           <img
-            src="/images/elevations/401-W-Ontario-No-Signs-Black-White.webp"
+            src="/images/elevations/401-W-Ontario-No-Signs-Black-White-800w.webp"
+            srcSet="/images/elevations/401-W-Ontario-No-Signs-Black-White-400w.webp 400w, /images/elevations/401-W-Ontario-No-Signs-Black-White-600w.webp 600w, /images/elevations/401-W-Ontario-No-Signs-Black-White-800w.webp 800w"
+            sizes="(max-width: 768px) 100vw, 50vw"
             alt="S. Birkenstein & Sons Building, 1905"
-            width={1168}
-            height={880}
+            width={800}
+            height={603}
             className="w-full h-auto rounded object-cover"
             loading="lazy"
           />

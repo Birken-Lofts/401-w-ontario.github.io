@@ -7,10 +7,19 @@ export default function Hero() {
       className="relative h-screen flex items-center justify-center overflow-hidden"
     >
       {/* Background image */}
-      <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: 'url(/images/elevations/401-W-Ontario-No-Signs.webp)' }}
-      />
+      <picture className="absolute inset-0">
+        <source
+          srcSet="/images/elevations/401-W-Ontario-No-Signs-640w.webp 640w, /images/elevations/401-W-Ontario-No-Signs-1024w.webp 1024w, /images/elevations/401-W-Ontario-No-Signs-1920w.webp 1920w"
+          sizes="100vw"
+          type="image/webp"
+        />
+        <img
+          src="/images/elevations/401-W-Ontario-No-Signs-1920w.webp"
+          alt=""
+          className="w-full h-full object-cover"
+          fetchPriority="high"
+        />
+      </picture>
       {/* Gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-charcoal-700/80 via-charcoal-700/60 to-charcoal-700/85" />
 

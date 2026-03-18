@@ -39,9 +39,9 @@ export const units: Unit[] = [
     bedrooms: 2,
     bathrooms: 2,
     sqft: 819,
-    floorPlanImage: '/images/floor-plans/401-W-Ontario-2-Bed-Floor-Plan-Unit-202.webp',
-    floorPlanWidth: 693,
-    floorPlanHeight: 609,
+    floorPlanImage: '/images/floor-plans/401-W-Ontario-2-Bed-Floor-Plan-Unit-202-400w.webp',
+    floorPlanWidth: 400,
+    floorPlanHeight: 352,
     description: 'Corner two-bedroom with dual exposures and heavy timber beams throughout.',
   },
 ];
