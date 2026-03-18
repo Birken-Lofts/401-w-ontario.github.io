@@ -26,14 +26,14 @@ export default function Footer() {
           </div>
         </div>
         <div className="border-t border-charcoal-500 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-xs text-charcoal-300">
+          <p className="text-xs text-charcoal-100">
             &copy; {new Date().getFullYear()} Birken Lofts. All rights reserved.
           </p>
           <a
             href="https://monroeresidential.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-xs text-timber-500 hover:text-timber-300 transition-colors"
+            className="text-xs text-timber-300 hover:text-timber-100 transition-colors"
           >
             A Monroe Residential Partners Development
           </a>

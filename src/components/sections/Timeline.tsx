@@ -36,7 +36,7 @@ export default function Timeline() {
 
               <div className="mt-6">
                 <p className={`text-xs font-semibold tracking-wider mb-2 ${
-                  ms.status === 'current' ? 'text-brick-500' : 'text-charcoal-300'
+                  ms.status === 'current' ? 'text-brick-400' : 'text-charcoal-100'
                 }`}>
                   {ms.date.toUpperCase()}
                 </p>
@@ -65,7 +65,7 @@ export default function Timeline() {
                   : 'bg-charcoal-500'
               }`} />
               <p className={`text-xs font-semibold tracking-wider mb-1 ${
-                ms.status === 'current' ? 'text-brick-500' : 'text-charcoal-300'
+                ms.status === 'current' ? 'text-brick-400' : 'text-charcoal-100'
               }`}>
                 {ms.date.toUpperCase()}
               </p>

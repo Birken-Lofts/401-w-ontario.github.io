@@ -133,10 +133,10 @@ export default function Contact() {
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-charcoal-700 mb-1.5">
+                <label htmlFor="unitPreference" className="block text-xs font-medium text-charcoal-700 mb-1.5">
                   Unit Preference
                 </label>
-                <select {...register('unitPreference')} className={inputClass}>
+                <select id="unitPreference" {...register('unitPreference')} className={inputClass}>
                   <option value="">Select a preference...</option>
                   <option value="1-bed">One Bedroom</option>
                   <option value="2-bed">Two Bedroom</option>

@@ -1,3 +1,4 @@
+import { useState, useEffect, useRef } from 'react';
 import { TrainFront, ShoppingBag, Building2, Trees } from 'lucide-react';
 import ScrollReveal from '../ui/ScrollReveal';
 
@@ -9,6 +10,20 @@ const distances = [
 ];
 
 export default function Location() {
+  const [loadMap, setLoadMap] = useState(false);
+  const mapRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = mapRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setLoadMap(true); observer.disconnect(); } },
+      { rootMargin: '200px' }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section id="location" className="bg-cream-200 px-6 md:px-12 lg:px-24 py-20 md:py-28">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12 md:gap-20">
@@ -35,17 +50,18 @@ export default function Location() {
         </ScrollReveal>
 
         <ScrollReveal className="flex-1">
-          <div className="rounded-lg overflow-hidden shadow-lg">
-            <iframe
-              title="Birken Lofts location"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2969.5!2d-87.6388!3d41.8935!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880e2cad6f0896c7%3A0x4b0896a0c3e8e8a2!2s401%20W%20Ontario%20St%2C%20Chicago%2C%20IL%2060654!5e0!3m2!1sen!2sus!4v1"
-              width="100%"
-              height="400"
-              style={{ border: 0 }}
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
+          <div ref={mapRef} className="rounded-lg overflow-hidden shadow-lg bg-charcoal-100" style={{ minHeight: 400 }}>
+            {loadMap && (
+              <iframe
+                title="Birken Lofts location"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2969.5!2d-87.6388!3d41.8935!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880e2cad6f0896c7%3A0x4b0896a0c3e8e8a2!2s401%20W%20Ontario%20St%2C%20Chicago%2C%20IL%2060654!5e0!3m2!1sen!2sus!4v1"
+                width="100%"
+                height="400"
+                style={{ border: 0 }}
+                allowFullScreen
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            )}
           </div>
         </ScrollReveal>
       </div>

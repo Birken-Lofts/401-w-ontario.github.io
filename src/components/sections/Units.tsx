@@ -47,6 +47,8 @@ export default function Units() {
                   <img
                     src={unit.floorPlanImage}
                     alt={`${unit.name} floor plan`}
+                    width={unit.floorPlanWidth}
+                    height={unit.floorPlanHeight}
                     className="w-full h-64 object-contain bg-charcoal-800 p-4 group-hover:scale-105 transition-transform duration-300"
                     loading="lazy"
                   />

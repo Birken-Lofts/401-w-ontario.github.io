@@ -29,8 +29,10 @@ export default function About() {
 
         <ScrollReveal className="flex-1">
           <img
-            src="/images/elevations/401-W-Ontario-No-Signs-Black-White.jpg"
+            src="/images/elevations/401-W-Ontario-No-Signs-Black-White.webp"
             alt="S. Birkenstein & Sons Building, 1905"
+            width={1168}
+            height={880}
             className="w-full h-auto rounded object-cover"
             loading="lazy"
           />
