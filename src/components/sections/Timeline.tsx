@@ -35,15 +35,15 @@ export default function Timeline() {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 min-[660px]:grid-cols-4 gap-x-6 gap-y-12">
+        <div className="flex min-[660px]:grid min-[660px]:grid-cols-4 gap-6 overflow-x-auto min-[660px]:overflow-visible snap-x pb-1 min-[660px]:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           {milestones.map((ms, i) => {
             const next = milestones[i + 1];
             return (
-              <div key={ms.title}>
+              <div key={ms.title} className="w-[260px] shrink-0 min-[660px]:w-auto snap-start">
                 <div className="relative h-5 mb-[22px]">
                   {next && (
                     <div
-                      className="hidden min-[660px]:block absolute left-[10px] right-[-24px] top-[9px] h-[2px]"
+                      className="absolute left-[10px] right-[-24px] top-[9px] h-[2px]"
                       style={{ background: connectorBackground(next.state) }}
                     />
                   )}

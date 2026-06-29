@@ -33,7 +33,7 @@ export default function Hero() {
         }}
       />
 
-      <div className="relative max-w-[1320px] w-full mx-auto px-[clamp(20px,5vw,56px)] pb-[clamp(40px,6vw,76px)]">
+      <div className="relative max-w-[1320px] w-full mx-auto px-[clamp(20px,5vw,56px)] pt-[100px] pb-[clamp(40px,6vw,76px)]">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -50,7 +50,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1 }}
-          className="m-0 font-display text-[clamp(64px,13vw,196px)] leading-[0.9] tracking-[-0.01em] text-cream"
+          className="m-0 font-display text-[clamp(44px,13vw,196px)] leading-[0.9] tracking-[-0.01em] text-cream"
         >
           Birken Lofts
         </motion.h1>
