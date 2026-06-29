@@ -1,12 +1,17 @@
 import { motion } from 'framer-motion';
 
+const stats = [
+  { value: '57', label: 'Residences' },
+  { value: '564–819', label: 'Square feet' },
+  { value: '1–2', label: 'Bedrooms' },
+];
+
 export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative h-screen flex items-center justify-center overflow-hidden pt-16 md:pt-20"
+      className="relative min-h-screen flex flex-col justify-end overflow-hidden bg-charcoal"
     >
-      {/* Background image */}
       <picture className="absolute inset-0">
         <source
           srcSet="/images/elevations/401-W-Ontario-No-Signs-640w.webp 640w, /images/elevations/401-W-Ontario-No-Signs-1024w.webp 1024w, /images/elevations/401-W-Ontario-No-Signs-1920w.webp 1920w"
@@ -15,65 +20,98 @@ export default function Hero() {
         />
         <img
           src="/images/elevations/401-W-Ontario-No-Signs-1920w.webp"
-          alt=""
+          alt="Birken Lofts, 401 W. Ontario Street, River North Chicago"
           className="w-full h-full object-cover"
           fetchPriority="high"
         />
       </picture>
-      {/* Gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-charcoal-700/80 via-charcoal-700/60 to-charcoal-700/85" />
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            'linear-gradient(180deg, rgba(22,18,15,.72) 0%, rgba(22,18,15,.28) 32%, rgba(22,18,15,.5) 68%, rgba(22,18,15,.95) 100%)',
+        }}
+      />
 
-      <div className="relative z-10 text-center px-6 max-w-4xl">
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          className="text-xs md:text-sm font-medium tracking-[0.3em] text-brick-300 mb-6"
-        >
-          RIVER NORTH &bull; CHICAGO
-        </motion.p>
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
-          className="font-heading text-6xl md:text-8xl lg:text-9xl font-bold text-white tracking-wider mb-4"
-        >
-          BIRKEN LOFTS
-        </motion.h1>
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6 }}
-          className="font-heading italic text-xl md:text-2xl text-cream-300 mb-3"
-        >
-          Historic Loft Living, Reimagined
-        </motion.p>
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.8 }}
-          className="text-sm md:text-base text-charcoal-200 mb-10"
-        >
-          57 residences within the historic S. Birkenstein &amp; Sons Building
-        </motion.p>
+      <div className="relative max-w-[1320px] w-full mx-auto px-[clamp(20px,5vw,56px)] pb-[clamp(40px,6vw,76px)]">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center"
+          transition={{ duration: 0.6 }}
+          className="flex items-center gap-[14px] mb-[22px]"
         >
-          <a
-            href="#contact"
-            className="px-10 py-4 bg-brick-500 text-white font-semibold text-sm hover:bg-brick-600 transition-colors"
+          <span className="h-px w-[38px] bg-terracotta" />
+          <span className="font-body text-xs font-semibold uppercase tracking-[0.34em] text-terracotta-soft">
+            River North · Chicago · Est. 1905
+          </span>
+        </motion.div>
+
+        <motion.h1
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.1 }}
+          className="m-0 font-display text-[clamp(64px,13vw,196px)] leading-[0.9] tracking-[-0.01em] text-cream"
+        >
+          Birken Lofts
+        </motion.h1>
+
+        <div className="flex flex-wrap items-end justify-between gap-8 mt-[30px]">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.25 }}
+            className="max-w-[560px]"
           >
-            Stay Informed
-          </a>
-          <a
-            href="#residences"
-            className="px-10 py-4 border border-cream-300 text-cream-300 font-medium text-sm hover:bg-white/10 transition-colors"
+            <p className="m-0 mb-[10px] font-display italic text-[clamp(22px,3vw,32px)] leading-[1.2] text-paper">
+              Historic loft living, reimagined.
+            </p>
+            <p className="m-0 mb-[26px] font-body text-base leading-[1.6] text-sand max-w-[440px]">
+              57 residences carved from the heavy-timber bones of the 1905 S. Birkenstein &amp; Sons
+              Building.
+            </p>
+            <div className="flex flex-wrap gap-[14px]">
+              <a
+                href="#contact"
+                className="inline-flex items-center gap-[10px] bg-terracotta text-white font-body text-[13px] font-semibold uppercase tracking-[0.08em] px-[26px] py-4 rounded-[2px] hover:brightness-110 transition"
+              >
+                Stay informed <span className="text-[15px]">→</span>
+              </a>
+              <a
+                href="#residences"
+                className="inline-flex items-center gap-[10px] border border-paper/45 text-paper font-body text-[13px] font-semibold uppercase tracking-[0.08em] px-[26px] py-4 rounded-[2px] backdrop-blur-[3px] hover:bg-white/10 transition"
+              >
+                Floor plans
+              </a>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="flex items-center gap-[10px] bg-charcoal/50 border border-paper/20 backdrop-blur-[6px] px-4 py-[11px] rounded-[2px]"
           >
-            Floor Plans
-          </a>
+            <span className="w-2 h-2 rounded-full bg-success shadow-[0_0_0_4px_rgba(127,174,127,0.2)]" />
+            <span className="font-body text-xs font-medium tracking-[0.06em] text-paper">
+              Now registering interest&nbsp;·&nbsp;First deliveries Oct 2027
+            </span>
+          </motion.div>
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.6 }}
+          className="grid grid-cols-3 gap-px bg-paper/15 border border-paper/15 mt-[42px]"
+        >
+          {stats.map((stat) => (
+            <div key={stat.label} className="bg-charcoal/45 px-[22px] py-[18px]">
+              <div className="font-display text-[34px] leading-none text-paper">{stat.value}</div>
+              <div className="font-body text-[11px] font-medium uppercase tracking-[0.16em] text-taupe mt-1">
+                {stat.label}
+              </div>
+            </div>
+          ))}
         </motion.div>
       </div>
     </section>

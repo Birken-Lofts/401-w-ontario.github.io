@@ -1,50 +1,48 @@
 import ScrollReveal from '../ui/ScrollReveal';
+import { Eyebrow } from '../ui/SectionHeading';
 
 export default function About() {
   return (
-    <section id="about" className="bg-cream-200 px-6 md:px-12 lg:px-24 py-20 md:py-28">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12 md:gap-20">
-        <ScrollReveal className="flex-1">
-          <p className="text-xs font-semibold tracking-[0.2em] text-brick-500 mb-4">
-            OUR STORY
-          </p>
-          <h2 className="font-heading text-4xl md:text-5xl font-bold text-charcoal-700 mb-6">
-            A Legacy Renewed
-          </h2>
-          <p className="text-base leading-relaxed text-charcoal-500 mb-5">
-            Built in 1905 as the headquarters for the S. Birkenstein &amp; Sons Company, this
-            heavy timber loft building has stood as a testament to Chicago&rsquo;s industrial
-            heritage for over a century. Located in the heart of River North, its red brick
-            facade and arched windows have witnessed the neighborhood&rsquo;s transformation
-            from manufacturing hub to one of the city&rsquo;s most vibrant districts.
-          </p>
-          <p className="text-base leading-relaxed text-charcoal-500 mb-5">
-            Birken Lofts honors this legacy through a thoughtful adaptive
-            reuse&mdash;preserving the building&rsquo;s defining character elements including
-            exposed heavy timber beams, original masonry walls, and distinctive arched window
-            openings&mdash;while introducing 57 modern residences designed for contemporary
-            living.
-          </p>
-          <p className="text-base leading-relaxed text-charcoal-500">
-            Behind the historic facade, everything is new: brand-new windows, modern HVAC,
-            wood plank flooring, updated kitchens, in-unit laundry, a new elevator, and
-            gigabit internet&mdash;plus amenities like a fitness center, co-working space, and
-            bike storage. It&rsquo;s all-new living inside a building with 120&nbsp;years of
-            character.
-          </p>
-        </ScrollReveal>
-
-        <ScrollReveal className="flex-1">
+    <section id="about" className="bg-paper py-[clamp(80px,11vw,150px)]">
+      <div className="max-w-[1320px] mx-auto px-[clamp(20px,5vw,56px)] grid grid-cols-1 min-[900px]:grid-cols-[0.85fr_1.1fr] gap-[clamp(40px,6vw,80px)]">
+        <ScrollReveal>
           <img
             src="/images/elevations/401-W-Ontario-No-Signs-Black-White-800w.webp"
             srcSet="/images/elevations/401-W-Ontario-No-Signs-Black-White-400w.webp 400w, /images/elevations/401-W-Ontario-No-Signs-Black-White-600w.webp 600w, /images/elevations/401-W-Ontario-No-Signs-Black-White-800w.webp 800w"
-            sizes="(max-width: 768px) 100vw, 50vw"
+            sizes="(max-width: 900px) 100vw, 40vw"
             alt="S. Birkenstein & Sons Building, 1905"
             width={800}
             height={603}
-            className="w-full h-auto rounded object-cover"
+            className="w-full block rounded-[2px]"
             loading="lazy"
           />
+          <p className="mt-[14px] font-body text-[11px] font-medium uppercase tracking-[0.18em] text-taupe-2">
+            S. Birkenstein &amp; Sons Building · River North · 1905
+          </p>
+        </ScrollReveal>
+
+        <ScrollReveal className="self-center">
+          <Eyebrow className="mb-[22px]">Our story</Eyebrow>
+          <h2 className="m-0 mb-7 font-display text-[clamp(40px,5.5vw,72px)] leading-none text-ink">
+            A legacy renewed
+          </h2>
+          <p className="m-0 mb-[18px] font-body text-base leading-[1.75] text-stone-2">
+            Built in 1905 as the headquarters of S. Birkenstein &amp; Sons, this heavy-timber loft is
+            pure River North — red brick, arched openings, and an industrial soul that has anchored
+            the block for over a century.
+          </p>
+          <p className="m-0 mb-[18px] font-body text-base leading-[1.75] text-stone-2">
+            Our adaptive reuse preserves what makes it singular — the timber beams, masonry walls, and
+            arched windows — while carving 57 modern residences into the structure.
+          </p>
+          <p className="m-0 mb-[30px] font-body text-base leading-[1.75] text-stone-2">
+            Inside, everything is new: windows, HVAC, wide-plank floors, kitchens, in-unit laundry, a
+            new elevator, and gigabit internet — plus a fitness center, co-working, and bike storage.
+          </p>
+          <p className="m-0 font-display italic text-[clamp(24px,3.4vw,40px)] leading-[1.25] text-ink">
+            All-new living inside a building with{' '}
+            <span className="text-terracotta">120 years of character.</span>
+          </p>
         </ScrollReveal>
       </div>
     </section>
