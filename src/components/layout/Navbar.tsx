@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
+import Logo from '../ui/Logo';
 import useScrollSpy from '../../hooks/useScrollSpy';
 
 const links = [
@@ -8,7 +9,6 @@ const links = [
   { id: 'features', label: 'Features' },
   { id: 'location', label: 'Location' },
   { id: 'timeline', label: 'Timeline' },
-  { id: 'contact', label: 'Contact' },
 ];
 
 export default function Navbar() {
@@ -17,62 +17,77 @@ export default function Navbar() {
   const active = useScrollSpy();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 50);
+    const onScroll = () => setScrolled(window.scrollY > 80);
     window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'bg-charcoal-700/95 backdrop-blur-sm shadow-lg' : 'bg-transparent'
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between h-16 md:h-20">
-        <a href="#hero" className="font-heading text-xl md:text-2xl font-bold text-white tracking-widest">
-          BIRKEN LOFTS
-        </a>
+    <nav className="fixed top-0 left-0 right-0 z-[1000] h-[74px]">
+      {/* Charcoal bar fades in once scrolled past the hero */}
+      <div
+        className={`absolute inset-0 bg-charcoal border-b border-line-dark transition-opacity duration-300 ${
+          scrolled ? 'opacity-100' : 'opacity-0'
+        }`}
+      />
+      <div className="relative max-w-[1320px] mx-auto h-full px-[clamp(20px,5vw,56px)] flex items-center justify-between">
+        <Logo markHeight={48} wordmarkSize={27} />
 
-        {/* Desktop nav */}
-        <div className="hidden md:flex items-center gap-8">
+        {/* Desktop links */}
+        <div className="hidden min-[860px]:flex items-center gap-[30px]">
           {links.map((link) => (
             <a
               key={link.id}
               href={`#${link.id}`}
-              className={`text-sm transition-colors ${
-                active === link.id ? 'text-brick-400' : 'text-timber-300 hover:text-white'
+              className={`font-body text-[13px] font-medium tracking-[0.08em] transition-colors ${
+                active === link.id ? 'text-terracotta' : 'text-sand hover:text-cream'
               }`}
             >
               {link.label}
             </a>
           ))}
+          <a
+            href="#contact"
+            className="font-body text-xs font-semibold uppercase tracking-[0.1em] text-charcoal bg-paper px-[18px] py-[11px] rounded-[2px] hover:bg-cream transition-colors"
+          >
+            Register
+          </a>
         </div>
 
         {/* Mobile hamburger */}
         <button
-          className="md:hidden text-white"
-          onClick={() => setMenuOpen(!menuOpen)}
+          className="min-[860px]:hidden text-cream"
+          onClick={() => setMenuOpen((v) => !v)}
           aria-label="Toggle menu"
+          aria-expanded={menuOpen}
         >
           {menuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
-      {/* Mobile menu */}
+      {/* Mobile drawer */}
       {menuOpen && (
-        <div className="md:hidden bg-charcoal-700/98 backdrop-blur-sm border-t border-charcoal-600 px-6 pb-6">
+        <div className="min-[860px]:hidden bg-charcoal border-t border-line-dark px-[clamp(20px,5vw,56px)] pb-6">
           {links.map((link) => (
             <a
               key={link.id}
               href={`#${link.id}`}
               onClick={() => setMenuOpen(false)}
-              className={`block py-3 text-sm ${
-                active === link.id ? 'text-brick-400' : 'text-timber-300'
+              className={`block py-3 font-body text-sm tracking-[0.08em] ${
+                active === link.id ? 'text-terracotta' : 'text-sand'
               }`}
             >
               {link.label}
             </a>
           ))}
+          <a
+            href="#contact"
+            onClick={() => setMenuOpen(false)}
+            className="inline-block mt-3 font-body text-xs font-semibold uppercase tracking-[0.1em] text-charcoal bg-paper px-[18px] py-[11px] rounded-[2px]"
+          >
+            Register
+          </a>
         </div>
       )}
     </nav>

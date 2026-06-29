@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
-import ScrollReveal from '../ui/ScrollReveal';
+import { Eyebrow } from '../ui/SectionHeading';
 
 interface FormData {
   firstName: string;
@@ -10,6 +10,10 @@ interface FormData {
   unitPreference: string;
   message: string;
 }
+
+const labelClass = 'font-body text-xs font-medium tracking-[0.06em] text-taupe';
+const inputClass =
+  'w-full mt-[7px] bg-charcoal-deep border border-line-dark-2 rounded-[2px] text-paper px-[14px] py-3 text-[15px] focus:outline-none focus:border-terracotta transition-colors';
 
 export default function Contact() {
   const { register, handleSubmit, reset, formState: { errors } } = useForm<FormData>();
@@ -37,135 +41,81 @@ export default function Contact() {
     }
   };
 
-  const inputClass =
-    'w-full px-4 py-3 rounded-md bg-white border border-charcoal-100 text-charcoal-700 text-sm focus:outline-none focus:ring-2 focus:ring-brick-500/50 focus:border-brick-500 transition';
-
   return (
-    <section id="contact" className="bg-cream-300 px-6 md:px-12 lg:px-24 py-20 md:py-28">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-12 md:gap-20">
-        <ScrollReveal className="flex-1">
-          <p className="text-xs font-semibold tracking-[0.2em] text-brick-500 mb-4">
-            GET IN TOUCH
-          </p>
-          <h2 className="font-heading text-4xl md:text-5xl font-bold text-charcoal-700 mb-6">
-            Register Your Interest
+    <section id="contact" className="bg-charcoal text-paper py-[clamp(80px,11vw,150px)]">
+      <div className="max-w-[1320px] mx-auto px-[clamp(20px,5vw,56px)] grid grid-cols-1 min-[900px]:grid-cols-[0.85fr_1.15fr] gap-[clamp(40px,6vw,70px)]">
+        <div>
+          <Eyebrow className="mb-5">Get in touch</Eyebrow>
+          <h2 className="m-0 mb-[22px] font-display text-[clamp(40px,5.5vw,68px)] leading-none text-cream">
+            Register your interest
           </h2>
-          <p className="text-base leading-relaxed text-charcoal-500 mb-8">
-            Be among the first to learn about availability, pricing, and exclusive preview
-            opportunities at Birken Lofts.
+          <p className="m-0 mb-[34px] font-body text-base leading-[1.7] text-sand-2 max-w-[400px]">
+            Join the interest list to be first to learn about availability, pricing, and preview
+            opportunities as construction moves forward.
           </p>
-          <div className="space-y-2">
-            <p className="text-sm font-medium text-charcoal-700">401 W. Ontario Street</p>
-            <p className="text-sm text-charcoal-500">Chicago, IL 60654</p>
-            <p className="text-sm text-charcoal-400">River North</p>
-          </div>
-        </ScrollReveal>
-
-        <ScrollReveal className="flex-1">
-          {submitted ? (
-            <div className="bg-cream-200 rounded-lg p-10 text-center">
-              <h3 className="font-heading text-2xl font-bold text-charcoal-700 mb-3">
-                Thank You!
-              </h3>
-              <p className="text-charcoal-500">
-                We&rsquo;ve received your information and will be in touch soon.
-              </p>
+          <div className="border-t border-line-dark pt-6">
+            <div className="font-body text-[11px] font-medium uppercase tracking-[0.18em] text-taupe mb-2">
+              Visit / Mail
             </div>
-          ) : (
-            <form
-              onSubmit={handleSubmit(onSubmit)}
-              className="bg-cream-200 rounded-lg p-8 md:p-10 space-y-5"
-            >
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-xs font-medium text-charcoal-700 mb-1.5">
-                    First Name
-                  </label>
-                  <input
-                    {...register('firstName', { required: true })}
-                    className={inputClass}
-                    placeholder="John"
-                  />
-                  {errors.firstName && (
-                    <p className="text-xs text-brick-500 mt-1">Required</p>
-                  )}
-                </div>
-                <div>
-                  <label className="block text-xs font-medium text-charcoal-700 mb-1.5">
-                    Last Name
-                  </label>
-                  <input
-                    {...register('lastName', { required: true })}
-                    className={inputClass}
-                    placeholder="Doe"
-                  />
-                  {errors.lastName && (
-                    <p className="text-xs text-brick-500 mt-1">Required</p>
-                  )}
-                </div>
-              </div>
+            <div className="font-body text-base leading-[1.6] text-paper">
+              401 W. Ontario Street
+              <br />
+              Chicago, IL 60654 · River North
+            </div>
+          </div>
+        </div>
 
-              <div>
-                <label className="block text-xs font-medium text-charcoal-700 mb-1.5">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  {...register('email', { required: true })}
-                  className={inputClass}
-                  placeholder="john@example.com"
-                />
-                {errors.email && (
-                  <p className="text-xs text-brick-500 mt-1">Required</p>
-                )}
-              </div>
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="bg-panel border border-line-dark rounded-[4px] p-[clamp(24px,3vw,38px)]"
+        >
+          <div className="grid grid-cols-2 gap-4 mb-4">
+            <label className="block">
+              <span className={labelClass}>First name</span>
+              <input type="text" {...register('firstName', { required: true })} className={inputClass} />
+              {errors.firstName && <p className="text-[11px] text-terracotta mt-1">Required</p>}
+            </label>
+            <label className="block">
+              <span className={labelClass}>Last name</span>
+              <input type="text" {...register('lastName', { required: true })} className={inputClass} />
+              {errors.lastName && <p className="text-[11px] text-terracotta mt-1">Required</p>}
+            </label>
+          </div>
 
-              <div>
-                <label className="block text-xs font-medium text-charcoal-700 mb-1.5">
-                  Phone
-                </label>
-                <input
-                  type="tel"
-                  {...register('phone')}
-                  className={inputClass}
-                  placeholder="(312) 555-0100"
-                />
-              </div>
+          <label className="block mb-4">
+            <span className={labelClass}>Email</span>
+            <input type="email" {...register('email', { required: true })} className={inputClass} />
+            {errors.email && <p className="text-[11px] text-terracotta mt-1">Required</p>}
+          </label>
 
-              <div>
-                <label htmlFor="unitPreference" className="block text-xs font-medium text-charcoal-700 mb-1.5">
-                  Unit Preference
-                </label>
-                <select id="unitPreference" {...register('unitPreference')} className={inputClass}>
-                  <option value="">Select a preference...</option>
-                  <option value="1-bed">One Bedroom</option>
-                  <option value="2-bed">Two Bedroom</option>
-                  <option value="any">No Preference</option>
-                </select>
-              </div>
+          <div className="grid grid-cols-2 gap-4 mb-4">
+            <label className="block">
+              <span className={labelClass}>Phone</span>
+              <input type="tel" {...register('phone')} className={inputClass} />
+            </label>
+            <label className="block">
+              <span className={labelClass}>Unit preference</span>
+              <select {...register('unitPreference')} className={inputClass}>
+                <option value="any">No preference</option>
+                <option value="1-bed">One bedroom</option>
+                <option value="2-bed">Two bedroom</option>
+              </select>
+            </label>
+          </div>
 
-              <div>
-                <label className="block text-xs font-medium text-charcoal-700 mb-1.5">
-                  Message
-                </label>
-                <textarea
-                  {...register('message')}
-                  rows={4}
-                  className={inputClass}
-                  placeholder="Tell us what you're looking for..."
-                />
-              </div>
+          <label className="block mb-[22px]">
+            <span className={labelClass}>Message</span>
+            <textarea rows={3} {...register('message')} className={`${inputClass} resize-y`} />
+          </label>
 
-              <button
-                type="submit"
-                disabled={submitting}
-                className="w-full py-3.5 bg-brick-500 text-white font-semibold text-sm rounded-md hover:bg-brick-600 transition-colors disabled:opacity-60"
-              >
-                {submitting ? 'Sending...' : 'Register Interest'}
-              </button>
-            </form>
-          )}
-        </ScrollReveal>
+          <button
+            type="submit"
+            disabled={submitting || submitted}
+            className="w-full bg-terracotta text-white font-body text-[13px] font-semibold uppercase tracking-[0.1em] py-4 rounded-[2px] cursor-pointer hover:brightness-110 transition disabled:cursor-default disabled:opacity-90"
+          >
+            {submitted ? "Thank you — we'll be in touch ✓" : submitting ? 'Sending…' : 'Register interest'}
+          </button>
+        </form>
       </div>
     </section>
   );

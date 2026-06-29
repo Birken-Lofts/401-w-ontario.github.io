@@ -1,69 +1,23 @@
+export type FeatureTag = 'Est. 1905' | 'All-new' | 'River North';
+
 export interface Feature {
-  icon: string;
+  n: string;
   title: string;
   description: string;
+  tag: FeatureTag;
 }
 
 export const features: Feature[] = [
-  {
-    icon: 'TreePine',
-    title: 'Exposed Heavy Timber',
-    description: 'Original 1905 heavy timber beams and columns preserved throughout.',
-  },
-  {
-    icon: 'Landmark',
-    title: 'Historic Brick Walls',
-    description: 'Authentic masonry walls showcase over a century of character.',
-  },
-  {
-    icon: 'Sun',
-    title: 'New Arched Windows',
-    description:
-      'Brand-new windows set within the original arched openings flood units with natural light.',
-  },
-  {
-    icon: 'Thermometer',
-    title: 'Modern HVAC',
-    description: 'All-new heating and cooling systems for year-round comfort in every unit.',
-  },
-  {
-    icon: 'Wifi',
-    title: '1 Gbps Internet',
-    description: 'Gigabit-speed internet wired to every residence for seamless connectivity.',
-  },
-  {
-    icon: 'Layers',
-    title: 'Wood Plank Flooring',
-    description: 'New wood plank floors throughout, complementing the original timber above.',
-  },
-  {
-    icon: 'WashingMachine',
-    title: 'In-Unit Laundry',
-    description: 'Every residence includes a full-size washer and dryer.',
-  },
-  {
-    icon: 'ChefHat',
-    title: 'Modern Kitchens',
-    description: 'Contemporary finishes and new appliances paired with industrial heritage.',
-  },
-  {
-    icon: 'Dumbbell',
-    title: 'Fitness & Co-Working',
-    description: 'On-site gym and co-working space designed for residents who live and work here.',
-  },
-  {
-    icon: 'Bike',
-    title: 'Bike Storage',
-    description: 'Secure indoor bike storage for easy access to River North and beyond.',
-  },
-  {
-    icon: 'ArrowUpFromLine',
-    title: 'New Elevator',
-    description: 'Brand-new elevator serving all floors for convenient, modern living.',
-  },
-  {
-    icon: 'MapPin',
-    title: 'River North Location',
-    description: 'Steps from galleries, dining, and the best of downtown Chicago.',
-  },
+  { n: '01', title: 'Exposed Heavy Timber', description: 'Original 1905 beams and columns, preserved.', tag: 'Est. 1905' },
+  { n: '02', title: 'Historic Brick Walls', description: 'Authentic masonry with a century of character.', tag: 'Est. 1905' },
+  { n: '03', title: 'New Arched Windows', description: 'Brand-new glazing in the original arched openings.', tag: 'All-new' },
+  { n: '04', title: 'Modern HVAC', description: 'All-new heating and cooling, per residence.', tag: 'All-new' },
+  { n: '05', title: '1 Gbps Internet', description: 'Gigabit wired to every home.', tag: 'All-new' },
+  { n: '06', title: 'Wood Plank Flooring', description: 'New floors that complement the original timber.', tag: 'All-new' },
+  { n: '07', title: 'In-Unit Laundry', description: 'Full-size washer and dryer in every unit.', tag: 'All-new' },
+  { n: '08', title: 'Modern Kitchens', description: 'Contemporary finishes and new appliances.', tag: 'All-new' },
+  { n: '09', title: 'Fitness & Co-Working', description: 'On-site gym plus dedicated co-working.', tag: 'All-new' },
+  { n: '10', title: 'Bike Storage', description: 'Secure indoor storage for every cyclist.', tag: 'All-new' },
+  { n: '11', title: 'New Elevator', description: 'Modern elevator serving all floors.', tag: 'All-new' },
+  { n: '12', title: 'River North Location', description: 'Steps from galleries, dining and downtown.', tag: 'River North' },
 ];

@@ -1,33 +1,36 @@
+export type MilestoneState = 'complete' | 'next' | 'upcoming';
+
 export interface Milestone {
-  date: string;
+  /** Combined date + status, e.g. "Oct 2026 · Next". */
+  label: string;
   title: string;
   description: string;
-  status: 'completed' | 'current' | 'upcoming';
+  state: MilestoneState;
 }
 
 export const milestones: Milestone[] = [
   {
-    date: '2025',
+    label: '2025 · Complete',
     title: 'Design & Planning',
-    description: 'Architectural plans developed honoring the 1905 heritage.',
-    status: 'completed',
+    description: "Architectural plans developed in careful keeping with the building's 1905 heritage.",
+    state: 'complete',
   },
   {
-    date: 'Early 2026',
+    label: 'Early 2026 · Complete',
     title: 'Permits & Approvals',
-    description: 'Historic preservation review and building permits secured.',
-    status: 'current',
+    description: 'Historic preservation review passed and building permits secured.',
+    state: 'complete',
   },
   {
-    date: 'Oct 2026',
+    label: 'Oct 2026 · Next',
     title: 'Construction Begins',
-    description: 'Adaptive reuse construction commences on the historic building.',
-    status: 'upcoming',
+    description: 'Adaptive-reuse construction commences on the historic building.',
+    state: 'next',
   },
   {
-    date: 'Oct 2027',
+    label: 'Oct 2027 · Move-in',
     title: 'First Deliveries',
-    description: 'Residents move into their new loft homes in River North.',
-    status: 'upcoming',
+    description: 'Residents move into their new loft homes in the heart of River North.',
+    state: 'upcoming',
   },
 ];

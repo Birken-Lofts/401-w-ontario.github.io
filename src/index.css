@@ -1,48 +1,49 @@
 @import "tailwindcss";
+@import "leaflet/dist/leaflet.css";
 
 @theme {
-  --color-brick-50: #fdf2f0;
-  --color-brick-100: #fbe3de;
-  --color-brick-200: #f5c4ba;
-  --color-brick-300: #eda08f;
-  --color-brick-400: #d97a65;
-  --color-brick-500: #b5553a;
-  --color-brick-600: #9a4530;
-  --color-brick-700: #7d3726;
-  --color-brick-800: #5f2a1d;
-  --color-brick-900: #421d14;
+  --font-display: "Instrument Serif", Georgia, serif;
+  --font-body: "Space Grotesk", system-ui, sans-serif;
 
-  --color-timber-50: #f7f4f0;
-  --color-timber-100: #ede7dd;
-  --color-timber-200: #d9cdb9;
-  --color-timber-300: #c0ad8f;
-  --color-timber-400: #a8906d;
-  --color-timber-500: #8b7355;
-  --color-timber-600: #735f46;
-  --color-timber-700: #5b4b38;
-  --color-timber-800: #44382a;
-  --color-timber-900: #2d251d;
+  /* Accent */
+  --color-terracotta: #bf5e34;
+  --color-terracotta-soft: #e6b79d;
 
-  --color-cream-50: #fefdfb;
-  --color-cream-100: #fdfbf7;
-  --color-cream-200: #faf8f5;
-  --color-cream-300: #f5f0e8;
-  --color-cream-400: #e8dfd2;
-  --color-cream-500: #d4c9b8;
+  /* Light surfaces & ink */
+  --color-paper: #f4efe7;
+  --color-cream: #f7f2ea;
+  --color-ink: #221c16;
 
-  --color-charcoal-50: #f5f5f5;
-  --color-charcoal-100: #e0e0e0;
-  --color-charcoal-200: #b0b0b0;
-  --color-charcoal-300: #808080;
-  --color-charcoal-400: #505050;
-  --color-charcoal-500: #333333;
-  --color-charcoal-600: #2a2a2a;
-  --color-charcoal-700: #1a1a1a;
-  --color-charcoal-800: #111111;
-  --color-charcoal-900: #0a0a0a;
+  /* Dark surfaces */
+  --color-charcoal: #16120f;
+  --color-charcoal-deep: #0e0c0a;
+  --color-panel: #1a1611;
 
-  --font-heading: "Playfair Display", Georgia, serif;
-  --font-body: "Inter", system-ui, sans-serif;
+  /* Text — on dark */
+  --color-sand: #cbbfae;
+  --color-sand-2: #b3a795;
+  --color-taupe: #9a8e7e;
+  --color-taupe-2: #8a7d6c;
+  /* Text — on paper */
+  --color-stone: #5a5045;
+  --color-stone-2: #4a4138;
+
+  /* Hairlines */
+  --color-line-dark: #2a241e;
+  --color-line-dark-2: #36302a;
+  --color-line: #ddd3c4;
+  --color-line-2: #e2d9cb;
+
+  --color-success: #7fae7f;
+
+  /* Map categories */
+  --color-cat-transit: #7c97a8;
+  --color-cat-dining: #c4683a;
+  --color-cat-culture: #b08968;
+  --color-cat-grocery: #8b9a6b;
+  --color-cat-parks: #6e8b6e;
+  --color-cat-landmark: #c9a24b;
+  --color-cat-fitness: #a86b6b;
 }
 
 @layer base {
@@ -52,12 +53,49 @@
   body {
     margin: 0;
     font-family: var(--font-body);
-    color: var(--color-charcoal-700);
-    background-color: var(--color-cream-200);
+    color: var(--color-ink);
+    background-color: var(--color-paper);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
   h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-heading);
+    font-family: var(--font-display);
+    font-weight: 400;
+  }
+  ::selection {
+    background: var(--color-terracotta);
+    color: #fff;
   }
 }
+
+/* ---- Leaflet map theming (Location section) ---- */
+@keyframes bk-pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(191, 94, 52, 0.55); }
+  70%  { box-shadow: 0 0 0 16px rgba(191, 94, 52, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(191, 94, 52, 0); }
+}
+.leaflet-container { font-family: var(--font-body); background: #0e0c0a; }
+.leaflet-popup-content-wrapper {
+  background: #1f1a15; color: #f4efe7; border-radius: 3px;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.5); border: 1px solid #36302a;
+}
+.leaflet-popup-content { margin: 14px 16px; line-height: 1.45; }
+.leaflet-popup-tip { background: #1f1a15; border: 1px solid #36302a; }
+.leaflet-popup-close-button { color: #9a8e7e !important; }
+.leaflet-bar a { background: #1f1a15; color: #f4efe7; border-color: #36302a; }
+.leaflet-bar a:hover { background: #2a241e; }
+.leaflet-control-attribution { background: rgba(14, 12, 10, 0.7) !important; color: #7d7264 !important; }
+.leaflet-control-attribution a { color: #9a8e7e !important; }
+.bk-pin {
+  width: 18px; height: 18px; border-radius: 50%; border: 2.5px solid #f4efe7;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.55); transition: transform 0.15s;
+}
+.bk-pin:hover { transform: scale(1.35); }
+.bk-home {
+  width: 30px; height: 30px; border-radius: 50%; background: #bf5e34;
+  border: 3px solid #f4efe7; display: flex; align-items: center; justify-content: center;
+  color: #fff; font: 700 13px var(--font-body); box-shadow: 0 4px 14px rgba(0, 0, 0, 0.6);
+  animation: bk-pulse 2.6s infinite;
+}
+.bk-place-list::-webkit-scrollbar { width: 7px; }
+.bk-place-list::-webkit-scrollbar-thumb { background: #3a322b; border-radius: 4px; }

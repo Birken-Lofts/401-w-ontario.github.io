@@ -1,82 +1,67 @@
-import { milestones } from '../../data/timeline';
-import SectionHeading from '../ui/SectionHeading';
-import ScrollReveal from '../ui/ScrollReveal';
+import type { CSSProperties } from 'react';
+import { milestones, type MilestoneState } from '../../data/timeline';
+import { Eyebrow } from '../ui/SectionHeading';
+
+const GREY = '#ddd3c4';
+const TERRACOTTA = '#bf5e34';
+
+// Connector leading into the NEXT milestone, colored by that milestone's state.
+function connectorBackground(nextState: MilestoneState): string {
+  if (nextState === 'complete') return TERRACOTTA;
+  if (nextState === 'next') return `linear-gradient(90deg,${TERRACOTTA} 0%,${TERRACOTTA} 60%,${GREY} 60%,${GREY} 100%)`;
+  return GREY;
+}
+
+const dotStyle: Record<MilestoneState, CSSProperties> = {
+  complete: { background: TERRACOTTA, border: '3px solid #f4efe7', boxShadow: `0 0 0 1px ${TERRACOTTA}` },
+  next: { background: '#f4efe7', border: `3px solid ${TERRACOTTA}` },
+  upcoming: { background: '#f4efe7', border: '3px solid #c9bca9' },
+};
+
+const labelColor: Record<MilestoneState, string> = {
+  complete: 'text-terracotta',
+  next: 'text-[#9a8164]',
+  upcoming: 'text-taupe',
+};
 
 export default function Timeline() {
   return (
-    <section id="timeline" className="bg-charcoal-700 px-6 md:px-12 lg:px-24 py-20 md:py-28">
-      <div className="max-w-7xl mx-auto">
-        <ScrollReveal>
-          <SectionHeading
-            tag="TIMELINE"
-            title="The Journey to Home"
-            light
-          />
-        </ScrollReveal>
-
-        {/* Desktop horizontal timeline */}
-        <div className="hidden md:flex mt-16 justify-center">
-          {milestones.map((ms, i) => (
-            <div key={ms.title} className="flex-1 flex flex-col items-center text-center px-4 relative">
-              {/* Connector line */}
-              {i < milestones.length - 1 && (
-                <div className={`absolute top-3 left-1/2 w-full h-0.5 ${
-                  ms.status === 'completed' ? 'bg-brick-500' : 'bg-charcoal-500'
-                }`} />
-              )}
-
-              {/* Dot */}
-              <div className={`relative z-10 w-6 h-6 rounded-full border-2 ${
-                ms.status === 'current'
-                  ? 'bg-brick-500 border-brick-300 ring-4 ring-brick-500/30'
-                  : ms.status === 'completed'
-                  ? 'bg-brick-500 border-brick-500'
-                  : 'bg-charcoal-600 border-charcoal-400'
-              }`} />
-
-              <div className="mt-6">
-                <p className={`text-xs font-semibold tracking-wider mb-2 ${
-                  ms.status === 'current' ? 'text-brick-400' : 'text-charcoal-100'
-                }`}>
-                  {ms.date.toUpperCase()}
-                </p>
-                <h3 className={`font-heading text-lg font-semibold mb-2 ${
-                  ms.status === 'upcoming' ? 'text-timber-300' : 'text-white'
-                }`}>
-                  {ms.title}
-                </h3>
-                <p className="text-xs text-charcoal-200 leading-relaxed max-w-[200px] mx-auto">
-                  {ms.description}
-                </p>
-              </div>
-            </div>
-          ))}
+    <section id="timeline" className="bg-paper py-[clamp(80px,11vw,150px)]">
+      <div className="max-w-[1320px] mx-auto px-[clamp(20px,5vw,56px)]">
+        <div className="max-w-[680px] mb-[58px]">
+          <Eyebrow className="mb-5">The journey</Eyebrow>
+          <h2 className="m-0 font-display text-[clamp(40px,5.5vw,72px)] leading-none text-ink">
+            From blueprint to home
+          </h2>
         </div>
 
-        {/* Mobile vertical timeline */}
-        <div className="md:hidden mt-12 space-y-8 pl-8 border-l-2 border-charcoal-500">
-          {milestones.map((ms) => (
-            <div key={ms.title} className="relative">
-              <div className={`absolute -left-[calc(2rem+5px)] w-3 h-3 rounded-full ${
-                ms.status === 'current'
-                  ? 'bg-brick-500 ring-4 ring-brick-500/30'
-                  : ms.status === 'completed'
-                  ? 'bg-brick-500'
-                  : 'bg-charcoal-500'
-              }`} />
-              <p className={`text-xs font-semibold tracking-wider mb-1 ${
-                ms.status === 'current' ? 'text-brick-400' : 'text-charcoal-100'
-              }`}>
-                {ms.date.toUpperCase()}
-              </p>
-              <h3 className={`font-heading text-lg font-semibold mb-1 ${
-                ms.status === 'upcoming' ? 'text-timber-300' : 'text-white'
-              }`}>
-                {ms.title}
-              </h3>
-              <p className="text-sm text-charcoal-200">{ms.description}</p>
-            </div>
-          ))}
+        <div className="grid grid-cols-1 min-[660px]:grid-cols-4 gap-x-6 gap-y-12">
+          {milestones.map((ms, i) => {
+            const next = milestones[i + 1];
+            return (
+              <div key={ms.title}>
+                <div className="relative h-5 mb-[22px]">
+                  {next && (
+                    <div
+                      className="hidden min-[660px]:block absolute left-[10px] right-[-24px] top-[9px] h-[2px]"
+                      style={{ background: connectorBackground(next.state) }}
+                    />
+                  )}
+                  <span
+                    className="absolute left-0 top-0 w-5 h-5 rounded-full z-[1]"
+                    style={dotStyle[ms.state]}
+                  />
+                </div>
+                <div
+                  className={`font-body text-[11px] font-semibold uppercase tracking-[0.14em] ${labelColor[ms.state]}`}
+                >
+                  {ms.label}
+                </div>
+                <h3 className="mt-[9px] mb-2 font-display text-[26px] text-ink">{ms.title}</h3>
+                <p className="m-0 font-body text-sm leading-[1.65] text-stone">{ms.description}</p>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

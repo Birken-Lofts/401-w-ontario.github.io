@@ -1,24 +1,42 @@
-interface Props {
-  tag: string;
-  title: string;
-  description?: string;
-  light?: boolean;
+import type { ReactNode } from 'react';
+
+export function Eyebrow({
+  children,
+  ruleWidth = 30,
+  className = '',
+}: {
+  children: ReactNode;
+  ruleWidth?: number;
+  className?: string;
+}) {
+  return (
+    <div className={`flex items-center gap-3 ${className}`}>
+      <span className="h-px bg-terracotta" style={{ width: ruleWidth }} />
+      <span className="font-body text-xs font-semibold uppercase tracking-[0.28em] text-terracotta">
+        {children}
+      </span>
+    </div>
+  );
 }
 
-export default function SectionHeading({ tag, title, description, light }: Props) {
+interface Props {
+  eyebrow: string;
+  title: string;
+  light?: boolean;
+  className?: string;
+}
+
+export default function SectionHeading({ eyebrow, title, light = false, className = '' }: Props) {
   return (
-    <div className="text-center max-w-2xl mx-auto">
-      <p className={`text-xs font-semibold tracking-[0.2em] mb-4 ${light ? 'text-brick-300' : 'text-brick-500'}`}>
-        {tag}
-      </p>
-      <h2 className={`text-4xl md:text-5xl font-heading font-bold mb-4 ${light ? 'text-white' : 'text-charcoal-700'}`}>
+    <div className={className}>
+      <Eyebrow className="mb-5">{eyebrow}</Eyebrow>
+      <h2
+        className={`font-display text-[clamp(40px,5.5vw,72px)] leading-none tracking-[-0.01em] ${
+          light ? 'text-cream' : 'text-ink'
+        }`}
+      >
         {title}
       </h2>
-      {description && (
-        <p className={`text-base ${light ? 'text-charcoal-200' : 'text-charcoal-400'}`}>
-          {description}
-        </p>
-      )}
     </div>
   );
 }
