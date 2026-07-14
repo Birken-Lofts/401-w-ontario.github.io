@@ -29,14 +29,22 @@ export default function Footer() {
           <span className="font-body text-xs text-[#6f6457]">
             &copy; {new Date().getFullYear()} Birken Lofts. All rights reserved.
           </span>
-          <a
-            href="https://monroeresidential.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-body text-xs text-[#6f6457] hover:text-taupe-2 transition-colors"
-          >
-            A Monroe Residential Partners Development
-          </a>
+          <div className="flex flex-wrap gap-x-5 gap-y-2">
+            <a
+              href="/ohio-feeder-ramp-cam/"
+              className="font-body text-xs text-[#6f6457] hover:text-taupe-2 transition-colors"
+            >
+              Live Traffic Cam
+            </a>
+            <a
+              href="https://monroeresidential.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-body text-xs text-[#6f6457] hover:text-taupe-2 transition-colors"
+            >
+              A Monroe Residential Partners Development
+            </a>
+          </div>
         </div>
       </div>
     </footer>
