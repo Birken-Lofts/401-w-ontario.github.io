@@ -42,6 +42,7 @@ body { padding-top: 64px; } /* clearance for the fixed nav */
 }
 .stat-figure { font-family: var(--font-heading); font-size: 38px; }
 .stat-label { font-size: 13px; color: var(--color-neutral-700); }
+.stat-label-short { display: none; }
 
 /* — section rhythm — */
 .section { padding-top: 88px; }
@@ -154,6 +155,10 @@ body { padding-top: 64px; } /* clearance for the fixed nav */
 .timeline { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
 .tl-track { position: relative; height: 20px; margin-bottom: 18px; }
 .tl-connector { position: absolute; left: 10px; right: -24px; top: 9px; height: 2px; }
+.tl-connector-complete { background: var(--color-accent); }
+.tl-connector-next { background: linear-gradient(90deg, var(--color-accent) 0%, var(--color-accent) 60%, var(--color-neutral-300) 60%, var(--color-neutral-300) 100%); }
+.tl-connector-upcoming { background: var(--color-neutral-300); }
+.tl-tag-date { display: none; }
 .tl-dot { position: absolute; left: 0; top: 0; width: 20px; height: 20px; border-radius: 50%; z-index: 1; }
 .tl-dot-complete { background: var(--color-accent); border: 3px solid var(--color-bg); box-shadow: 0 0 0 1px var(--color-accent); }
 .tl-dot-next { background: var(--color-bg); border: 3px solid var(--color-accent); }
@@ -350,6 +355,7 @@ body { padding-top: 64px; } /* clearance for the fixed nav */
     background: var(--color-bg); box-shadow: var(--shadow-lg);
     border-radius: 0 0 calc(var(--radius-lg) * 1.4) calc(var(--radius-lg) * 1.4);
     padding: 8px 20px 24px;
+    max-height: calc(100dvh - 64px); overflow-y: auto;
   }
   .nav-drawer a { display: block; padding: 13px 4px; color: inherit; text-decoration: none; font-size: 18px; border-bottom: 1px solid var(--color-divider); }
   .nav-drawer a:nth-last-child(2) { border-bottom: 0; }
@@ -358,25 +364,85 @@ body { padding-top: 64px; } /* clearance for the fixed nav */
 }
 @media (max-width: 768px) {
   .container { padding-inline: 20px; }
-  .site-nav, .nav-drawer { padding-inline: 20px; }
-  .hero { grid-template-columns: 1fr; padding-block: 40px 48px; }
-  .hero h1 { font-size: 40px; }
+  .site-nav { padding-inline: 20px; }
+  /* hero */
+  .hero { grid-template-columns: 1fr; gap: 28px; padding-block: 32px 48px; }
+  .hero .tag { font-size: 12px; }
+  .hero h1 { font-size: 37px; line-height: 1.1; }
+  .hero-lede { font-size: 16px; }
+  .hero-ctas { flex-direction: column; gap: 12px; }
+  .hero-ctas .btn { width: 100%; justify-content: center; min-height: 48px; }
   .hero-blob { height: 320px; }
-  .stats-band { width: calc(100% - 40px); gap: 28px; padding: 28px; }
-  .section h2 { font-size: 30px; }
+  /* stats band */
+  .stats-band { width: calc(100% - 40px); display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 24px; }
+  .stat-figure { font-size: 30px; }
+  .stat-label { font-size: 12px; }
+  .stat-label-long { display: none; }
+  .stat-label-short { display: inline; }
+  /* section rhythm */
+  .section { padding-top: 56px; }
+  .section h2 { font-size: 28px; }
+  .section-intro { font-size: 15px; margin-bottom: 24px; }
+  /* floor plans */
   .cards-3, .amenities-grid, .nbhd-cards { grid-template-columns: 1fr; }
-  .history-band { grid-template-columns: 1fr; padding: 32px; }
-  .history-photo { width: 260px; height: 260px; justify-self: center; }
+  .cards-3 { gap: 20px; }
+  .plan-media { height: 190px; }
+  .plan-card .card-title { font-size: 20px; }
+  .plan-card .btn { width: 100%; justify-content: center; min-height: 46px; }
+  /* history band */
+  .history-band { display: flex; flex-direction: column; gap: 18px; padding: 32px 24px; }
+  .history-band > div:first-child { display: contents; }
+  .history-band .tag { order: 1; align-self: flex-start; }
+  .history-band h2 { order: 2; margin: 0; font-size: 28px; }
+  .history-photo { order: 3; width: 220px; height: 220px; align-self: center; }
+  .history-band p { order: 4; font-size: 15px; }
+  .history-band .history-link { order: 5; margin-top: 0; padding-block: 10px; }
+  /* amenities */
+  .amenities-grid { gap: 16px; }
+  .amenity-icon { width: 38px; height: 38px; }
+  /* neighborhood + map */
+  .nbhd-intro { font-size: 15px; margin-bottom: 24px; }
   .map-frame { grid-template-columns: 1fr; }
-  .map-panel { border-right: 0; border-bottom: 1px solid var(--color-divider); }
-  .place-list { max-height: 260px; }
-  .contact-band { grid-template-columns: 1fr; padding: 32px; gap: 32px; }
+  .map-panel { display: none; }
+  .map-canvas { min-height: 280px; height: 280px; }
+  .map-address { display: none; }
+  .nbhd-cards { gap: 14px; margin-top: 20px; }
+  /* schedule — vertical timeline */
+  .timeline { display: flex; flex-direction: column; gap: 0; }
+  .tl-item { display: flex; gap: 16px; }
+  .tl-track { position: static; height: auto; margin-bottom: 0; flex: none; width: 20px; display: flex; flex-direction: column; align-items: center; }
+  .tl-dot { position: static; order: 0; width: 14px; height: 14px; margin-top: 5px; }
+  .tl-connector { position: static; order: 1; left: auto; right: auto; top: auto; width: 2px; height: auto; flex: 1; margin-top: 4px; }
+  .tl-content { padding-bottom: 26px; }
+  .tl-item:last-child .tl-content { padding-bottom: 0; }
+  .tl-dot-complete { background: var(--color-accent-2); border: 0; box-shadow: none; }
+  .tl-dot-next { background: var(--color-accent); border: 0; }
+  .tl-dot-upcoming { border-width: 2px; border-color: var(--color-neutral-400); }
+  .tl-connector-complete, .tl-connector-next { background: var(--color-accent-2-300); }
+  .tl-connector-upcoming { background: var(--color-neutral-300); }
+  .tl-tag-date { display: inline; }
+  .tl-date { display: none; }
+  .tl-item .tag { font-size: 11px; }
+  .tl-title { font-size: 19px; margin: 8px 0 4px; }
+  .tl-body { font-size: 14px; line-height: 1.55; }
+  /* contact */
+  .contact-band { display: flex; flex-direction: column; padding: 32px 24px; gap: 0; }
+  .contact-band > div:first-child { display: contents; }
+  .contact-band h2 { order: 1; margin: 0 0 10px; }
+  .contact-blurb { order: 2; font-size: 15px; margin-bottom: 24px; }
+  .contact-band form, .contact-band .form-success { order: 3; }
   .contact-form { grid-template-columns: 1fr; }
-  .site-footer { flex-direction: column; }
-  .cam-header h1 { font-size: 36px; }
-}
-@media (max-width: 660px) {
-  .timeline { display: flex; gap: 24px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 6px; scrollbar-width: none; }
-  .timeline::-webkit-scrollbar { display: none; }
-  .tl-item { width: 240px; flex: none; scroll-snap-align: start; }
+  .contact-address { order: 4; margin-top: 24px; }
+  .contact-band .input { min-height: 48px; }
+  .contact-band textarea.input { min-height: 96px; }
+  .contact-band button.btn { width: 100%; justify-content: center; min-height: 50px; }
+  /* footer */
+  .site-footer { flex-direction: column; padding: 32px 24px; gap: 20px; }
+  .footer-links { gap: 16px 24px; font-size: 14px; }
+  .footer-links a { padding: 6px 0; }
+  /* traffic cam */
+  .cam-header { padding-block: 32px 24px; }
+  .cam-header h1 { font-size: 34px; }
+  .cam-player { border-radius: calc(var(--radius-lg) * 1.2); }
+  .cam-notes { padding-block: 24px 48px; }
 }

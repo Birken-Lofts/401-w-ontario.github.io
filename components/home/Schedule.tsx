@@ -12,17 +12,6 @@ const dotCls: Record<MilestoneState, string> = {
   upcoming: 'tl-dot-upcoming',
 };
 
-const ACCENT = '#c67139'; /* --color-accent */
-const NEUTRAL = '#dcd3c4'; /* --color-neutral-300 */
-
-// Connector leading into the NEXT milestone, colored by that milestone's state.
-function connectorBackground(nextState: MilestoneState): string {
-  if (nextState === 'complete') return ACCENT;
-  if (nextState === 'next')
-    return `linear-gradient(90deg,${ACCENT} 0%,${ACCENT} 60%,${NEUTRAL} 60%,${NEUTRAL} 100%)`;
-  return NEUTRAL;
-}
-
 export default function Schedule() {
   return (
     <section id="schedule" className="section container">
@@ -37,15 +26,18 @@ export default function Schedule() {
           return (
             <div key={ms.title} className="tl-item">
               <div className="tl-track">
-                {next && (
-                  <div className="tl-connector" style={{ background: connectorBackground(next.state) }} />
-                )}
+                {next && <div className={`tl-connector tl-connector-${next.state}`} />}
                 <span className={`tl-dot ${dotCls[ms.state]}`} />
               </div>
-              <span className={`tag ${tagFor[ms.state].cls}`}>{tagFor[ms.state].text}</span>
-              <div className="tl-date">{date}</div>
-              <h3 className="tl-title">{ms.title}</h3>
-              <p className="tl-body">{ms.description}</p>
+              <div className="tl-content">
+                <span className={`tag ${tagFor[ms.state].cls}`}>
+                  {tagFor[ms.state].text}
+                  <span className="tl-tag-date"> · {date}</span>
+                </span>
+                <div className="tl-date">{date}</div>
+                <h3 className="tl-title">{ms.title}</h3>
+                <p className="tl-body">{ms.description}</p>
+              </div>
             </div>
           );
         })}
