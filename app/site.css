@@ -36,7 +36,7 @@ body { padding-top: 64px; } /* clearance for the fixed nav */
 /* — stats band — */
 .stats-band {
   display: flex; gap: 64px; flex-wrap: wrap;
-  padding: 36px 48px; max-width: 1080px; margin-inline: 48px;
+  padding: 36px 48px; width: min(1080px, 100% - 96px); margin-inline: auto;
   background: var(--color-accent-2-100); border-radius: calc(var(--radius-lg) * 1.4);
 }
 .stat-figure { font-family: var(--font-heading); font-size: 38px; }
@@ -228,7 +228,7 @@ body { padding-top: 64px; } /* clearance for the fixed nav */
   .hero { grid-template-columns: 1fr; padding-block: 40px 48px; }
   .hero h1 { font-size: 40px; }
   .hero-blob { height: 320px; }
-  .stats-band { margin-inline: 20px; gap: 28px; padding: 28px; }
+  .stats-band { width: calc(100% - 40px); gap: 28px; padding: 28px; }
   .section h2 { font-size: 30px; }
   .cards-3, .amenities-grid, .nbhd-cards { grid-template-columns: 1fr; }
   .history-band { grid-template-columns: 1fr; padding: 32px; }
