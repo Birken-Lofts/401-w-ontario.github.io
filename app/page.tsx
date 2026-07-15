@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Hero from '@/components/home/Hero';
 import StatsBand from '@/components/home/StatsBand';
 import FloorPlans from '@/components/home/FloorPlans';
+import FinishesTeaser from '@/components/home/FinishesTeaser';
 import HistoryBand from '@/components/home/HistoryBand';
 import Amenities from '@/components/home/Amenities';
 import Neighborhood from '@/components/home/Neighborhood';
@@ -66,6 +67,7 @@ export default function Home() {
       <Hero />
       <StatsBand />
       <FloorPlans />
+      <FinishesTeaser />
       <HistoryBand />
       <Amenities />
       <Neighborhood />

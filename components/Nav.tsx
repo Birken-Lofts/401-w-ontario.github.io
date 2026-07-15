@@ -13,9 +13,11 @@ export default function Nav() {
   const active = useScrollSpy(onHome);
   const onCam = pathname.startsWith('/ohio-feeder-ramp-cam');
   const onHistory = pathname.startsWith('/history');
+  const onFinishes = pathname.startsWith('/finishes');
 
   const links = [
     { href: '/#plans', label: 'Residences', current: onHome && active === 'plans' },
+    { href: '/finishes/', label: 'Finishes', current: onFinishes },
     { href: '/history/', label: 'History', current: onHistory },
     { href: '/#amenities', label: 'Amenities', current: onHome && active === 'amenities' },
     { href: '/#neighborhood', label: 'Neighborhood', current: onHome && active === 'neighborhood' },
