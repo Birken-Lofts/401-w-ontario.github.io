@@ -10,9 +10,11 @@ interface ImageSlotProps {
   sizes?: string;
   /** Marks this image as high priority (LCP candidate): eager load + fetchpriority high. */
   priority?: boolean;
+  /** 'contain' for diagrams (floor plans) — no crop, no washed filter. Default 'cover'. */
+  fit?: 'cover' | 'contain';
 }
 
-export default function ImageSlot({ src, alt, label, srcSet, sizes, priority }: ImageSlotProps) {
+export default function ImageSlot({ src, alt, label, srcSet, sizes, priority, fit = 'cover' }: ImageSlotProps) {
   if (!src) {
     return (
       <div className="img-slot" role="img" aria-label={alt}>
@@ -39,7 +41,7 @@ export default function ImageSlot({ src, alt, label, srcSet, sizes, priority }: 
       src={src}
       alt={alt}
       fill
-      className="img-cover washed"
+      className={fit === 'contain' ? 'img-contain' : 'img-cover washed'}
       sizes="100vw"
       priority={priority}
     />

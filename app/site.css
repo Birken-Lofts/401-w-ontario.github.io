@@ -51,7 +51,7 @@ body { padding-top: 64px; } /* clearance for the fixed nav */
 .cards-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
 .plan-card { gap: 14px; }
 .plan-card .card-title { font-size: 22px; }
-.plan-media { position: relative; border-radius: var(--radius-lg); overflow: hidden; height: 200px; }
+.plan-media { position: relative; border-radius: var(--radius-lg); overflow: hidden; height: 280px; background: #fff; }
 
 /* — history band — */
 .history-band {
@@ -208,6 +208,7 @@ body { padding-top: 64px; } /* clearance for the fixed nav */
   font-size: 13px; text-align: center; padding: 12px;
 }
 .img-cover { object-fit: cover; }
+.img-contain { object-fit: contain; padding: 12px; }
 
 /* — responsive (not designed; sensible stacking per handoff) — */
 @media (max-width: 900px) {
