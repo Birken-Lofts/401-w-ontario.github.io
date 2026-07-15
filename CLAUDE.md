@@ -4,43 +4,42 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-Single-page marketing site for **Birken Lofts** — a residential conversion at 401 W. Ontario St, Chicago. React 19 + TypeScript + Vite, styled with Tailwind CSS v4, with an interactive **Leaflet** neighborhood map as the centerpiece. Deployed to GitHub Pages at `birkenlofts.com` (custom domain via `public/CNAME`).
+Single-page marketing site for **Birken Lofts** — a residential conversion at 401 W. Ontario St, Chicago. Next.js 15 (App Router, static export) + TypeScript, styled with the checked-in Organic design system CSS, with an interactive **Leaflet** neighborhood map as the centerpiece. Deployed to GitHub Pages at `birkenlofts.com` (custom domain via `public/CNAME`).
 
 ## Commands
 
 ```bash
-npm run dev      # Vite dev server with HMR
-npm run build    # tsc -b (typecheck) then vite build → dist/
-npm run lint     # ESLint over the repo
-npm run preview  # Serve the production build locally
+npm run dev      # Next.js dev server
+npm run build    # next build → static export in out/ (typecheck included)
+npm run lint     # next lint (eslint-config-next)
 ```
 
-There is no test suite. `npm run build` is the gate — it typechecks via project references before bundling, so a type error fails the build (and the deploy).
+There is no test suite. `npm run build` is the gate — it typechecks before exporting, so a type error fails the build (and the deploy).
 
 ## Deploy
 
-Pushing to `main` triggers `.github/workflows/deploy.yml`, which runs `npm ci && npm run build` and publishes `dist/` to GitHub Pages. No manual deploy step. `vite.config.ts` uses `base: '/'` because the site is served from a custom apex domain, not a project subpath.
+Pushing to `main` triggers `.github/workflows/deploy.yml`, which runs `npm ci && npm run build` and publishes `out/` to GitHub Pages. No manual deploy step. The site is served from the custom apex domain (`public/CNAME`); `public/.nojekyll` keeps Pages from mangling `_next/` assets.
 
 ## Architecture
 
-The whole site is one scrolling page. `App.tsx` renders `Navbar`, then a fixed list of `<section>` components in order, then `Footer`. Each section owns its own `id` and is a self-contained file under `src/components/sections/`.
+Next.js 15 App Router with `output: 'export'` and `trailingSlash: true` — every route is plain static HTML. Two routes: `/` (`app/page.tsx`) and `/ohio-feeder-ramp-cam/` (`app/ohio-feeder-ramp-cam/page.tsx`). The root layout (`app/layout.tsx`) renders `Nav` + `Footer` on every page, loads fonts via `next/font` (Caprasimo headings, Figtree body), and injects the GA tag.
 
-- **Section-as-anchor navigation.** Each section's `id` (`hero`, `about`, `residences`, `features`, `location`, `timeline`, `contact`) is the navigation contract. `Navbar` links to `#id`, and `useScrollSpy` (`src/hooks/`) observes those same ids via `IntersectionObserver` to highlight the active link. **The section id list is duplicated in three places** — the section's own JSX, the `links` array in `Navbar.tsx`, and the `sections` array in `useScrollSpy.ts`. When adding, removing, or renaming a section, update all three or scroll-spy and nav links silently break.
-- **Content lives in `src/data/`.** `units.ts`, `features.ts`, `timeline.ts`, and `location.ts` export typed arrays that the matching section maps over. Edit data here rather than hardcoding it in JSX. Unit floor-plan images carry explicit `floorPlanWidth`/`floorPlanHeight` to reserve layout space and avoid CLS. `location.ts` holds the map's `categories`, `pois` (coordinates are approximate — verify before launch), and the `HOME` pin.
-- **Reusable UI** is in `src/components/ui/`: `Logo` (the SVG arched-window "BL" monogram lockup, used in nav + footer), `ScrollReveal` (a Framer Motion `whileInView` fade-up wrapper), and `SectionHeading` — which also exports a named `Eyebrow` (the rule + uppercase terracotta label that precedes most section headings).
+- Home is composed of section components under `components/home/`, each owning its section `id` (`plans`, `history`, `amenities`, `neighborhood`, `schedule`, `contact`). `Nav.tsx` links to `/#id` and `hooks/useScrollSpy.ts` observes the same ids — its `sections` array must match the section ids or nav highlighting silently breaks.
+- Content data lives in `data/` (`location.ts` for the map POIs, `timeline.ts` for the construction milestones). Floor-plan and amenity copy is design-final and hardcoded in the section components (see `reference/design-2026/`).
+- Per-page SEO uses Next `metadata` exports; JSON-LD blocks are inline `<script type="application/ld+json">` in the page components.
 
 ## Styling
 
-Tailwind v4 configured **in CSS, not a JS config** — `src/index.css` defines the design tokens in an `@theme` block. There is no `tailwind.config.js`. The brand palette is **semantic, single-value tokens** (not numbered 50–900 scales): `terracotta` (accent/CTA, with `terracotta-soft`), `paper`/`cream` (light surfaces), `ink` (text on light), `charcoal`/`charcoal-deep`/`panel` (dark surfaces), warm text grays (`sand`, `sand-2`, `taupe`, `taupe-2`, `stone`, `stone-2`), hairlines (`line`, `line-2`, `line-dark`, `line-dark-2`), and `cat-*` map-category colors. Headings use `font-display` (Instrument Serif); body uses `font-body` (Space Grotesk). Use these tokens (e.g. `bg-paper`, `text-terracotta`) rather than default Tailwind colors. Because tokens are single-value, components lean on **arbitrary values** for sizing — e.g. `text-[clamp(40px,5.5vw,72px)]`, `max-w-[1320px]`, `py-[clamp(80px,11vw,150px)]`, and the custom `min-[860px]:` / `min-[920px]:` breakpoints from the design spec.
+The "Organic" design system from `reference/design-2026/styles.css` is checked in as `app/globals.css` — design tokens (`--color-*`, `--radius-*`, `--shadow-*`) and component classes (`.btn`, `.card`, `.tag`, `.input`…). **Do not restyle ad hoc: retune tokens there.** Layout/section classes translated from the design mocks live in `app/site.css`. No Tailwind. Headings use Caprasimo (400 only); body is Figtree. Buttons/inputs/tags are pills; photography gets the `.washed` filter treatment.
 
-## Map (Location section)
+## Map (Neighborhood section)
 
-`Location.tsx` renders the interactive map with **vanilla Leaflet** (not react-leaflet) inside a `useEffect`. Two effects: one initializes the map once and **fully tears it down** (`map.remove()`) on cleanup so React StrictMode's double-mount in dev doesn't throw "already initialized"; a second syncs pin visibility when category filters change. Pins/popups are custom `divIcon`s; their CSS (`.bk-pin`, `.bk-home`, `.leaflet-*` overrides, the pulse keyframe) lives in `index.css`, and `leaflet/dist/leaflet.css` is imported there too. Scroll-wheel zoom is gated behind a map click so it doesn't hijack page scroll. Leaflet makes the JS bundle large (~525 kB) — lazy-loading this section is the obvious win if bundle size matters.
+`components/map/NeighborhoodMap.tsx` renders the interactive map with vanilla Leaflet in a `'use client'` component, dynamically imported with `ssr: false` from `components/home/Neighborhood.tsx` (static export never touches `window`). Two effects: one initializes the map once and fully tears it down (`map.remove()`) on cleanup so StrictMode's double-mount is safe; a second syncs pin visibility with the category filters. Pins/popups are custom `divIcon`s styled by the Leaflet block in `app/site.css` (light Carto tiles, Organic popups).
 
 ## Contact form
 
-`Contact.tsx` POSTs JSON to a **Formspree** endpoint (`https://formspree.io/f/xqeyrene`) using `react-hook-form`. On network failure it still shows the success state rather than surfacing an error. Changing the recipient means swapping the Formspree form id.
+`Contact.tsx` POSTs JSON to a **Formspree** endpoint (`https://formspree.io/f/xqeyrene`) using `react-hook-form`. On network failure it shows an inline error (no fake success). Changing the recipient means swapping the Formspree form id.
 
 ## Assets
 
-Production images live in `public/images/` as pre-generated multi-width `.webp` files. `public/` also holds SEO/LLM files (`sitemap.xml`, `robots.txt`, `llms.txt`, `llms-full.txt`) served at the site root. The `reference/` directory holds source material (PDFs, original elevation/floor-plan images, pitch book) — it is not bundled; it's the source of truth for site content.
+Production images live in `public/images/` as pre-generated multi-width `.webp` files. `public/` also holds SEO/LLM files (`sitemap.xml`, `robots.txt`, `llms.txt`, `llms-full.txt`) served at the site root. The `reference/` directory holds source material (PDFs, original elevation/floor-plan images, pitch book) — it is not bundled; it's the source of truth for site content. `reference/design-2026/` holds the Organic design handoff (HTML/CSS mocks) that Task 1–6 implemented.

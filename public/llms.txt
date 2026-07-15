@@ -23,23 +23,23 @@ Website: https://monroeresidential.com
 ## Residences
 
 - Total units: 57
-- Unit sizes: 564–819 square feet
-- Bedrooms: 1–2 bedrooms
-- Sample units:
-  - Unit 108: 1 bed / 1 bath, 564 sqft — Efficient one-bedroom with open living area and exposed timber ceilings.
-  - Unit 111: 1 bed / 1 bath, 614 sqft — Spacious one-bedroom featuring arched windows and original brick walls.
-  - Unit 202: 2 bed / 2 bath, 819 sqft — Corner two-bedroom with dual exposures and heavy timber beams throughout.
+- Unit types: Studio, one-bedroom, and two-bedroom lofts
+- Unit sizes: 550–1,400 square feet
+- Floor plans:
+  - Studio: 550–700 sq ft — oversized windows, in-unit laundry
+  - One bedroom: 750–1,000 sq ft — exposed brick, walk-in closet
+  - Two bedroom: 1,100–1,400 sq ft — corner exposures, original timber posts
+- Availability: Interest list open
 
 ## Features & Amenities
 
-- Exposed heavy timber beams and columns (original 1905)
-- Historic brick masonry walls
-- Distinctive arched window openings with abundant natural light
-- In-unit washer and dryer in every residence
-- Modern kitchens with contemporary finishes
-- Elevator access to all floors
-- River North location steps from galleries, dining, and nightlife
-- Historic restoration preserving Chicago's architectural legacy
+- Exposed brick & heavy timber (original 1905)
+- Oversized windows
+- In-unit laundry
+- Fitness center
+- Garage parking
+- Pet friendly
+- River North location steps from galleries, dining, and the Riverwalk
 
 ## Timeline
 

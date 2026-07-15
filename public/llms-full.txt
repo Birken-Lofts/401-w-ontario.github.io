@@ -29,40 +29,35 @@ Birken Lofts honors this legacy through a thoughtful adaptive reuse — preservi
 ## Unit Mix
 
 Total units: 57
-Size range: 564–819 square feet
-Bedroom range: 1–2 bedrooms
+Unit types: Studio, one-bedroom, and two-bedroom lofts
+Size range: 550–1,400 square feet
+Availability: Interest list open
 
-### Sample Floor Plans
+### Floor Plans
 
-#### Unit 108
-- Type: 1 bedroom / 1 bathroom
-- Size: 564 square feet
-- Description: Efficient one-bedroom with open living area and exposed timber ceilings.
-- Floor plan: https://birkenlofts.com/images/floor-plans/401-W-Ontario-1-Bed-Floor-Plan-108.webp
+#### Studio
+- Size: 550–700 square feet
+- Features: oversized windows, in-unit laundry
 
-#### Unit 111
-- Type: 1 bedroom / 1 bathroom
-- Size: 614 square feet
-- Description: Spacious one-bedroom featuring arched windows and original brick walls.
-- Floor plan: https://birkenlofts.com/images/floor-plans/401-W-Ontario-1-Bed-Floor-Plan-Unit-111.webp
+#### One bedroom
+- Size: 750–1,000 square feet
+- Features: exposed brick, walk-in closet
 
-#### Unit 202
-- Type: 2 bedrooms / 2 bathrooms
-- Size: 819 square feet
-- Description: Corner two-bedroom with dual exposures and heavy timber beams throughout.
-- Floor plan: https://birkenlofts.com/images/floor-plans/401-W-Ontario-2-Bed-Floor-Plan-Unit-202-400w.webp
+#### Two bedroom
+- Size: 1,100–1,400 square feet
+- Features: corner exposures, original timber posts
 
 ## Features & Amenities
 
 ### Heritage Features
-- Exposed heavy timber beams and columns preserved from 1905 original construction
-- Authentic masonry brick walls showcasing over a century of character
-- Distinctive arched window openings flooding units with natural light
+- Exposed brick & heavy timber (original 1905)
+- Oversized windows
 
 ### Modern Amenities
-- In-unit full-size washer and dryer in every residence
-- Contemporary kitchen finishes paired with the building's industrial heritage
-- Modern elevator serving all floors for convenient living
+- In-unit laundry
+- Fitness center
+- Garage parking
+- Pet friendly
 
 ### Restoration
 - Historic restoration preserving Chicago's architectural legacy
