@@ -116,7 +116,7 @@ export default function HistoryPage() {
               businesses.
             </p>
           </div>
-          <figure className="history-fig">
+          <figure className="history-fig history-fig--portrait">
             <Image
               src="/images/history/louis-birkenstein-1919.webp"
               alt="Portrait of Louis Birkenstein"
