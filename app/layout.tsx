@@ -3,6 +3,8 @@ import Script from 'next/script';
 import { Caprasimo, Figtree } from 'next/font/google';
 import './globals.css';
 import './site.css';
+import Nav from '@/components/Nav';
+import Footer from '@/components/Footer';
 
 const caprasimo = Caprasimo({ weight: '400', subsets: ['latin'], variable: '--font-caprasimo' });
 const figtree = Figtree({ weight: ['400', '600', '700'], subsets: ['latin'], variable: '--font-figtree' });
@@ -16,7 +18,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${caprasimo.variable} ${figtree.variable}`}>
       <body>
+        <Nav />
         {children}
+        <Footer />
         <Script src="https://www.googletagmanager.com/gtag/js?id=G-YVPGP24V3P" strategy="afterInteractive" />
         <Script id="ga" strategy="afterInteractive">{`
           window.dataLayer = window.dataLayer || [];
