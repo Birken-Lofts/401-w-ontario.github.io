@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 
-const sections = ['plans', 'history', 'amenities', 'neighborhood', 'schedule', 'contact'];
+const sections = ['plans', 'amenities', 'neighborhood', 'schedule', 'contact'];
 
 export default function useScrollSpy(enabled: boolean = true) {
   const [active, setActive] = useState('');

@@ -13,7 +13,7 @@ export default function Footer() {
       </div>
       <div className="footer-links">
         <Link href="/#plans">Residences</Link>
-        <Link href="/#history">History</Link>
+        <Link href="/history/">History</Link>
         <Link href="/ohio-feeder-ramp-cam/">Traffic Cam</Link>
         <Link href="/#contact">Contact</Link>
       </div>

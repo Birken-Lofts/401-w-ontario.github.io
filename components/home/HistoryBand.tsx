@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import ImageSlot from '@/components/ImageSlot';
 
 export default function HistoryBand() {
@@ -12,6 +13,9 @@ export default function HistoryBand() {
             boom, 401 W. Ontario spent a century as warehouse and workshop before becoming the
             lofts you see today. The posts, beams and brick are all original.
           </p>
+          <Link className="history-link" href="/history/">
+            Read the building&rsquo;s story &rarr;
+          </Link>
         </div>
         <div className="history-photo">
           <ImageSlot
