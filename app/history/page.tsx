@@ -87,6 +87,7 @@ export default function HistoryPage() {
               alt="1906 Sanborn fire-insurance map showing the block bounded by Ontario and Ohio Streets"
               width={1087}
               height={1600}
+              priority
             />
             <figcaption>
               The 1906 Sanborn fire-insurance map &mdash; the building at center, labeled

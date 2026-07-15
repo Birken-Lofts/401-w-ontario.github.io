@@ -268,7 +268,7 @@ body { padding-top: 64px; } /* clearance for the fixed nav */
 .history-prose p:last-child { margin-bottom: 0; }
 .history-fig { margin: 0; }
 .history-fig img {
-  width: 100%; height: auto; display: block;
+  width: auto; max-width: 100%; height: auto; display: block; margin-inline: auto;
   border-radius: var(--radius-lg); box-shadow: var(--shadow-md); background: #fff;
 }
 .history-fig figcaption { font-size: 13px; line-height: 1.5; color: var(--color-neutral-600); margin-top: 10px; }
