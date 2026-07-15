@@ -5,6 +5,8 @@ import FloorPlans from '@/components/home/FloorPlans';
 import HistoryBand from '@/components/home/HistoryBand';
 import Amenities from '@/components/home/Amenities';
 import Neighborhood from '@/components/home/Neighborhood';
+import Schedule from '@/components/home/Schedule';
+import Contact from '@/components/home/Contact';
 
 export const metadata: Metadata = {
   title: 'Birken Lofts | Historic Loft Living in River North',
@@ -67,6 +69,8 @@ export default function Home() {
       <HistoryBand />
       <Amenities />
       <Neighborhood />
+      <Schedule />
+      <Contact />
     </main>
   );
 }
