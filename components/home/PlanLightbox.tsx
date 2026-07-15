@@ -18,7 +18,7 @@ interface PlanLightboxProps {
 
 export default function PlanLightbox({ plans, openIndex, onClose }: PlanLightboxProps) {
   if (openIndex === null) return null;
-  return <Overlay plans={plans} initialIndex={openIndex} onClose={onClose} />;
+  return <Overlay key={openIndex} plans={plans} initialIndex={openIndex} onClose={onClose} />;
 }
 
 function Overlay({
@@ -32,6 +32,7 @@ function Overlay({
 }) {
   const trackRef = useRef<HTMLDivElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
+  const rootRef = useRef<HTMLDivElement>(null);
   const [current, setCurrent] = useState(initialIndex);
 
   const scrollTo = useCallback(
@@ -60,10 +61,35 @@ function Overlay({
       if (e.key === 'Escape') onClose();
       else if (e.key === 'ArrowRight') scrollTo(current + 1);
       else if (e.key === 'ArrowLeft') scrollTo(current - 1);
+      else if (e.key === 'Tab') {
+        const root = rootRef.current;
+        if (!root) return;
+        const focusables = Array.from(root.querySelectorAll<HTMLElement>('button'));
+        if (focusables.length === 0) return;
+        const first = focusables[0];
+        const last = focusables[focusables.length - 1];
+        const active = document.activeElement;
+        if (e.shiftKey && (active === first || !root.contains(active))) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && (active === last || !root.contains(active))) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
   }, [current, onClose, scrollTo]);
+
+  useEffect(() => {
+    const onResize = () => {
+      const track = trackRef.current;
+      if (track) track.scrollLeft = track.clientWidth * current;
+    };
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, [current]);
 
   const handleScroll = () => {
     const track = trackRef.current;
@@ -73,7 +99,14 @@ function Overlay({
   };
 
   return (
-    <div className="lightbox" role="dialog" aria-modal="true" aria-label="Floor plan viewer" onClick={onClose}>
+    <div
+      className="lightbox"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Floor plan viewer"
+      onClick={onClose}
+      ref={rootRef}
+    >
       <div className="lightbox-track" ref={trackRef} onScroll={handleScroll}>
         {plans.map((p) => (
           <figure key={p.unit} className="lightbox-slide">
