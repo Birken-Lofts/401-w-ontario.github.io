@@ -197,6 +197,21 @@ body { padding-top: 64px; } /* clearance for the fixed nav */
 .cam-header h1 { font-size: 50px; line-height: 1.08; margin: 18px 0 0; }
 .cam-player { border-radius: calc(var(--radius-lg) * 1.4); overflow: hidden; aspect-ratio: 16 / 9; background: var(--color-neutral-900); }
 .cam-player iframe { width: 100%; height: 100%; border: 0; display: block; }
+.cam-facade { position: relative; display: block; width: 100%; height: 100%; padding: 0; border: 0; background: var(--color-neutral-900); cursor: pointer; }
+.cam-facade img { width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0.88; }
+.cam-live-badge {
+  position: absolute; top: 14px; left: 14px;
+  background: var(--color-accent); color: #fff;
+  font: 700 11px var(--font-body); letter-spacing: 0.08em;
+  padding: 4px 10px; border-radius: 999px;
+}
+.cam-play {
+  position: absolute; inset: 0; margin: auto; width: fit-content; height: 48px;
+  display: inline-flex; align-items: center; gap: 10px; padding: 0 22px;
+  background: var(--color-bg); color: var(--color-text); border-radius: 999px;
+  font: 600 15px var(--font-body); box-shadow: var(--shadow-md);
+}
+.cam-facade:hover .cam-play { background: var(--color-neutral-100); }
 .cam-notes { padding-block: 36px 72px; display: flex; flex-direction: column; gap: 14px; }
 .cam-note-1 { font-size: 18px; line-height: 1.6; margin: 0; color: var(--color-neutral-800); }
 .cam-note-2 { font-size: 16px; line-height: 1.6; margin: 0; color: var(--color-neutral-700); }

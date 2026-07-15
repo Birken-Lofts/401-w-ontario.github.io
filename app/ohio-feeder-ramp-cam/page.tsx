@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 
+import CamFacade from '@/components/CamFacade';
+
 export const metadata: Metadata = {
   title: 'Ohio Street Feeder Ramp Live Cam — Chicago I-90/94 Traffic Camera | Birken Lofts',
   description:
@@ -81,13 +83,7 @@ export default function TrafficCamPage() {
       </header>
       <div className="container">
         <div className="cam-player">
-          <iframe
-            src="https://www.youtube-nocookie.com/embed/DdyWM2B-FYQ?autoplay=1&mute=1"
-            title="Ohio Feeder Ramp live stream"
-            allow="autoplay; encrypted-media; picture-in-picture"
-            referrerPolicy="strict-origin-when-cross-origin"
-            allowFullScreen
-          />
+          <CamFacade />
         </div>
       </div>
       <section className="cam-notes container">
