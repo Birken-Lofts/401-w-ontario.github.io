@@ -21,6 +21,7 @@ interface SelectionRow {
   item: string;
   product: string;
   spec?: string;
+  pending?: boolean;
 }
 
 const kitchenRows: SelectionRow[] = [
@@ -36,7 +37,7 @@ const bathRows: SelectionRow[] = [
   { item: 'Cabinets', product: 'Egger — Cashmere Gray' },
   { item: 'Hardware', product: 'Amwell Lawrence pulls', spec: 'Brushed satin nickel, set vertically' },
   { item: 'Floor', product: 'Roca — Limestone Blanco', spec: '12" × 24"' },
-  { item: 'Wall tile', product: 'Being finalized' },
+  { item: 'Wall tile', product: 'Being finalized', pending: true },
 ];
 
 const fixtures = [
@@ -75,7 +76,7 @@ function Selections({ rows }: { rows: SelectionRow[] }) {
       {rows.map((r) => (
         <li key={r.item}>
           <span className="fin-item">{r.item}</span>
-          <span className="fin-product">{r.product}</span>
+          <span className={r.pending ? 'fin-product fin-product-pending' : 'fin-product'}>{r.product}</span>
           {r.spec && <span className="fin-spec">{r.spec}</span>}
         </li>
       ))}
