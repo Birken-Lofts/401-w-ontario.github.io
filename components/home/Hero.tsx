@@ -18,6 +18,9 @@ export default function Hero() {
       <div className="hero-blob">
         <ImageSlot
           src="/images/elevations/401-W-Ontario-No-Signs-1920w.webp"
+          srcSet="/images/elevations/401-W-Ontario-No-Signs-640w.webp 640w, /images/elevations/401-W-Ontario-No-Signs-1024w.webp 1024w, /images/elevations/401-W-Ontario-No-Signs-1920w.webp 1920w"
+          sizes="(max-width: 768px) 100vw, 50vw"
+          priority
           alt="Birken Lofts building exterior — north facade"
           label="Building exterior — north facade"
         />

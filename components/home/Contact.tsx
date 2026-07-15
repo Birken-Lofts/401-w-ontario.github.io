@@ -59,7 +59,7 @@ export default function Contact() {
             </div>
             <div className="field">
               <label htmlFor="contact-email">Email</label>
-              <input id="contact-email" className="input" type="email" placeholder="you@email.com" {...register('email', { required: true })} />
+              <input id="contact-email" className="input" type="email" placeholder="you@email.com" {...register('email', { required: true, pattern: /^\S+@\S+\.\S+$/ })} />
             </div>
             <div className="field">
               <label htmlFor="contact-phone">Phone</label>

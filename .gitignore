@@ -26,6 +26,8 @@ dist-ssr
 # API keys
 pagespeed.txt
 
+/design.zip
+
 # next.js
 /.next/
 /out/

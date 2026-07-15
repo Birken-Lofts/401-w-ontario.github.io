@@ -5,9 +5,14 @@ interface ImageSlotProps {
   src?: string;
   alt: string;
   label: string;
+  /** Responsive srcset for the raw <img> path (e.g. hero LCP image). When provided, bypasses next/image. */
+  srcSet?: string;
+  sizes?: string;
+  /** Marks this image as high priority (LCP candidate): eager load + fetchpriority high. */
+  priority?: boolean;
 }
 
-export default function ImageSlot({ src, alt, label }: ImageSlotProps) {
+export default function ImageSlot({ src, alt, label, srcSet, sizes, priority }: ImageSlotProps) {
   if (!src) {
     return (
       <div className="img-slot" role="img" aria-label={alt}>
@@ -15,5 +20,28 @@ export default function ImageSlot({ src, alt, label }: ImageSlotProps) {
       </div>
     );
   }
-  return <Image src={src} alt={alt} fill className="img-cover washed" sizes="100vw" />;
+  if (srcSet) {
+    return (
+      <img
+        src={src}
+        srcSet={srcSet}
+        sizes={sizes}
+        alt={alt}
+        className="img-cover washed"
+        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}
+        fetchPriority={priority ? 'high' : undefined}
+        loading={priority ? 'eager' : 'lazy'}
+      />
+    );
+  }
+  return (
+    <Image
+      src={src}
+      alt={alt}
+      fill
+      className="img-cover washed"
+      sizes="100vw"
+      priority={priority}
+    />
+  );
 }
