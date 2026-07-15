@@ -317,6 +317,7 @@ body { padding-top: 64px; } /* clearance for the fixed nav */
 .fin-card-media img { max-width: 100%; max-height: 164px; width: auto; height: auto; }
 .fin-note { font-size: 14px; color: var(--color-neutral-700); margin: 22px 0 0; }
 .fin-gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+.fin-gallery .fin-fig img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; }
 .fin-sheen { border-collapse: collapse; min-width: min(560px, 100%); }
 .fin-sheen th, .fin-sheen td { text-align: left; padding: 12px 32px 12px 0; border-bottom: 1px solid var(--color-divider); font-size: 15px; }
 .fin-sheen th { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-neutral-600); }
@@ -340,7 +341,7 @@ body { padding-top: 64px; } /* clearance for the fixed nav */
 }
 
 /* — responsive (not designed; sensible stacking per handoff) — */
-@media (max-width: 900px) {
+@media (max-width: 980px) {
   .site-nav .nav-links { display: none; }
   .nav-menu-btn { display: block; margin-left: auto; }
   .nav-drawer {
