@@ -313,6 +313,126 @@ git commit -m "Replace cam autoplay embed with tap-to-play facade"
 
 ---
 
+### Task 4: Agentic-browsing findings — a11y and UX cleanups
+
+The deferred findings from this session's agent browser reviews (user-directed). Four independent fixes.
+
+**Files:**
+- Modify: `components/home/PlanLightbox.tsx`, `components/Nav.tsx`, `hooks/useScrollSpy.ts`, `app/site.css`
+
+**Interfaces:** no new exports; `useScrollSpy(enabled?: boolean): string` signature unchanged.
+
+- [ ] **Step 1: Lightbox a11y (`components/home/PlanLightbox.tsx`)** — three edits:
+
+(a) The caption div gains a polite live region so navigation is announced:
+
+```tsx
+      <div className="lightbox-caption" aria-live="polite" onClick={(e) => e.stopPropagation()}>
+```
+
+(b) Off-screen slides hidden from the accessibility tree — the `<figure>` gains:
+
+```tsx
+          <figure key={p.unit} className="lightbox-slide" aria-hidden={plans.indexOf(p) !== current || undefined}>
+```
+
+(use the map's index parameter instead of `indexOf` — `plans.map((p, i) => ...)` with `aria-hidden={i !== current || undefined}`).
+
+(c) The focus-trap query broadens from `'button'` to `'button, a[href], [tabindex]:not([tabindex="-1"])'` (future-proofing per review).
+
+- [ ] **Step 2: Scroll-lock layout shift** — in `app/site.css`, in the page-scaffold section after the `body { padding-top: 64px; }` line, add:
+
+```css
+html { scrollbar-gutter: stable; }
+```
+
+(Reserves the classic-scrollbar gutter on Windows/Linux so the lightbox's `overflow: hidden` body lock no longer shifts the page; no-op on macOS overlay scrollbars.)
+
+- [ ] **Step 3: Drawer a11y (`components/Nav.tsx`)** — the hamburger button gains `aria-controls="nav-drawer"`; the drawer div gains `id="nav-drawer"`; on open, focus moves to the drawer's first link; on Escape-close, focus returns to the hamburger. Implementation: add two refs and extend the existing effect:
+
+```tsx
+  const drawerRef = useRef<HTMLDivElement>(null);
+  const menuBtnRef = useRef<HTMLButtonElement>(null);
+```
+
+(`useRef` joins the react import.) Attach `ref={menuBtnRef}` to the hamburger button and `ref={drawerRef} id="nav-drawer"` to the drawer div. In the open/close effect, after the listeners are set up, add on open: `drawerRef.current?.querySelector('a')?.focus();` — and in the Escape branch: `setOpen(false); menuBtnRef.current?.focus();`.
+
+- [ ] **Step 4: Scroll-spy geometry fix (`hooks/useScrollSpy.ts`)** — full replacement (fixes: short `#amenities` never intersected the 40–60% IntersectionObserver band when top-anchored, so "Neighborhood" highlighted instead):
+
+```ts
+'use client';
+
+import { useEffect, useState } from 'react';
+
+const sections = ['plans', 'amenities', 'neighborhood', 'schedule', 'contact'];
+
+/**
+ * Active = the last section whose top has crossed 40% of the viewport height,
+ * measured on scroll/resize (rAF-throttled). Replaces an IntersectionObserver
+ * band that short sections could jump over entirely when top-anchored.
+ */
+export default function useScrollSpy(enabled: boolean = true) {
+  const [active, setActive] = useState('');
+
+  useEffect(() => {
+    if (!enabled) return;
+    let raf = 0;
+
+    const measure = () => {
+      raf = 0;
+      const threshold = window.innerHeight * 0.4;
+      let current = '';
+      for (const id of sections) {
+        const el = document.getElementById(id);
+        if (!el) continue;
+        const rect = el.getBoundingClientRect();
+        if (rect.top <= threshold && rect.bottom > 76) current = id;
+      }
+      setActive(current);
+    };
+
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(measure);
+    };
+
+    measure();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    return () => {
+      if (raf) cancelAnimationFrame(raf);
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+    };
+  }, [enabled]);
+
+  return active;
+}
+```
+
+- [ ] **Step 5: Build + verify**
+
+```bash
+npm run build && npm run lint
+git status --porcelain package.json package-lock.json   # empty
+```
+
+Headless (serve out/ on 4173):
+- 1400×900 on `/`: click nav "Amenities" → after settle, the Amenities nav link has `aria-current="page"` (THE bug fix); click "Neighborhood" → Neighborhood highlighted; scroll to top → no section highlighted or Residences region behaves as before (no crash).
+- Open the floor-plan lightbox: caption element has `aria-live="polite"`; exactly one `.lightbox-slide` lacks `aria-hidden`; after ArrowRight, the un-hidden slide changes.
+- 390×844: open drawer → `document.activeElement` is a link inside `#nav-drawer`; press Escape → drawer closed AND `document.activeElement` is the hamburger button.
+Print `FINDINGS-OK`. Kill the server.
+
+- [ ] **Step 6: Commit**
+
+```bash
+git add components/home/PlanLightbox.tsx components/Nav.tsx hooks/useScrollSpy.ts app/site.css
+git commit -m "Address agent-review findings: lightbox a11y, drawer focus, scroll-spy geometry"
+```
+
+**Deliberately NOT done:** the orphaned `id="history"` anchor on the home band stays — it serves legacy `/#history` deep links from before the history page existed; removing it would break them for zero gain.
+
+---
+
 ## Final verification (controller/user, after all tasks)
 
 - [ ] Controller: visual screenshots (history + finishes figures identical at 1400/390; cam facade look); confirm no regression in lightbox/teaser images.
