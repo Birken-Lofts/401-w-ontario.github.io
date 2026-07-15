@@ -25,3 +25,8 @@ dist-ssr
 
 # API keys
 pagespeed.txt
+
+# next.js
+/.next/
+/out/
+next-env.d.ts

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="ds/organic/styles.css">
+<script src="_ds/organic-9e76043b-a527-411f-ac0b-40848f650438/_ds_bundle.js"></script>
+<style>body{margin:0;background:var(--color-bg);color:var(--color-text);font-family:var(--font-body)}a{color:var(--color-accent-700)}a:hover{color:var(--color-accent-600)}</style>
+</helmet>
+<div style="min-width:1200px">
+<nav class="nav" style="padding-inline:48px">
+  <span class="nav-brand">Birken Lofts</span>
+  <div style="display:flex;align-items:center;gap:26px">
+    <a href="#plans">Residences</a><a href="#history">History</a><a href="#amenities">Amenities</a><a href="#neighborhood">Neighborhood</a><a href="#">Gallery</a><a href="Traffic Cam.dc.html">Traffic Cam</a><a href="#">Blog</a><a href="#contact">Contact</a>
+    <a href="#" style="font-size:13px;color:var(--color-accent-700)">Resident Portal</a>
+    <a class="btn btn-primary" href="#contact">Contact us</a>
+  </div>
+</nav>
+<header style="display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center;padding:64px 48px 72px;max-width:1280px">
+  <div>
+    <span class="tag tag-accent-2">401 W. Ontario Street · River North, Chicago</span>
+    <h1 style="font-size:58px;line-height:1.06;margin:20px 0 18px;max-width:12ch">Historic timber lofts in the heart of River North</h1>
+    <p style="font-size:18px;line-height:1.6;max-width:46ch;margin:0 0 28px;color:var(--color-neutral-700)">Fifty-seven residences inside the 1905 S. Birkenstein &amp; Sons Building — original brick and heavy timber, a block from the Brown Line, steps from the river.</p>
+    <div style="display:flex;gap:14px">
+      <a class="btn btn-primary" href="#plans">View floor plans</a>
+      <a class="btn btn-secondary" href="#contact">Contact us</a>
+    </div>
+  </div>
+  <div class="washed" style="border-radius:46% 54% 52% 48% / 44% 46% 54% 56%;overflow:hidden;height:480px">
+    <x-import component-from-global-scope="image-slot" from="./image-slot.js" hint-size="100%,100%" style="width:100%;height:100%" id="og-hero" shape="rect" placeholder="Building exterior — north facade"></x-import>
+  </div>
+</header>
+<section style="display:flex;gap:64px;padding:36px 48px;margin:0 48px;max-width:1080px;background:var(--color-accent-2-100);border-radius:calc(var(--radius-lg) * 1.4)">
+  <div><div style="font-family:var(--font-heading);font-size:38px">1905</div><div style="font-size:13px;color:var(--color-neutral-700)">Built for S. Birkenstein &amp; Sons</div></div>
+  <div><div style="font-family:var(--font-heading);font-size:38px">57</div><div style="font-size:13px;color:var(--color-neutral-700)">Loft residences</div></div>
+  <div><div style="font-family:var(--font-heading);font-size:38px">4</div><div style="font-size:13px;color:var(--color-neutral-700)">Stories of brick &amp; heavy timber</div></div>
+  <div><div style="font-family:var(--font-heading);font-size:38px">0.2&nbsp;mi</div><div style="font-size:13px;color:var(--color-neutral-700)">To the Chicago River</div></div>
+</section>
+<section id="plans" style="padding:88px 48px 0;max-width:1280px">
+  <h2 style="font-size:38px;margin:0 0 10px">Floor plans</h2>
+  <p style="font-size:16px;color:var(--color-neutral-700);max-width:52ch;margin:0 0 36px">Studios to two-bedrooms, no two exactly alike. Original posts and beams in every plan.</p>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:28px">
+    <div class="card elev-sm" style="gap:14px">
+      <div class="washed" style="border-radius:var(--radius-lg);overflow:hidden;height:200px"><x-import component-from-global-scope="image-slot" from="./image-slot.js" hint-size="100%,100%" style="width:100%;height:100%" id="og-plan-studio" shape="rect" placeholder="Studio interior"></x-import></div>
+      <sc-if value="{{ showAvailability }}" hint-placeholder-val="{{ true }}"><span class="tag tag-accent-2" style="align-self:flex-start">Interest list open</span></sc-if>
+      <div class="card-title" style="font-size:22px">Studio</div>
+      <div class="card-body">550–700 sq ft · oversized windows · in-unit laundry</div>
+      <a class="btn btn-secondary" href="#contact" style="align-self:flex-start">Inquire</a>
+    </div>
+    <div class="card elev-sm" style="gap:14px">
+      <div class="washed" style="border-radius:var(--radius-lg);overflow:hidden;height:200px"><x-import component-from-global-scope="image-slot" from="./image-slot.js" hint-size="100%,100%" style="width:100%;height:100%" id="og-plan-1br" shape="rect" placeholder="One-bedroom interior"></x-import></div>
+      <sc-if value="{{ showAvailability }}" hint-placeholder-val="{{ true }}"><span class="tag tag-accent-2" style="align-self:flex-start">Interest list open</span></sc-if>
+      <div class="card-title" style="font-size:22px">One bedroom</div>
+      <div class="card-body">750–1,000 sq ft · exposed brick · walk-in closet</div>
+      <a class="btn btn-secondary" href="#contact" style="align-self:flex-start">Inquire</a>
+    </div>
+    <div class="card elev-sm" style="gap:14px">
+      <div class="washed" style="border-radius:var(--radius-lg);overflow:hidden;height:200px"><x-import component-from-global-scope="image-slot" from="./image-slot.js" hint-size="100%,100%" style="width:100%;height:100%" id="og-plan-2br" shape="rect" placeholder="Two-bedroom interior"></x-import></div>
+      <sc-if value="{{ showAvailability }}" hint-placeholder-val="{{ true }}"><span class="tag tag-accent-2" style="align-self:flex-start">Interest list open</span></sc-if>
+      <div class="card-title" style="font-size:22px">Two bedroom</div>
+      <div class="card-body">1,100–1,400 sq ft · corner exposures · original timber posts</div>
+      <a class="btn btn-secondary" href="#contact" style="align-self:flex-start">Inquire</a>
+    </div>
+  </div>
+</section>
+<section id="history" style="margin:88px 48px 0;max-width:1184px;background:var(--color-accent-100);border-radius:calc(var(--radius-lg) * 1.6);padding:56px;display:grid;grid-template-columns:1fr 380px;gap:48px;align-items:center">
+  <div>
+    <span class="tag tag-accent">Since 1905</span>
+    <h2 style="font-size:36px;margin:16px 0 14px">The House of Birkenstein</h2>
+    <p style="font-size:16px;line-height:1.65;color:var(--color-neutral-800);max-width:54ch;margin:0 0 24px">Built for a family scrap-trade firm at the height of Smokey Hollow's industrial boom, 401 W. Ontario spent a century as warehouse and workshop before becoming the lofts you see today. The posts, beams and brick are all original.</p>
+    <a class="btn btn-ghost" href="#">Read the building's story →</a>
+  </div>
+  <div class="washed" style="border-radius:50%;overflow:hidden;width:340px;height:340px;justify-self:end"><x-import component-from-global-scope="image-slot" from="./image-slot.js" hint-size="100%,100%" style="width:100%;height:100%" id="og-history" shape="rect" placeholder="Archival photo or 1916 advertisement"></x-import></div>
+</section>
+<section id="amenities" style="padding:88px 48px 0;max-width:1180px">
+  <h2 style="font-size:38px;margin:0 0 36px">Amenities</h2>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px 40px">
+    <div style="display:flex;align-items:center;gap:14px"><span style="flex:none;width:40px;height:40px;border-radius:999px;background:var(--color-accent-2-200);color:var(--color-accent-2-800);display:grid;place-items:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span><span style="font-size:16px">Exposed brick &amp; heavy timber</span></div>
+    <div style="display:flex;align-items:center;gap:14px"><span style="flex:none;width:40px;height:40px;border-radius:999px;background:var(--color-accent-2-200);color:var(--color-accent-2-800);display:grid;place-items:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span><span style="font-size:16px">Oversized windows</span></div>
+    <div style="display:flex;align-items:center;gap:14px"><span style="flex:none;width:40px;height:40px;border-radius:999px;background:var(--color-accent-2-200);color:var(--color-accent-2-800);display:grid;place-items:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span><span style="font-size:16px">In-unit laundry</span></div>
+    <div style="display:flex;align-items:center;gap:14px"><span style="flex:none;width:40px;height:40px;border-radius:999px;background:var(--color-accent-2-200);color:var(--color-accent-2-800);display:grid;place-items:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span><span style="font-size:16px">Fitness center</span></div>
+    <div style="display:flex;align-items:center;gap:14px"><span style="flex:none;width:40px;height:40px;border-radius:999px;background:var(--color-accent-2-200);color:var(--color-accent-2-800);display:grid;place-items:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span><span style="font-size:16px">Garage parking</span></div>
+    <div style="display:flex;align-items:center;gap:14px"><span style="flex:none;width:40px;height:40px;border-radius:999px;background:var(--color-accent-2-200);color:var(--color-accent-2-800);display:grid;place-items:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span><span style="font-size:16px">Pet friendly</span></div>
+  </div>
+</section>
+<section id="neighborhood" style="padding:88px 48px 0;max-width:1180px">
+  <h2 style="font-size:38px;margin:0 0 14px">River North</h2>
+  <p style="font-size:17px;line-height:1.65;color:var(--color-neutral-700);max-width:56ch;margin:0 0 36px">Galleries, the Riverwalk, the Merchandise Mart and half the city's best restaurants — all within a ten-minute walk. The Brown Line at Chicago Ave. puts the Loop six minutes away.</p>
+  <div style="display:grid;grid-template-columns:1.5fr 1fr;gap:28px;align-items:stretch">
+    <div style="border-radius:calc(var(--radius-lg) * 1.4);overflow:hidden;min-height:420px;border:1px solid var(--color-divider)">
+      <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=-87.6489%2C41.8885%2C-87.6289%2C41.8985&amp;layer=mapnik&amp;marker=41.8935%2C-87.6389" style="width:100%;height:100%;border:0;display:block" title="Map — 401 W. Ontario Street"></iframe>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:20px">
+      <div class="card"><div class="card-kicker">Eat &amp; drink</div><div class="card-body">River North's restaurant row is out the front door.</div></div>
+      <div class="card"><div class="card-kicker">Transit</div><div class="card-body">Brown &amp; Purple Lines at Chicago; 90/94 on-ramp one block south.</div></div>
+      <div class="card"><div class="card-kicker">Outside</div><div class="card-body">The Riverwalk, Ward Park and the lakefront trail, minutes away.</div></div>
+    </div>
+  </div>
+</section>
+<section id="schedule" style="padding:88px 48px 0;max-width:1180px">
+  <h2 style="font-size:38px;margin:0 0 10px">Construction schedule</h2>
+  <p style="font-size:16px;color:var(--color-neutral-700);max-width:52ch;margin:0 0 36px">The building's conversion to residences is underway. Here's where things stand.</p>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:28px">
+    <div class="card" style="gap:8px"><span class="tag tag-accent" style="align-self:flex-start">Next</span><div class="card-title" style="font-size:20px">Construction begins</div><div class="card-body">October 2026</div></div>
+    <div class="card" style="gap:8px"><span class="tag tag-neutral" style="align-self:flex-start">Planned</span><div class="card-title" style="font-size:20px">Interiors &amp; amenities</div><div class="card-body" style="font-family:ui-monospace,monospace;font-size:13px">[date TBD — confirm]</div></div>
+    <div class="card" style="gap:8px"><span class="tag tag-neutral" style="align-self:flex-start">Planned</span><div class="card-title" style="font-size:20px">First move-ins</div><div class="card-body" style="font-family:ui-monospace,monospace;font-size:13px">[date TBD — confirm]</div></div>
+  </div>
+</section>
+<section id="contact" style="margin:88px 48px;max-width:1184px;background:var(--color-surface);border-radius:calc(var(--radius-lg) * 1.6);padding:56px;display:grid;grid-template-columns:1fr 1.2fr;gap:56px">
+  <div>
+    <h2 style="font-size:36px;margin:0 0 14px">Contact us</h2>
+    <p style="font-size:16px;line-height:1.6;color:var(--color-neutral-700);max-width:38ch">Interested in Birken Lofts? Tell us a bit about what you're looking for and we'll be in touch within a business day.</p>
+    <p style="font-size:14px;line-height:1.8;color:var(--color-neutral-700);margin-top:28px">401 W. Ontario Street<br>Chicago, IL 60654<br>leasing@birkenlofts.com</p>
+  </div>
+  <form style="display:grid;grid-template-columns:1fr 1fr;gap:18px">
+    <div class="field"><label>Name</label><input class="input" type="text" placeholder="Your name"></div>
+    <div class="field"><label>Email</label><input class="input" type="email" placeholder="you@email.com"></div>
+    <div class="field"><label>Phone</label><input class="input" type="tel" placeholder="(312) 555-0100"></div>
+    <div class="field"><label>Interested in</label><input class="input" type="text" placeholder="e.g. One bedroom"></div>
+    <div class="field" style="grid-column:1/-1"><label>Message</label><textarea class="input" placeholder="Your message"></textarea></div>
+    <button class="btn btn-primary" type="button" style="justify-self:start">Send message</button>
+  </form>
+</section>
+<footer style="background:var(--color-neutral-900);color:var(--color-neutral-200);padding:48px;display:flex;justify-content:space-between;align-items:flex-start;gap:40px">
+  <div><div style="font-family:var(--font-heading);font-size:22px;color:var(--color-bg)">Birken Lofts</div><div style="font-size:13px;margin-top:10px;line-height:1.7">S. Birkenstein &amp; Sons Building · Built 1905<br>401 W. Ontario Street, Chicago, IL 60654</div></div>
+  <div style="display:flex;gap:28px;font-size:13px">
+    <a href="#plans" style="color:inherit;text-decoration:none">Residences</a><a href="#history" style="color:inherit;text-decoration:none">History</a><a href="#" style="color:inherit;text-decoration:none">Gallery</a><a href="Traffic Cam.dc.html" style="color:inherit;text-decoration:none">Traffic Cam</a><a href="#" style="color:inherit;text-decoration:none">Blog</a><a href="#" style="color:inherit;text-decoration:none">Resident Portal</a><a href="#contact" style="color:inherit;text-decoration:none">Contact</a>
+  </div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showAvailability&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Floor plans&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    return { showAvailability: this.props.showAvailability ?? true };
+  }
+}
+</script>
+</body>
+</html>

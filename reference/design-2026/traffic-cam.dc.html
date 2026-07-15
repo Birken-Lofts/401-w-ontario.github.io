@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="ds/organic/styles.css">
+<script src="_ds/organic-9e76043b-a527-411f-ac0b-40848f650438/_ds_bundle.js"></script>
+<style>body{margin:0;background:var(--color-bg);color:var(--color-text);font-family:var(--font-body)}a{color:var(--color-accent-700)}a:hover{color:var(--color-accent-600)}</style>
+</helmet>
+<div style="min-width:1200px">
+<nav class="nav" style="padding-inline:48px">
+  <span class="nav-brand">Birken Lofts</span>
+  <div style="display:flex;align-items:center;gap:26px">
+    <a href="Home Organic.dc.html#plans">Residences</a><a href="Home Organic.dc.html#history">History</a><a href="Home Organic.dc.html#amenities">Amenities</a><a href="Home Organic.dc.html#neighborhood">Neighborhood</a><a href="#">Gallery</a><a href="Traffic Cam.dc.html" aria-current="page">Traffic Cam</a><a href="#">Blog</a><a href="Home Organic.dc.html#contact">Contact</a>
+    <a href="#" style="font-size:13px;color:var(--color-accent-700)">Resident Portal</a>
+    <a class="btn btn-primary" href="Home Organic.dc.html#contact">Contact us</a>
+  </div>
+</nav>
+<header style="padding:56px 48px 36px">
+  <span class="tag tag-accent-2">Live · 24/7</span>
+  <h1 style="font-size:50px;line-height:1.08;margin:18px 0 0">Ohio Feeder Ramp Cam</h1>
+</header>
+<div style="padding:0 48px">
+  <div style="border-radius:calc(var(--radius-lg) * 1.4);overflow:hidden;aspect-ratio:16/9;background:var(--color-neutral-900)">
+    <sc-if value="{{ hasVideo }}" hint-placeholder-val="{{ true }}">
+      <iframe src="{{ embedSrc }}" style="width:100%;height:100%;border:0;display:block" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen="allowfullscreen" title="Ohio Feeder Ramp live stream"></iframe>
+    </sc-if>
+    <sc-if value="{{ noVideo }}" hint-placeholder-val="{{ false }}">
+      <div style="width:100%;height:100%;display:grid;place-items:center;color:var(--color-neutral-400);background:repeating-linear-gradient(45deg,transparent,transparent 18px,rgba(255,255,255,0.04) 18px,rgba(255,255,255,0.04) 36px)">
+        <div style="text-align:center;font-family:ui-monospace,monospace;font-size:14px;line-height:1.8">[ live stream ]<br>Set the YouTube video ID in Tweaks to connect the cam</div>
+      </div>
+    </sc-if>
+  </div>
+</div>
+<section style="padding:36px 48px 72px;display:flex;flex-direction:column;gap:14px">
+  <p style="font-size:18px;line-height:1.6;margin:0;color:var(--color-neutral-800)">Live view of the Ohio Street feeder ramp to the Kennedy Expressway, looking west from the south elevation of the S. Birkenstein &amp; Sons Building.</p>
+  <p style="font-size:16px;line-height:1.6;color:var(--color-neutral-700);margin:0">The camera streams 24/7. Refresh the page if the stream stalls.</p>
+  <p style="font-size:13px;line-height:1.6;color:var(--color-neutral-500);margin:0">Stream provided for neighborhood traffic awareness. Footage is not recorded.</p>
+</section>
+<footer style="background:var(--color-neutral-900);color:var(--color-neutral-200);padding:48px;display:flex;justify-content:space-between;align-items:flex-start;gap:40px">
+  <div><div style="font-family:var(--font-heading);font-size:22px;color:var(--color-bg)">Birken Lofts</div><div style="font-size:13px;margin-top:10px;line-height:1.7">S. Birkenstein &amp; Sons Building · Built 1905<br>401 W. Ontario Street, Chicago, IL 60654</div></div>
+  <div style="display:flex;gap:28px;font-size:13px">
+    <a href="Home Organic.dc.html#plans" style="color:inherit;text-decoration:none">Residences</a><a href="Home Organic.dc.html#history" style="color:inherit;text-decoration:none">History</a><a href="#" style="color:inherit;text-decoration:none">Gallery</a><a href="Traffic Cam.dc.html" style="color:inherit;text-decoration:none">Traffic Cam</a><a href="#" style="color:inherit;text-decoration:none">Blog</a><a href="#" style="color:inherit;text-decoration:none">Resident Portal</a><a href="Home Organic.dc.html#contact" style="color:inherit;text-decoration:none">Contact</a>
+  </div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;youtubeVideoId&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Live stream&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const raw = (this.props.youtubeVideoId ?? '').trim();
+    const m = raw.match(/(?:youtu\.be\/|v=|\/live\/|\/embed\/)([\w-]{6,})/);
+    const id = m ? m[1] : raw;
+    const hasVideo = id.length > 5;
+    return {
+      hasVideo, noVideo: !hasVideo,
+      embedSrc: hasVideo ? `https://www.youtube.com/embed/${id}?autoplay=1&mute=1` : ''
+    };
+  }
+}
+</script>
+</body>
+</html>
