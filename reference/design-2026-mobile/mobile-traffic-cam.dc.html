@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/organic-9e76043b-a527-411f-ac0b-40848f650438/styles.css">
+<script src="_ds/organic-9e76043b-a527-411f-ac0b-40848f650438/_ds_bundle.js"></script>
+<style>body{margin:0;background:var(--color-bg);color:var(--color-text);font-family:var(--font-body)}a{color:var(--color-accent-700)}a:hover{color:var(--color-accent-600)}</style>
+</helmet>
+<div style="max-width:390px;margin:0 auto;position:relative">
+<header style="position:sticky;top:0;z-index:20;background:var(--color-bg);display:flex;align-items:center;justify-content:space-between;padding:10px 20px;box-shadow:0 1px 0 var(--color-divider)">
+  <a href="Mobile Home.dc.html" style="font-family:var(--font-heading);font-size:18px;color:var(--color-text);text-decoration:none">Birken Lofts</a>
+  <button onClick="{{ toggleMenu }}" aria-label="Menu" style="width:44px;height:44px;border:0;background:transparent;color:var(--color-text);display:grid;place-items:center;border-radius:999px;cursor:pointer">
+    <sc-if value="{{ menuClosed }}" hint-placeholder-val="{{ true }}"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"></path></svg></sc-if>
+    <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"></path></svg></sc-if>
+  </button>
+</header>
+<sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+  <nav style="position:absolute;top:64px;left:0;right:0;z-index:19;background:var(--color-bg);padding:8px 20px 24px;box-shadow:var(--shadow-lg);border-radius:0 0 calc(var(--radius-lg) * 1.4) calc(var(--radius-lg) * 1.4);display:flex;flex-direction:column">
+    <a href="Mobile Home.dc.html#plans" style="padding:13px 4px;font-size:18px;color:var(--color-text);text-decoration:none;border-bottom:1px solid var(--color-divider)">Residences</a>
+    <a href="Mobile Finishes.dc.html" style="padding:13px 4px;font-size:18px;color:var(--color-text);text-decoration:none;border-bottom:1px solid var(--color-divider)">Finishes</a>
+    <a href="Mobile History.dc.html" style="padding:13px 4px;font-size:18px;color:var(--color-text);text-decoration:none;border-bottom:1px solid var(--color-divider)">History</a>
+    <a href="Mobile Home.dc.html#amenities" style="padding:13px 4px;font-size:18px;color:var(--color-text);text-decoration:none;border-bottom:1px solid var(--color-divider)">Amenities</a>
+    <a href="Mobile Home.dc.html#neighborhood" style="padding:13px 4px;font-size:18px;color:var(--color-text);text-decoration:none;border-bottom:1px solid var(--color-divider)">Neighborhood</a>
+    <a href="Mobile Traffic Cam.dc.html" style="padding:13px 4px;font-size:18px;color:var(--color-accent-700);text-decoration:none;border-bottom:1px solid var(--color-divider)">Traffic Cam</a>
+    <a href="Mobile Home.dc.html#contact" style="padding:13px 4px;font-size:18px;color:var(--color-text);text-decoration:none">Contact</a>
+    <a class="btn btn-primary" href="Mobile Home.dc.html#contact" style="margin-top:14px;justify-content:center">Contact us</a>
+  </nav>
+</sc-if>
+<header style="padding:32px 20px 24px">
+  <span class="tag tag-accent-2">Live · 24/7</span>
+  <h1 style="font-size:34px;line-height:1.12;margin:14px 0 0">Ohio Feeder Ramp Cam</h1>
+</header>
+<div style="padding:0 20px">
+  <div style="border-radius:calc(var(--radius-lg) * 1.2);overflow:hidden;aspect-ratio:16/9;background:var(--color-neutral-900)">
+    <sc-if value="{{ hasVideo }}" hint-placeholder-val="{{ true }}">
+      <iframe src="{{ embedSrc }}" style="width:100%;height:100%;border:0;display:block" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen="allowfullscreen" title="Ohio Feeder Ramp live stream"></iframe>
+    </sc-if>
+    <sc-if value="{{ noVideo }}" hint-placeholder-val="{{ false }}">
+      <div style="width:100%;height:100%;display:grid;place-items:center;color:var(--color-neutral-400);background:repeating-linear-gradient(45deg,transparent,transparent 18px,rgba(255,255,255,0.04) 18px,rgba(255,255,255,0.04) 36px)">
+        <div style="text-align:center;font-family:ui-monospace,monospace;font-size:12px;line-height:1.8;padding:0 16px">[ live stream ]<br>Set the YouTube video ID in Tweaks</div>
+      </div>
+    </sc-if>
+  </div>
+</div>
+<section style="padding:24px 20px 48px;display:flex;flex-direction:column;gap:14px">
+  <p style="font-size:16px;line-height:1.6;margin:0;color:var(--color-neutral-800)">Live view of the Ohio Street feeder ramp to the Kennedy Expressway, looking west from the south elevation of the S. Birkenstein &amp; Sons Building.</p>
+  <p style="font-size:15px;line-height:1.6;color:var(--color-neutral-700);margin:0">The camera streams 24/7. Refresh the page if the stream stalls.</p>
+  <p style="font-size:13px;line-height:1.6;color:var(--color-neutral-500);margin:0">Stream provided for neighborhood traffic awareness. Footage is not recorded.</p>
+</section>
+<footer style="background:var(--color-neutral-900);color:var(--color-neutral-200);padding:32px 24px;display:flex;flex-direction:column;gap:20px">
+  <div><div style="font-family:var(--font-heading);font-size:20px;color:var(--color-bg)">Birken Lofts</div><div style="font-size:13px;margin-top:8px;line-height:1.7">S. Birkenstein &amp; Sons Building · Built 1905<br>401 W. Ontario Street, Chicago, IL 60654</div></div>
+  <div style="display:flex;flex-wrap:wrap;gap:16px 24px;font-size:14px">
+    <a href="Mobile Home.dc.html#plans" style="color:inherit;text-decoration:none;padding:6px 0">Residences</a><a href="Mobile Finishes.dc.html" style="color:inherit;text-decoration:none;padding:6px 0">Finishes</a><a href="Mobile History.dc.html" style="color:inherit;text-decoration:none;padding:6px 0">History</a><a href="Mobile Traffic Cam.dc.html" style="color:inherit;text-decoration:none;padding:6px 0">Traffic Cam</a><a href="Mobile Home.dc.html#contact" style="color:inherit;text-decoration:none;padding:6px 0">Contact</a>
+  </div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:390,&quot;height&quot;:844},&quot;youtubeVideoId&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Live stream&quot;}}">
+class Component extends DCLogic {
+  state = { menuOpen: false };
+  renderVals() {
+    const raw = (this.props.youtubeVideoId ?? '').trim();
+    const m = raw.match(/(?:youtu\.be\/|v=|\/live\/|\/embed\/)([\w-]{6,})/);
+    const id = m ? m[1] : raw;
+    const hasVideo = id.length > 5;
+    return {
+      menuOpen: this.state.menuOpen,
+      menuClosed: !this.state.menuOpen,
+      toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
+      hasVideo, noVideo: !hasVideo,
+      embedSrc: hasVideo ? `https://www.youtube.com/embed/${id}?autoplay=1&mute=1` : ''
+    };
+  }
+}
+</script>
+</body>
+</html>

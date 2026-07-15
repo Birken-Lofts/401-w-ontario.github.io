@@ -5,6 +5,7 @@
 /* — page scaffold — */
 .container { max-width: 1280px; margin-inline: auto; padding-inline: 48px; }
 body { padding-top: 64px; } /* clearance for the fixed nav */
+#plans, #history, #amenities, #neighborhood, #schedule, #contact { scroll-margin-top: 76px; }
 
 /* — fixed nav (always visible, solid — departure from the mock's static nav) — */
 .site-nav {
@@ -343,15 +344,17 @@ body { padding-top: 64px; } /* clearance for the fixed nav */
 /* — responsive (not designed; sensible stacking per handoff) — */
 @media (max-width: 980px) {
   .site-nav .nav-links { display: none; }
-  .nav-menu-btn { display: block; margin-left: auto; }
+  .nav-menu-btn { display: grid; place-items: center; margin-left: auto; width: 44px; height: 44px; border-radius: 999px; }
   .nav-drawer {
-    display: block; position: fixed; top: 64px; left: 0; right: 0; z-index: 999;
-    background: var(--color-bg); border-bottom: 1px solid var(--color-divider);
-    padding: 8px 48px 24px;
+    display: flex; flex-direction: column; position: fixed; top: 64px; left: 0; right: 0; z-index: 999;
+    background: var(--color-bg); box-shadow: var(--shadow-lg);
+    border-radius: 0 0 calc(var(--radius-lg) * 1.4) calc(var(--radius-lg) * 1.4);
+    padding: 8px 20px 24px;
   }
-  .nav-drawer a { display: block; padding: 12px 0; color: inherit; text-decoration: none; font-size: 15px; }
-  .nav-drawer a[aria-current='page'] { color: var(--color-accent); }
-  .nav-drawer a.btn-primary { display: inline-flex; margin-top: 12px; color: var(--color-bg); }
+  .nav-drawer a { display: block; padding: 13px 4px; color: inherit; text-decoration: none; font-size: 18px; border-bottom: 1px solid var(--color-divider); }
+  .nav-drawer a:nth-last-child(2) { border-bottom: 0; }
+  .nav-drawer a[aria-current='page'] { color: var(--color-accent-700); }
+  .nav-drawer a.btn-primary { display: inline-flex; justify-content: center; width: 100%; min-height: 48px; margin-top: 14px; border-bottom: 0; color: var(--color-bg); }
 }
 @media (max-width: 768px) {
   .container { padding-inline: 20px; }

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/organic-9e76043b-a527-411f-ac0b-40848f650438/styles.css">
+<script src="_ds/organic-9e76043b-a527-411f-ac0b-40848f650438/_ds_bundle.js"></script>
+<style>body{margin:0;background:var(--color-bg);color:var(--color-text);font-family:var(--font-body)}a{color:var(--color-accent-700)}a:hover{color:var(--color-accent-600)}</style>
+</helmet>
+<div style="max-width:390px;margin:0 auto;position:relative">
+<header style="position:sticky;top:0;z-index:20;background:var(--color-bg);display:flex;align-items:center;justify-content:space-between;padding:10px 20px;box-shadow:0 1px 0 var(--color-divider)">
+  <a href="Mobile Home.dc.html" style="font-family:var(--font-heading);font-size:18px;color:var(--color-text);text-decoration:none">Birken Lofts</a>
+  <button onClick="{{ toggleMenu }}" aria-label="Menu" style="width:44px;height:44px;border:0;background:transparent;color:var(--color-text);display:grid;place-items:center;border-radius:999px;cursor:pointer">
+    <sc-if value="{{ menuClosed }}" hint-placeholder-val="{{ true }}"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"></path></svg></sc-if>
+    <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"></path></svg></sc-if>
+  </button>
+</header>
+<sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+  <nav style="position:absolute;top:64px;left:0;right:0;z-index:19;background:var(--color-bg);padding:8px 20px 24px;box-shadow:var(--shadow-lg);border-radius:0 0 calc(var(--radius-lg) * 1.4) calc(var(--radius-lg) * 1.4);display:flex;flex-direction:column">
+    <a href="Mobile Home.dc.html#plans" style="padding:13px 4px;font-size:18px;color:var(--color-text);text-decoration:none;border-bottom:1px solid var(--color-divider)">Residences</a>
+    <a href="Mobile Finishes.dc.html" style="padding:13px 4px;font-size:18px;color:var(--color-accent-700);text-decoration:none;border-bottom:1px solid var(--color-divider)">Finishes</a>
+    <a href="Mobile History.dc.html" style="padding:13px 4px;font-size:18px;color:var(--color-text);text-decoration:none;border-bottom:1px solid var(--color-divider)">History</a>
+    <a href="Mobile Home.dc.html#amenities" style="padding:13px 4px;font-size:18px;color:var(--color-text);text-decoration:none;border-bottom:1px solid var(--color-divider)">Amenities</a>
+    <a href="Mobile Home.dc.html#neighborhood" style="padding:13px 4px;font-size:18px;color:var(--color-text);text-decoration:none;border-bottom:1px solid var(--color-divider)">Neighborhood</a>
+    <a href="Mobile Traffic Cam.dc.html" style="padding:13px 4px;font-size:18px;color:var(--color-text);text-decoration:none;border-bottom:1px solid var(--color-divider)">Traffic Cam</a>
+    <a href="Mobile Home.dc.html#contact" style="padding:13px 4px;font-size:18px;color:var(--color-text);text-decoration:none">Contact</a>
+    <a class="btn btn-primary" href="Mobile Home.dc.html#contact" style="margin-top:14px;justify-content:center">Contact us</a>
+  </nav>
+</sc-if>
+<header style="padding:32px 20px 0">
+  <span class="tag tag-accent-2">Interior finish selections</span>
+  <h1 style="font-size:36px;line-height:1.1;margin:14px 0 12px">Finishes</h1>
+  <p style="font-size:17px;line-height:1.6;margin:0 0 24px;color:var(--color-neutral-700)">Warm flat-panel cabinetry and dark stone against the building's original brick and heavy timber.</p>
+  <figure style="margin:0">
+    <div class="washed" style="border-radius:calc(var(--radius-lg) * 1.2);overflow:hidden"><img src="https://birkenlofts.com/images/finishes/kitchen-render.webp" alt="Concept rendering of a Birken Lofts kitchen" style="width:100%;display:block"></div>
+    <figcaption style="font-size:13px;line-height:1.55;color:var(--color-neutral-600);margin-top:10px;font-style:italic">Concept rendering — kitchen design direction.</figcaption>
+  </figure>
+</header>
+<section style="padding:48px 20px 0">
+  <div style="font-size:13px;letter-spacing:0.06em;color:var(--color-accent-700);font-weight:600;margin-bottom:6px">01 · Kitchen</div>
+  <h2 style="font-size:28px;margin:0 0 12px">Kitchen</h2>
+  <p style="font-size:15px;line-height:1.65;color:var(--color-neutral-800);margin:0 0 20px">The kitchen sets the palette: pebble-grey cabinet fronts, charcoal stone counters, and warm oak plank floors, sampled together against the building's brick.</p>
+  <div class="card" style="gap:0;margin-bottom:20px">
+    <div style="display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid var(--color-divider)"><span style="font-size:13px;font-weight:600;color:var(--color-neutral-600);flex:none;width:88px">Backsplash</span><span style="font-size:14px;line-height:1.5;text-align:right">Daltile Artigiano — Venice Statue · 3" × 6"</span></div>
+    <div style="display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid var(--color-divider)"><span style="font-size:13px;font-weight:600;color:var(--color-neutral-600);flex:none;width:88px">Countertop</span><span style="font-size:14px;line-height:1.5;text-align:right">Silestone — Charcoal Soapstone Eternal · Suede finish</span></div>
+    <div style="display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid var(--color-divider)"><span style="font-size:13px;font-weight:600;color:var(--color-neutral-600);flex:none;width:88px">Cabinets</span><span style="font-size:14px;line-height:1.5;text-align:right">Egger — Pebble Grey · Flat-panel; handle-less uppers</span></div>
+    <div style="display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid var(--color-divider)"><span style="font-size:13px;font-weight:600;color:var(--color-neutral-600);flex:none;width:88px">Hardware</span><span style="font-size:14px;line-height:1.5;text-align:right">Amwell bar pulls · Brushed satin nickel</span></div>
+    <div style="display:flex;justify-content:space-between;gap:16px;padding:12px 0"><span style="font-size:13px;font-weight:600;color:var(--color-neutral-600);flex:none;width:88px">Floor</span><span style="font-size:14px;line-height:1.5;text-align:right">Evolux Whisper Woods — Sevilla Oak · 9" × 60" plank</span></div>
+  </div>
+  <figure style="margin:0 0 20px">
+    <div class="washed" style="border-radius:calc(var(--radius-lg) * 1.2);overflow:hidden"><img src="https://birkenlofts.com/images/finishes/kitchen-board.webp" alt="Kitchen material board" style="width:100%;display:block"></div>
+    <figcaption style="font-size:13px;line-height:1.55;color:var(--color-neutral-600);margin-top:10px;font-style:italic">Kitchen material board, as sampled.</figcaption>
+  </figure>
+  <figure style="margin:0">
+    <div class="washed" style="border-radius:calc(var(--radius-lg) * 1.2);overflow:hidden"><img src="https://birkenlofts.com/images/finishes/kitchen-renders-4up.webp" alt="Four concept rendering studies of the kitchen" style="width:100%;display:block"></div>
+    <figcaption style="font-size:13px;line-height:1.55;color:var(--color-neutral-600);margin-top:10px;font-style:italic">Concept renderings — cabinetry, island and shelving studies.</figcaption>
+  </figure>
+</section>
+<section style="padding:48px 20px 0">
+  <div style="font-size:13px;letter-spacing:0.06em;color:var(--color-accent-700);font-weight:600;margin-bottom:6px">02 · Bath</div>
+  <h2 style="font-size:28px;margin:0 0 12px">Bath</h2>
+  <p style="font-size:15px;line-height:1.65;color:var(--color-neutral-800);margin:0 0 20px">Calmer and lighter than the kitchen: polished Carrara-look counters over cashmere-gray cabinets, with pale limestone floors.</p>
+  <div class="card" style="gap:0;margin-bottom:20px">
+    <div style="display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid var(--color-divider)"><span style="font-size:13px;font-weight:600;color:var(--color-neutral-600);flex:none;width:88px">Countertop</span><span style="font-size:14px;line-height:1.5;text-align:right">MSI — Carrara Trigato · Polished</span></div>
+    <div style="display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid var(--color-divider)"><span style="font-size:13px;font-weight:600;color:var(--color-neutral-600);flex:none;width:88px">Cabinets</span><span style="font-size:14px;line-height:1.5;text-align:right">Egger — Cashmere Gray</span></div>
+    <div style="display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid var(--color-divider)"><span style="font-size:13px;font-weight:600;color:var(--color-neutral-600);flex:none;width:88px">Hardware</span><span style="font-size:14px;line-height:1.5;text-align:right">Amwell Lawrence pulls · Brushed satin nickel, set vertically</span></div>
+    <div style="display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid var(--color-divider)"><span style="font-size:13px;font-weight:600;color:var(--color-neutral-600);flex:none;width:88px">Floor</span><span style="font-size:14px;line-height:1.5;text-align:right">Roca — Limestone Blanco · 12" × 24"</span></div>
+    <div style="display:flex;justify-content:space-between;gap:16px;padding:12px 0"><span style="font-size:13px;font-weight:600;color:var(--color-neutral-600);flex:none;width:88px">Wall tile</span><span style="font-size:14px;line-height:1.5;text-align:right;color:var(--color-neutral-600);font-style:italic">Being finalized</span></div>
+  </div>
+  <figure style="margin:0">
+    <div class="washed" style="border-radius:calc(var(--radius-lg) * 1.2);overflow:hidden"><img src="https://birkenlofts.com/images/finishes/bath-board.webp" alt="Bath material board" style="width:100%;display:block"></div>
+    <figcaption style="font-size:13px;line-height:1.55;color:var(--color-neutral-600);margin-top:10px;font-style:italic">Bath material board, as sampled.</figcaption>
+  </figure>
+</section>
+<section style="padding:48px 20px 0">
+  <div style="font-size:13px;letter-spacing:0.06em;color:var(--color-accent-700);font-weight:600;margin-bottom:6px">03 · Fixtures &amp; hardware</div>
+  <h2 style="font-size:28px;margin:0 0 12px">Fixtures &amp; hardware</h2>
+  <p style="font-size:15px;line-height:1.65;color:var(--color-neutral-800);margin:0 0 20px">CFG fixtures throughout, in polished chrome.</p>
+  <div style="display:flex;flex-direction:column;gap:16px">
+    <div class="card elev-sm" style="flex-direction:row;gap:16px;align-items:center">
+      <div class="washed" style="flex:none;width:96px;height:96px;border-radius:var(--radius-lg);overflow:hidden;background:#fff"><img src="https://birkenlofts.com/images/finishes/faucet-kitchen.webp" alt="CFG Aluma kitchen faucet" style="width:100%;height:100%;object-fit:contain;display:block"></div>
+      <div><span class="tag tag-accent-2" style="font-size:11px">Kitchen</span><div class="card-title" style="font-size:18px;margin-top:6px">CFG Aluma</div><div class="card-body" style="font-size:13px">One-handle high-arc pulldown faucet · polished chrome</div></div>
+    </div>
+    <div class="card elev-sm" style="flex-direction:row;gap:16px;align-items:center">
+      <div class="washed" style="flex:none;width:96px;height:96px;border-radius:var(--radius-lg);overflow:hidden;background:#fff"><img src="https://birkenlofts.com/images/finishes/faucet-bath.webp" alt="CFG Ember bathroom faucet" style="width:100%;height:100%;object-fit:contain;display:block"></div>
+      <div><span class="tag tag-accent-2" style="font-size:11px">Bath</span><div class="card-title" style="font-size:18px;margin-top:6px">CFG Ember</div><div class="card-body" style="font-size:13px">One-handle low-arc bathroom faucet · polished chrome</div></div>
+    </div>
+    <div class="card elev-sm" style="flex-direction:row;gap:16px;align-items:center">
+      <div class="washed" style="flex:none;width:96px;height:96px;border-radius:var(--radius-lg);overflow:hidden;background:#fff"><img src="https://birkenlofts.com/images/finishes/showerhead.webp" alt="CFG four-function showerhead" style="width:100%;height:100%;object-fit:contain;display:block"></div>
+      <div><span class="tag tag-accent-2" style="font-size:11px">Bath</span><div class="card-title" style="font-size:18px;margin-top:6px">CFG showerhead</div><div class="card-body" style="font-size:13px">Four-function eco-performance showerhead · polished chrome</div></div>
+    </div>
+  </div>
+  <p style="font-size:14px;line-height:1.6;color:var(--color-neutral-700);margin:20px 0 0">Door levers throughout in satin nickel — final selection in review.</p>
+</section>
+<section style="padding:48px 20px 0">
+  <span class="tag tag-neutral">In progress</span>
+  <h2 style="font-size:28px;margin:12px 0 12px">Corridors</h2>
+  <p style="font-size:15px;line-height:1.65;color:var(--color-neutral-800);margin:0 0 20px">The corridors keep the industrial register: woven wool runners underfoot and black barn pendants along the brick.</p>
+  <figure style="margin:0 0 20px">
+    <div class="washed" style="border-radius:calc(var(--radius-lg) * 1.2);overflow:hidden"><img src="https://birkenlofts.com/images/finishes/corridor-mood.webp" alt="Corridor atmosphere study" style="width:100%;display:block"></div>
+    <figcaption style="font-size:13px;line-height:1.55;color:var(--color-neutral-600);margin-top:10px;font-style:italic">Corridor atmosphere study.</figcaption>
+  </figure>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
+    <figure style="margin:0">
+      <div class="washed" style="border-radius:var(--radius-lg);overflow:hidden;height:110px;background:#fff"><img src="https://birkenlofts.com/images/finishes/pendant.webp" alt="Industrial black barn pendant" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+      <figcaption style="font-size:12px;line-height:1.5;color:var(--color-neutral-600);margin-top:8px;font-style:italic">Industrial barn pendant.</figcaption>
+    </figure>
+    <figure style="margin:0">
+      <div class="washed" style="border-radius:var(--radius-lg);overflow:hidden;height:110px;background:#fff"><img src="https://birkenlofts.com/images/finishes/runner-herringbone.webp" alt="Woven wool runner — herringbone" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+      <figcaption style="font-size:12px;line-height:1.5;color:var(--color-neutral-600);margin-top:8px;font-style:italic">Runner — herringbone colorway.</figcaption>
+    </figure>
+    <figure style="margin:0">
+      <div class="washed" style="border-radius:var(--radius-lg);overflow:hidden;height:110px;background:#fff"><img src="https://birkenlofts.com/images/finishes/runner-stripe.webp" alt="Woven wool runner — stripe" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+      <figcaption style="font-size:12px;line-height:1.5;color:var(--color-neutral-600);margin-top:8px;font-style:italic">Runner — stripe colorway.</figcaption>
+    </figure>
+  </div>
+</section>
+<section style="padding:48px 20px 0">
+  <span class="tag tag-neutral">In progress</span>
+  <h2 style="font-size:28px;margin:12px 0 12px">Paint</h2>
+  <p style="font-size:15px;line-height:1.65;color:var(--color-neutral-800);margin:0 0 20px">Sheens are set; colors follow with the lighting package.</p>
+  <div class="card" style="gap:0">
+    <div style="display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid var(--color-divider)"><span style="font-size:14px">Doors, base &amp; case</span><span style="font-size:14px;font-weight:600">Semi-gloss</span></div>
+    <div style="display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid var(--color-divider)"><span style="font-size:14px">Bathroom walls</span><span style="font-size:14px;font-weight:600">Satin</span></div>
+    <div style="display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid var(--color-divider)"><span style="font-size:14px">Unit walls</span><span style="font-size:14px;font-weight:600">Eggshell</span></div>
+    <div style="display:flex;justify-content:space-between;gap:16px;padding:12px 0"><span style="font-size:14px">Ceilings</span><span style="font-size:14px;font-weight:600">Flat</span></div>
+  </div>
+  <p style="font-size:13px;line-height:1.6;color:var(--color-neutral-500);margin:20px 0 0">Selections shown reflect the current design direction and are subject to change.</p>
+</section>
+<section style="margin:48px 20px;background:var(--color-accent-100);border-radius:calc(var(--radius-lg) * 1.6);padding:28px 24px;display:flex;flex-direction:column;gap:16px">
+  <p style="font-family:var(--font-heading);font-size:22px;line-height:1.3;margin:0">Want these finishes under your own timber beams?</p>
+  <a class="btn btn-primary" href="Mobile Home.dc.html#contact" style="justify-content:center;min-height:48px">Join the interest list</a>
+  <a class="btn btn-secondary" href="Mobile Home.dc.html#plans" style="justify-content:center;min-height:48px">View floor plans</a>
+</section>
+<footer style="background:var(--color-neutral-900);color:var(--color-neutral-200);padding:32px 24px;display:flex;flex-direction:column;gap:20px">
+  <div><div style="font-family:var(--font-heading);font-size:20px;color:var(--color-bg)">Birken Lofts</div><div style="font-size:13px;margin-top:8px;line-height:1.7">S. Birkenstein &amp; Sons Building · Built 1905<br>401 W. Ontario Street, Chicago, IL 60654</div></div>
+  <div style="display:flex;flex-wrap:wrap;gap:16px 24px;font-size:14px">
+    <a href="Mobile Home.dc.html#plans" style="color:inherit;text-decoration:none;padding:6px 0">Residences</a><a href="Mobile Finishes.dc.html" style="color:inherit;text-decoration:none;padding:6px 0">Finishes</a><a href="Mobile History.dc.html" style="color:inherit;text-decoration:none;padding:6px 0">History</a><a href="Mobile Traffic Cam.dc.html" style="color:inherit;text-decoration:none;padding:6px 0">Traffic Cam</a><a href="Mobile Home.dc.html#contact" style="color:inherit;text-decoration:none;padding:6px 0">Contact</a>
+  </div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:390,&quot;height&quot;:844}}">
+class Component extends DCLogic {
+  state = { menuOpen: false };
+  renderVals() {
+    return {
+      menuOpen: this.state.menuOpen,
+      menuClosed: !this.state.menuOpen,
+      toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen }))
+    };
+  }
+}
+</script>
+</body>
+</html>

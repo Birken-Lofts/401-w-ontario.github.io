@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/organic-9e76043b-a527-411f-ac0b-40848f650438/styles.css">
+<script src="_ds/organic-9e76043b-a527-411f-ac0b-40848f650438/_ds_bundle.js"></script>
+<style>body{margin:0;background:var(--color-bg);color:var(--color-text);font-family:var(--font-body)}a{color:var(--color-accent-700)}a:hover{color:var(--color-accent-600)}</style>
+</helmet>
+<div style="max-width:390px;margin:0 auto;position:relative">
+<header style="position:sticky;top:0;z-index:20;background:var(--color-bg);display:flex;align-items:center;justify-content:space-between;padding:10px 20px;box-shadow:0 1px 0 var(--color-divider)">
+  <a href="Mobile Home.dc.html" style="font-family:var(--font-heading);font-size:18px;color:var(--color-text);text-decoration:none">Birken Lofts</a>
+  <button onClick="{{ toggleMenu }}" aria-label="Menu" style="width:44px;height:44px;border:0;background:transparent;color:var(--color-text);display:grid;place-items:center;border-radius:999px;cursor:pointer">
+    <sc-if value="{{ menuClosed }}" hint-placeholder-val="{{ true }}"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"></path></svg></sc-if>
+    <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"></path></svg></sc-if>
+  </button>
+</header>
+<sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+  <nav style="position:absolute;top:64px;left:0;right:0;z-index:19;background:var(--color-bg);padding:8px 20px 24px;box-shadow:var(--shadow-lg);border-radius:0 0 calc(var(--radius-lg) * 1.4) calc(var(--radius-lg) * 1.4);display:flex;flex-direction:column">
+    <a href="Mobile Home.dc.html#plans" style="padding:13px 4px;font-size:18px;color:var(--color-text);text-decoration:none;border-bottom:1px solid var(--color-divider)">Residences</a>
+    <a href="Mobile Finishes.dc.html" style="padding:13px 4px;font-size:18px;color:var(--color-text);text-decoration:none;border-bottom:1px solid var(--color-divider)">Finishes</a>
+    <a href="Mobile History.dc.html" style="padding:13px 4px;font-size:18px;color:var(--color-accent-700);text-decoration:none;border-bottom:1px solid var(--color-divider)">History</a>
+    <a href="Mobile Home.dc.html#amenities" style="padding:13px 4px;font-size:18px;color:var(--color-text);text-decoration:none;border-bottom:1px solid var(--color-divider)">Amenities</a>
+    <a href="Mobile Home.dc.html#neighborhood" style="padding:13px 4px;font-size:18px;color:var(--color-text);text-decoration:none;border-bottom:1px solid var(--color-divider)">Neighborhood</a>
+    <a href="Mobile Traffic Cam.dc.html" style="padding:13px 4px;font-size:18px;color:var(--color-text);text-decoration:none;border-bottom:1px solid var(--color-divider)">Traffic Cam</a>
+    <a href="Mobile Home.dc.html#contact" style="padding:13px 4px;font-size:18px;color:var(--color-text);text-decoration:none">Contact</a>
+    <a class="btn btn-primary" href="Mobile Home.dc.html#contact" style="margin-top:14px;justify-content:center">Contact us</a>
+  </nav>
+</sc-if>
+<header style="padding:32px 20px 0">
+  <span class="tag tag-accent">Since 1905</span>
+  <h1 style="font-size:34px;line-height:1.12;margin:16px 0 14px">The House of Birkenstein</h1>
+  <p style="font-size:17px;line-height:1.6;margin:0;color:var(--color-neutral-700)">Before it held lofts, 401 W. Ontario held rags, rubber and iron — the headquarters of one of Chicago's largest scrap houses, run by a family that helped turn America's cast-offs into industry.</p>
+</header>
+<article style="padding:40px 20px 0;display:flex;flex-direction:column;gap:36px">
+  <section>
+    <h2 style="font-size:26px;margin:0 0 12px">Smokey Hollow</h2>
+    <p style="font-size:15px;line-height:1.7;margin:0 0 14px;color:var(--color-neutral-800)">The blocks west of Michigan Avenue weren't always galleries and riverwalks. The Near North Side grew up early as a working district: by the late 1850s the river and the rail lines had drawn heavy industry — the McCormick Reaper works among them — and Irish, German and Swedish immigrants settled the surrounding blocks in small frame cottages. The Great Fire of 1871 leveled it all; industry rebuilt along the same lines and pressed further west once the Northwestern railway arrived. By the turn of the century the district had a name that told you everything about it: Smokey Hollow, for the haze the riverside factories kept overhead.</p>
+    <p style="font-size:15px;line-height:1.7;margin:0 0 20px;color:var(--color-neutral-800)">The east side of the neighborhood turned fashionable after Potter Palmer built his lakefront mansion in 1882, and the Michigan Avenue Bridge brought luxury shopping north in 1920. But Smokey Hollow stayed industrial deep into the twentieth century — until a real estate developer named Albert Friedman rechristened it "River North" in the late 1970s and began filling its old factories with artists and galleries.</p>
+    <figure style="margin:0">
+      <div class="washed" style="border-radius:calc(var(--radius-lg) * 1.2);overflow:hidden"><img src="https://birkenlofts.com/images/history/sanborn-map-1906.webp" alt="1906 Sanborn fire-insurance map" style="width:100%;display:block"></div>
+      <figcaption style="font-size:13px;line-height:1.55;color:var(--color-neutral-600);margin-top:10px;font-style:italic">The 1906 Sanborn fire-insurance map — the building at center, labeled "J. Birkenstein &amp; Sons, Junk &amp; Rags."</figcaption>
+    </figure>
+  </section>
+  <section>
+    <h2 style="font-size:26px;margin:0 0 12px">A rag peddler's empire</h2>
+    <p style="font-size:15px;line-height:1.7;margin:0 0 14px;color:var(--color-neutral-800)">Sigmund Birkenstein was born in Kissingen, Germany, and came to America in 1857 — Richmond first, then Hannibal, Missouri, then Chicago in 1866, where the city directories list him as a peddler in the rag trade. By the late 1870s he had a partner, Moses Kaufman, a firm — S. Birkenstein &amp; Co. — and a building on Kinzie Street west of the river. Within a decade he had bought Kaufman out. His son Louis joined in 1890, and Henry, Albert and Milton followed; by the time Sigmund died in 1900, the letterhead read S. Birkenstein &amp; Sons.</p>
+    <p style="font-size:15px;line-height:1.7;margin:0 0 20px;color:var(--color-neutral-800)">It was a familiar arc, written large. Scrap collectors — many of them, like Birkenstein, Jewish immigrants from Europe — had long worked at a peddler's scale. Industrialization changed the math: America's mills wanted iron, rubber and cotton faster than the country could supply them new, and the dealers who could gather and grade the old stuff built substantial businesses.</p>
+    <figure style="margin:0;display:flex;flex-direction:column;align-items:center">
+      <div class="washed" style="border-radius:50%;overflow:hidden;width:200px;height:200px"><img src="https://birkenlofts.com/images/history/louis-birkenstein-1919.webp" alt="Portrait of Louis Birkenstein" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+      <figcaption style="font-size:13px;line-height:1.55;color:var(--color-neutral-600);margin-top:10px;font-style:italic;text-align:center">Louis Birkenstein, company president, in The Rubber Age and Tire News, 1919.</figcaption>
+    </figure>
+  </section>
+  <section>
+    <h2 style="font-size:26px;margin:0 0 12px">The house that Birkenstein built</h2>
+    <p style="font-size:15px;line-height:1.7;margin:0 0 14px;color:var(--color-neutral-800)">Under Louis, the firm outgrew rags and paper stock and moved hard into scrap metal and rubber — the automobile and the modern steel industry saw to the demand. In 1905 the company put up a purpose-built headquarters at 401 W. Ontario Street: offices and shipping on the first floor, storage and baling on the second, sorting above. Business kept growing, and in 1912 architect H. M. Eichberg added a fourth story so seamlessly you have to squint to find the seam.</p>
+    <p style="font-size:15px;line-height:1.7;margin:0 0 14px;color:var(--color-neutral-800)">It was a working warehouse with front-parlor manners: red face brick across eight bays, segmental-arch windows, a limestone sill course, brick piers trimmed with Prairie-style ornament and a corbeled frieze below the cornice — and inside, the heavy timber posts and beams that carry the building to this day.</p>
+    <p style="font-size:15px;line-height:1.7;margin:0 0 20px;color:var(--color-neutral-800)">The trade press called it the House of Birkenstein, and the firm leaned into the name. "Label that car to Birkenstein &amp; Sons, Chicago" — a 1916 advertisement claimed the phrase was in daily use among thousands of shippers across the country.</p>
+    <figure style="margin:0">
+      <div class="washed" style="border-radius:calc(var(--radius-lg) * 1.2);overflow:hidden"><img src="https://birkenlofts.com/images/history/hey-joe-ad-1916.webp" alt="1916 S. Birkenstein &amp; Sons advertisement" style="width:100%;display:block"></div>
+      <figcaption style="font-size:13px;line-height:1.55;color:var(--color-neutral-600);margin-top:10px;font-style:italic">"Hey Joe! Label that Car" — Hide and Leather, February 1916, with the building sketched at lower left.</figcaption>
+    </figure>
+  </section>
+  <section>
+    <h2 style="font-size:26px;margin:0 0 12px">War and the scrap boom</h2>
+    <p style="font-size:15px;line-height:1.7;margin:0 0 20px;color:var(--color-neutral-800)">America's entry into the First World War made scrap a strategic material, and by the late 1910s the waste trade was a billion-dollar industry. S. Birkenstein &amp; Sons opened offices in New York, Philadelphia and Minneapolis, and Louis Birkenstein became the industry's public face: tapped in 1917 to lead the Waste Materials Branch of the Quartermaster's salvage effort, appointed head of the Army's Surplus Property Division in 1919, and elected to four consecutive terms as president of the National Association of Waste Material Dealers.</p>
+    <figure style="margin:0">
+      <div class="washed" style="border-radius:calc(var(--radius-lg) * 1.2);overflow:hidden"><img src="https://birkenlofts.com/images/history/house-of-birkenstein-ad-1920.webp" alt="1920 advertisement — The House of Birkenstein" style="width:100%;display:block"></div>
+      <figcaption style="font-size:13px;line-height:1.55;color:var(--color-neutral-600);margin-top:10px;font-style:italic">"The House of Birkenstein" — The Rubber Age and Tire News, April 1920. This page takes its name from the signature.</figcaption>
+    </figure>
+  </section>
+  <section>
+    <h2 style="font-size:26px;margin:0 0 12px">After Birkenstein</h2>
+    <p style="font-size:15px;line-height:1.7;margin:0;color:var(--color-neutral-800)">Success eventually moved the firm out. In 1920 S. Birkenstein &amp; Sons decamped to a new headquarters at North Avenue and Kingsbury Street and leased 401 W. Ontario to the Chicago Mill Paper Stock Company. Sanborn maps show the building as a cork-and-seal warehouse by mid-century, and late in the century it was carved into offices — its timber frame and brick walls left standing through every change of use.</p>
+  </section>
+  <section>
+    <h2 style="font-size:26px;margin:0 0 12px">Birken Lofts today</h2>
+    <p style="font-size:15px;line-height:1.7;margin:0 0 20px;color:var(--color-neutral-800)">A century of industry left the building remarkably intact — its massing, roofline and window pattern are still the ones Smokey Hollow knew. The conversion to Birken Lofts carries that record forward: fifty-seven residences set among the original posts, beams and brick, a block from the river that started it all.</p>
+    <figure style="margin:0">
+      <div class="washed" style="border-radius:calc(var(--radius-lg) * 1.2);overflow:hidden"><img src="https://birkenlofts.com/images/history/timber-ceiling.webp" alt="Exposed heavy-timber beams and joists" style="width:100%;display:block"></div>
+      <figcaption style="font-size:13px;line-height:1.55;color:var(--color-neutral-600);margin-top:10px;font-style:italic">The original heavy-timber frame, still carrying the building.</figcaption>
+    </figure>
+  </section>
+</article>
+<section style="margin:48px 20px;background:var(--color-accent-100);border-radius:calc(var(--radius-lg) * 1.6);padding:28px 24px;display:flex;flex-direction:column;gap:16px">
+  <p style="font-family:var(--font-heading);font-size:22px;line-height:1.3;margin:0">See what the House of Birkenstein holds now.</p>
+  <a class="btn btn-primary" href="Mobile Home.dc.html#plans" style="justify-content:center;min-height:48px">View floor plans</a>
+  <a class="btn btn-secondary" href="Mobile Home.dc.html#contact" style="justify-content:center;min-height:48px">Contact us</a>
+</section>
+<footer style="background:var(--color-neutral-900);color:var(--color-neutral-200);padding:32px 24px;display:flex;flex-direction:column;gap:20px">
+  <div><div style="font-family:var(--font-heading);font-size:20px;color:var(--color-bg)">Birken Lofts</div><div style="font-size:13px;margin-top:8px;line-height:1.7">S. Birkenstein &amp; Sons Building · Built 1905<br>401 W. Ontario Street, Chicago, IL 60654</div></div>
+  <div style="display:flex;flex-wrap:wrap;gap:16px 24px;font-size:14px">
+    <a href="Mobile Home.dc.html#plans" style="color:inherit;text-decoration:none;padding:6px 0">Residences</a><a href="Mobile Finishes.dc.html" style="color:inherit;text-decoration:none;padding:6px 0">Finishes</a><a href="Mobile History.dc.html" style="color:inherit;text-decoration:none;padding:6px 0">History</a><a href="Mobile Traffic Cam.dc.html" style="color:inherit;text-decoration:none;padding:6px 0">Traffic Cam</a><a href="Mobile Home.dc.html#contact" style="color:inherit;text-decoration:none;padding:6px 0">Contact</a>
+  </div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:390,&quot;height&quot;:844}}">
+class Component extends DCLogic {
+  state = { menuOpen: false };
+  renderVals() {
+    return {
+      menuOpen: this.state.menuOpen,
+      menuClosed: !this.state.menuOpen,
+      toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen }))
+    };
+  }
+}
+</script>
+</body>
+</html>

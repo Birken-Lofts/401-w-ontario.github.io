@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
@@ -27,6 +27,24 @@ export default function Nav() {
 
   const close = () => setOpen(false);
 
+  // Close the drawer on Escape or a tap outside the header/panel.
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setOpen(false);
+    };
+    const onPointerDown = (e: PointerEvent) => {
+      const t = e.target as Element | null;
+      if (t && !t.closest('.site-nav') && !t.closest('.nav-drawer')) setOpen(false);
+    };
+    window.addEventListener('keydown', onKey);
+    document.addEventListener('pointerdown', onPointerDown);
+    return () => {
+      window.removeEventListener('keydown', onKey);
+      document.removeEventListener('pointerdown', onPointerDown);
+    };
+  }, [open]);
+
   return (
     <>
       <nav className="site-nav">
@@ -45,7 +63,7 @@ export default function Nav() {
           aria-label="Toggle menu"
           aria-expanded={open}
         >
-          {open ? <X size={24} strokeWidth={2.75} /> : <Menu size={24} strokeWidth={2.75} />}
+          {open ? <X size={26} strokeWidth={2.75} /> : <Menu size={26} strokeWidth={2.75} />}
         </button>
       </nav>
       {open && (
