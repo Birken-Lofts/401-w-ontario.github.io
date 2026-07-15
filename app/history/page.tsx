@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
+import StaticImg from '@/components/StaticImg';
 
 export const metadata: Metadata = {
   title: 'The House of Birkenstein | Birken Lofts',
@@ -82,12 +83,13 @@ export default function HistoryPage() {
             </p>
           </div>
           <figure className="history-fig">
-            <Image
+            <StaticImg
               src="/images/history/sanborn-map-1906.webp"
+              srcSet="/images/history/sanborn-map-1906-480w.webp 480w, /images/history/sanborn-map-1906-960w.webp 960w, /images/history/sanborn-map-1906.webp 1087w"
+              sizes="(max-width: 768px) calc(100vw - 40px), 45vw"
               alt="1906 Sanborn fire-insurance map showing the block bounded by Ontario and Ohio Streets"
               width={1087}
               height={1600}
-              priority
             />
             <figcaption>
               The 1906 Sanborn fire-insurance map &mdash; the building at center, labeled
@@ -181,8 +183,10 @@ export default function HistoryPage() {
             </p>
           </div>
           <figure className="history-fig">
-            <Image
+            <StaticImg
               src="/images/history/house-of-birkenstein-ad-1920.webp"
+              srcSet="/images/history/house-of-birkenstein-ad-1920-480w.webp 480w, /images/history/house-of-birkenstein-ad-1920-960w.webp 960w, /images/history/house-of-birkenstein-ad-1920.webp 1087w"
+              sizes="(max-width: 768px) calc(100vw - 40px), 45vw"
               alt="1920 advertisement showing the building above the script signature The House of Birkenstein"
               width={1087}
               height={1600}
@@ -215,8 +219,10 @@ export default function HistoryPage() {
             </p>
           </div>
           <figure className="history-fig">
-            <Image
+            <StaticImg
               src="/images/history/timber-ceiling.webp"
+              srcSet="/images/history/timber-ceiling-480w.webp 480w, /images/history/timber-ceiling-960w.webp 960w, /images/history/timber-ceiling.webp 1600w"
+              sizes="(max-width: 768px) calc(100vw - 40px), 45vw"
               alt="Exposed heavy-timber beams and joists at the ceiling of an upper floor"
               width={1600}
               height={1143}

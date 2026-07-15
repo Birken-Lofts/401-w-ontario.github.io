@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
+import StaticImg from '@/components/StaticImg';
 
 export const metadata: Metadata = {
   title: 'Finishes | Birken Lofts',
@@ -97,12 +98,15 @@ export default function FinishesPage() {
       </header>
       <div className="container">
         <figure className="fin-hero">
-          <Image
+          <StaticImg
             src="/images/finishes/kitchen-render.webp"
+            srcSet="/images/finishes/kitchen-render-480w.webp 480w, /images/finishes/kitchen-render-960w.webp 960w, /images/finishes/kitchen-render.webp 992w"
+            sizes="(max-width: 768px) calc(100vw - 40px), min(90vw, 1232px)"
             alt="Concept rendering of a Birken Lofts kitchen: taupe flat-panel cabinets and dark stone counters beneath original timber beams and exposed brick"
             width={992}
             height={1070}
-            priority
+            loading="eager"
+            fetchPriority="high"
           />
           <figcaption>Concept rendering &mdash; kitchen design direction.</figcaption>
         </figure>
@@ -127,8 +131,10 @@ export default function FinishesPage() {
             </figure>
           </div>
           <figure className="fin-fig fin-fig-wide">
-            <Image
+            <StaticImg
               src="/images/finishes/kitchen-renders-4up.webp"
+              srcSet="/images/finishes/kitchen-renders-4up-480w.webp 480w, /images/finishes/kitchen-renders-4up-960w.webp 960w, /images/finishes/kitchen-renders-4up.webp 992w"
+              sizes="(max-width: 768px) calc(100vw - 40px), min(90vw, 1232px)"
               alt="Four concept rendering studies of the kitchen cabinetry, island, and open shelving"
               width={992}
               height={1086}
@@ -206,8 +212,10 @@ export default function FinishesPage() {
               <figcaption>Industrial barn pendant.</figcaption>
             </figure>
             <figure className="fin-fig">
-              <Image
+              <StaticImg
                 src="/images/finishes/runner-herringbone.webp"
+                srcSet="/images/finishes/runner-herringbone-480w.webp 480w, /images/finishes/runner-herringbone.webp 801w"
+                sizes="(max-width: 768px) 33vw, 45vw"
                 alt="Woven wool runner sample in a natural and charcoal herringbone"
                 width={801}
                 height={775}
@@ -215,8 +223,10 @@ export default function FinishesPage() {
               <figcaption>Woven wool runner &mdash; herringbone colorway.</figcaption>
             </figure>
             <figure className="fin-fig">
-              <Image
+              <StaticImg
                 src="/images/finishes/runner-stripe.webp"
+                srcSet="/images/finishes/runner-stripe-480w.webp 480w, /images/finishes/runner-stripe.webp 798w"
+                sizes="(max-width: 768px) 33vw, 45vw"
                 alt="Woven wool runner sample in a natural and charcoal stripe"
                 width={798}
                 height={805}
