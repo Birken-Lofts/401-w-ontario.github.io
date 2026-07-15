@@ -5,6 +5,7 @@
 /* — page scaffold — */
 .container { max-width: 1280px; margin-inline: auto; padding-inline: 48px; }
 body { padding-top: 64px; } /* clearance for the fixed nav */
+html { scrollbar-gutter: stable; } /* reserve the classic-scrollbar gutter so the lightbox body lock doesn't shift the page */
 #plans, #history, #amenities, #neighborhood, #schedule, #contact { scroll-margin-top: 76px; }
 
 /* — fixed nav (always visible, solid — departure from the mock's static nav) — */

@@ -64,7 +64,9 @@ function Overlay({
       else if (e.key === 'Tab') {
         const root = rootRef.current;
         if (!root) return;
-        const focusables = Array.from(root.querySelectorAll<HTMLElement>('button'));
+        const focusables = Array.from(
+          root.querySelectorAll<HTMLElement>('button, a[href], [tabindex]:not([tabindex="-1"])'),
+        );
         if (focusables.length === 0) return;
         const first = focusables[0];
         const last = focusables[focusables.length - 1];
@@ -108,8 +110,8 @@ function Overlay({
       ref={rootRef}
     >
       <div className="lightbox-track" ref={trackRef} onScroll={handleScroll}>
-        {plans.map((p) => (
-          <figure key={p.unit} className="lightbox-slide">
+        {plans.map((p, i) => (
+          <figure key={p.unit} className="lightbox-slide" aria-hidden={i !== current || undefined}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={p.large} alt={p.alt} loading="lazy" onClick={(e) => e.stopPropagation()} />
           </figure>
@@ -153,7 +155,7 @@ function Overlay({
           <ChevronRight size={22} strokeWidth={2.5} />
         </button>
       )}
-      <div className="lightbox-caption" onClick={(e) => e.stopPropagation()}>
+      <div className="lightbox-caption" aria-live="polite" onClick={(e) => e.stopPropagation()}>
         <span>
           {plans[current].title} · {plans[current].unit}
         </span>

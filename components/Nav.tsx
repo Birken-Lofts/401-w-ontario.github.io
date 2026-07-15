@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
@@ -8,6 +8,8 @@ import useScrollSpy from '@/hooks/useScrollSpy';
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
+  const drawerRef = useRef<HTMLDivElement>(null);
+  const menuBtnRef = useRef<HTMLButtonElement>(null);
   const pathname = usePathname();
   const onHome = pathname === '/';
   const active = useScrollSpy(onHome);
@@ -31,7 +33,10 @@ export default function Nav() {
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setOpen(false);
+      if (e.key === 'Escape') {
+        setOpen(false);
+        menuBtnRef.current?.focus();
+      }
     };
     const onPointerDown = (e: PointerEvent) => {
       const t = e.target as Element | null;
@@ -39,6 +44,7 @@ export default function Nav() {
     };
     window.addEventListener('keydown', onKey);
     document.addEventListener('pointerdown', onPointerDown);
+    drawerRef.current?.querySelector('a')?.focus();
     return () => {
       window.removeEventListener('keydown', onKey);
       document.removeEventListener('pointerdown', onPointerDown);
@@ -58,16 +64,18 @@ export default function Nav() {
           <Link className="btn btn-primary" href="/#contact">Contact us</Link>
         </div>
         <button
+          ref={menuBtnRef}
           className="nav-menu-btn"
           onClick={() => setOpen((v) => !v)}
           aria-label="Toggle menu"
           aria-expanded={open}
+          aria-controls="nav-drawer"
         >
           {open ? <X size={26} strokeWidth={2.75} /> : <Menu size={26} strokeWidth={2.75} />}
         </button>
       </nav>
       {open && (
-        <div className="nav-drawer">
+        <div className="nav-drawer" ref={drawerRef} id="nav-drawer">
           {links.map((l) => (
             <Link key={l.label} href={l.href} onClick={close} aria-current={l.current ? 'page' : undefined}>
               {l.label}
