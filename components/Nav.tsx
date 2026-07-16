@@ -22,11 +22,10 @@ export default function Nav() {
     { href: '/#plans', label: 'Residences', current: onHome && active === 'plans' },
     { href: '/finishes/', label: 'Finishes', current: onFinishes },
     { href: '/history/', label: 'History', current: onHistory },
-    { href: '/blog/', label: 'Journal', current: onBlog },
     { href: '/#amenities', label: 'Amenities', current: onHome && active === 'amenities' },
     { href: '/#neighborhood', label: 'Neighborhood', current: onHome && active === 'neighborhood' },
+    { href: '/blog/', label: 'Journal', current: onBlog },
     { href: '/ohio-feeder-ramp-cam/', label: 'Traffic Cam', current: onCam },
-    { href: '/#contact', label: 'Contact', current: onHome && active === 'contact' },
   ];
 
   const close = () => setOpen(false);
