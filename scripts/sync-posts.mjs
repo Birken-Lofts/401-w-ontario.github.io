@@ -73,6 +73,9 @@ for (const post of posts) {
   const slug = post.slug;
   seenSlugs.push(slug);
   let html = post.html || '';
+  // Ghost's outbound link tagging appends ?ref=<site-host> to external links.
+  // Setup disables the setting, but strip any stragglers defensively.
+  html = html.replaceAll('?ref=localhost', '').replaceAll('&ref=localhost', '');
   let featureImage = null;
   let featureW = null;
   let featureH = null;

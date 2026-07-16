@@ -87,6 +87,16 @@ const integration = await fetch(`${GHOST_URL}/ghost/api/admin/integrations/?incl
   body: JSON.stringify({ integrations: [{ name: 'Site Sync' }] }),
 });
 if (!integration.ok) throw new Error(`Integration creation failed: ${integration.status} ${await integration.text()}`);
+
+// Outbound link tagging appends ?ref=<site-host> (i.e. ?ref=localhost) to
+// external links in rendered posts — noise the sync would have to strip.
+const linkTagging = await fetch(`${GHOST_URL}/ghost/api/admin/settings/`, {
+  method: 'PUT',
+  headers: { 'Content-Type': 'application/json', Origin: GHOST_URL, Cookie: cookie },
+  body: JSON.stringify({ settings: [{ key: 'outbound_link_tagging', value: false }] }),
+});
+if (linkTagging.ok) console.log('Disabled outbound link tagging (no ?ref= noise on external links).');
+else console.log('WARN: could not disable outbound link tagging — turn it off manually: Ghost Settings -> Analytics.');
 const keys = (await integration.json()).integrations[0].api_keys;
 const contentKey = keys.find((k) => k.type === 'content').secret;
 const adminKey = keys.find((k) => k.type === 'admin');
