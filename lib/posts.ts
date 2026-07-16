@@ -5,10 +5,12 @@ export interface Post {
   slug: string;
   title: string;
   custom_excerpt: string | null;
+  meta_description: string | null;
   html: string;
   feature_image: string | null;
   feature_image_width: number | null;
   feature_image_height: number | null;
+  feature_image_alt: string | null;
   published_at: string;
   updated_at: string;
   reading_time: number;

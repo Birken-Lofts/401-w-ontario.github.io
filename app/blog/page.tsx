@@ -40,7 +40,7 @@ export default function JournalPage() {
                   // eslint-disable-next-line @next/next/no-img-element
                   <img
                     src={p.feature_image}
-                    alt=""
+                    alt={p.feature_image_alt ?? ''}
                     width={p.feature_image_width}
                     height={p.feature_image_height}
                     loading="lazy"

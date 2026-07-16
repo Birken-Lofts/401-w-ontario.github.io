@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const post = getPost(slug);
   if (!post) return {};
-  const description = post.custom_excerpt ?? `${post.title} — from the Birken Lofts Journal.`;
+  const description = post.meta_description ?? post.custom_excerpt ?? `${post.title} — from the Birken Lofts Journal.`;
   return {
     title: `${post.title} | Birken Lofts Journal`,
     description,
@@ -27,8 +27,21 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       description,
       type: 'article',
       url: `https://birkenlofts.com/blog/${post.slug}/`,
-      images: post.feature_image ? [`https://birkenlofts.com${post.feature_image}`] : undefined,
+      publishedTime: post.published_at,
+      modifiedTime: post.updated_at,
+      images: post.feature_image
+        ? [
+            {
+              url: `https://birkenlofts.com${post.feature_image}`,
+              ...(post.feature_image_width && post.feature_image_height
+                ? { width: post.feature_image_width, height: post.feature_image_height }
+                : {}),
+              ...(post.feature_image_alt ? { alt: post.feature_image_alt } : {}),
+            },
+          ]
+        : undefined,
     },
+    twitter: { card: 'summary_large_image' },
   };
 }
 
@@ -41,6 +54,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
     '@context': 'https://schema.org',
     '@type': 'Article',
     headline: post.title,
+    description: post.meta_description ?? post.custom_excerpt ?? `${post.title} — from the Birken Lofts Journal.`,
     datePublished: post.published_at,
     dateModified: post.updated_at,
     ...(post.feature_image ? { image: `https://birkenlofts.com${post.feature_image}` } : {}),
@@ -51,7 +65,10 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
 
   return (
     <main>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c') }}
+      />
       <article className="post container">
         <header className="post-header">
           <Link className="post-back" href="/blog/">
@@ -67,7 +84,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
           // eslint-disable-next-line @next/next/no-img-element
           <img
             src={post.feature_image}
-            alt=""
+            alt={post.feature_image_alt ?? ''}
             width={post.feature_image_width}
             height={post.feature_image_height}
             className="post-feature"
