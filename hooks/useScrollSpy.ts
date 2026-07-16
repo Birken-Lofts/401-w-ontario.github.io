@@ -35,6 +35,17 @@ export default function useScrollSpy(enabled: boolean = true) {
           break;
         }
       }
+      // At the very bottom of the page the last section (contact) may never
+      // top-out under the nav; force it active so its nav link highlights.
+      if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2) {
+        for (let j = sections.length - 1; j >= 0; j--) {
+          const el = document.getElementById(sections[j]);
+          if (el) {
+            current = sections[j];
+            break;
+          }
+        }
+      }
       setActive(current);
     };
 
