@@ -32,3 +32,6 @@ pagespeed.txt
 /.next/
 /out/
 next-env.d.ts
+
+# local secrets (Ghost API keys)
+.env.local

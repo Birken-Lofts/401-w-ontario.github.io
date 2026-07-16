@@ -1,0 +1,16 @@
+# Local Ghost editor for the Birken Lofts Journal. Editor-only: visitors never
+# reach this instance; published posts are synced into the repo by
+# `npm run sync-posts`. Content (posts, images, your account) persists in
+# ~/.birken-ghost on this machine — it is NOT part of the repo.
+services:
+  ghost:
+    image: ghost:5
+    container_name: birken-ghost
+    restart: unless-stopped
+    ports:
+      - '2368:2368'
+    environment:
+      url: http://localhost:2368
+      NODE_ENV: development
+    volumes:
+      - ~/.birken-ghost:/var/lib/ghost/content
