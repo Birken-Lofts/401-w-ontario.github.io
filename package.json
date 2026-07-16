@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "sync-posts": "node scripts/sync-posts.mjs"
   },
   "dependencies": {
     "leaflet": "^1.9.4",
