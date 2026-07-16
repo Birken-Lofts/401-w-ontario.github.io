@@ -7,6 +7,7 @@
 // author's machine, never in CI.
 import { readFileSync, writeFileSync, existsSync, mkdirSync, readdirSync, rmSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
 import path from 'node:path';
 
 function loadEnv() {
@@ -44,7 +45,9 @@ if (posts.length === 0 && !ALLOW_EMPTY) {
 mkdirSync(POSTS_DIR, { recursive: true });
 
 async function localizeImage(url, slug) {
-  const filename = path.basename(new URL(url, GHOST_URL).pathname);
+  const pathname = new URL(url, GHOST_URL).pathname;
+  const hash = createHash('sha1').update(pathname).digest('hex').slice(0, 8);
+  const filename = `${hash}-${path.basename(pathname)}`;
   const dir = path.join(IMAGES_ROOT, slug);
   mkdirSync(dir, { recursive: true });
   const dest = path.join(dir, filename);
@@ -96,7 +99,7 @@ for (const post of posts) {
         newTag = newTag.replace('<img ', `<img width="${dims.w}" height="${dims.h}" `);
       }
     }
-    html = html.replace(tag, newTag);
+    html = html.replace(tag, () => newTag);
   }
 
   const record = {
@@ -114,7 +117,7 @@ for (const post of posts) {
   };
 
   const json = JSON.stringify(record, null, 2);
-  if (/localhost|:2368|__GHOST_URL__/.test(json)) {
+  if (/localhost|127\.0\.0\.1|:2368|__GHOST_URL__/.test(json)) {
     throw new Error(`GUARD: local URL leaked into ${slug}.json — aborting before write.`);
   }
   writeFileSync(path.join(POSTS_DIR, `${slug}.json`), json + '\n');
@@ -125,6 +128,7 @@ for (const post of posts) {
 for (const file of readdirSync(POSTS_DIR)) {
   if (!file.endsWith('.json') || file === 'index.json') continue;
   const slug = file.replace(/\.json$/, '');
+  if (!/^[a-z0-9-]+$/i.test(slug)) continue;
   if (!seenSlugs.includes(slug)) {
     rmSync(path.join(POSTS_DIR, file));
     rmSync(path.join(IMAGES_ROOT, slug), { recursive: true, force: true });
