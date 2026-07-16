@@ -17,7 +17,7 @@
 - No new package.json `dependencies`/`devDependencies`; `package-lock.json` unchanged. Adding entries to `"scripts"` IS allowed (Task 2 adds `sync-posts`).
 - NEVER `git add -A` (untracked at repo root: `pagespeed.txt` = API key, `mobie.zip`, `finishes.pptx`, two PDFs). Stage files explicitly.
 - NEVER commit: `.env.local`, seed-draft copy, rehearsal artifacts (test posts/images), or anything containing credentials.
-- The user's real Ghost instance is NOT set up by implementers. All live testing uses a THROWAWAY Ghost on port **2369** with a temp-dir volume and fake credentials, torn down afterwards. `.env.local` is never written by rehearsals (pass env vars directly).
+- The user's real Ghost instance is NOT set up by implementers. All live testing uses a THROWAWAY Ghost on port **2369**, bound to loopback only (`-p 127.0.0.1:2369:2368` — never expose it to the network), with a temp-dir volume and fake credentials, torn down afterwards. `.env.local` is never written by rehearsals (pass env vars directly).
 - Docker is available (29.5.3, daemon up). `docker compose` v2 syntax.
 - Do not run `npm run dev`. Serve `out/` on 4173 for headless checks; kill after; playwright in repo node_modules.
 - Ghost API facts (v5): setup status `GET /ghost/api/admin/authentication/setup/`; create owner `POST` same URL with `{"setup":[{"name","email","password","blogTitle"}]}`; session login `POST /ghost/api/admin/session/` with `{"username","password"}` + `Origin: http://localhost:<port>` header (grab the `set-cookie`); create integration `POST /ghost/api/admin/integrations/?include=api_keys` with the session cookie, body `{"integrations":[{"name":"Site Sync"}]}`; Admin JWT = HS256, header `{alg,typ:'JWT',kid:<key id>}`, payload `{iat, exp: iat+300, aud:'/admin/'}`, secret = hex-decoded second half of the admin key; create post `POST /ghost/api/admin/posts/?source=html`; publish `PUT /ghost/api/admin/posts/<id>/` with `{"posts":[{"status":"published","updated_at":<fetched updated_at>}]}`; content list `GET /ghost/api/content/posts/?key=<content key>&include=tags&formats=html&limit=all`.
@@ -46,7 +46,8 @@ services:
     container_name: birken-ghost
     restart: unless-stopped
     ports:
-      - '2368:2368'
+      # Loopback only — never expose the editor (or its one-time setup endpoint) to the network.
+      - '127.0.0.1:2368:2368'
     environment:
       url: http://localhost:2368
       NODE_ENV: development
@@ -219,7 +220,7 @@ console.log(`Draft created: "${created.title}" (${created.slug}) — edit at ${G
 
 ```bash
 TMPGHOST=$(mktemp -d)
-docker run -d --rm --name ghost-rehearsal -p 2369:2368 -e url=http://localhost:2369 -e NODE_ENV=development -v "$TMPGHOST":/var/lib/ghost/content ghost:5
+docker run -d --rm --name ghost-rehearsal -p 127.0.0.1:2369:2368 -e url=http://localhost:2369 -e NODE_ENV=development -v "$TMPGHOST":/var/lib/ghost/content ghost:5
 GHOST_URL=http://localhost:2369 GHOST_SETUP_NAME="Rehearsal" GHOST_SETUP_EMAIL="rehearsal@example.com" GHOST_SETUP_PASSWORD="rehearsal-password-123" node scripts/setup-ghost.mjs
 ```
 
@@ -828,7 +829,7 @@ git commit -m "Add Journal to nav and footer; generate sitemap at build time"
 
 **Files:** none committed (rehearsal artifacts are transient; seed drafts live only in Ghost).
 
-- [ ] **Step 1: Full-pipeline rehearsal on a throwaway Ghost** (port 2369, temp volume, env-var config only):
+- [ ] **Step 1: Full-pipeline rehearsal on a throwaway Ghost** (port 2369 via `-p 127.0.0.1:2369:2368`, temp volume, env-var config only):
 1. Start throwaway, run `setup-ghost.mjs` with rehearsal env creds, delete the `.env.local` it writes but capture the keys into shell vars first.
 2. Upload an image to Ghost via the Admin API images endpoint (`POST /ghost/api/admin/images/upload/` multipart with the JWT — use a small webp from `public/images/finishes/`) so the rehearsal covers LOCAL image localization; create a post via Admin API whose html includes that uploaded image inline, set it as `feature_image` too; publish it.
 3. `GHOST_URL=http://localhost:2369 GHOST_CONTENT_KEY=$KEY node scripts/sync-posts.mjs` → verify: post JSON written; images copied under `public/images/blog/<slug>/`; no `localhost|2368|2369|__GHOST_URL__` in any written file; inline `<img>` gained width/height and lost srcset.

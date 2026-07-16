@@ -27,6 +27,8 @@ GHOST_ADMIN_KEY=<admin key>
 
 ## Publishing workflow
 
+> **WARNING: delete Ghost's sample posts first.** A fresh Ghost instance seeds sample **published** content (e.g. a "Coming soon" post). Delete or unpublish those sample posts before your first `npm run sync-posts`, or they will be synced and published to birkenlofts.com.
+
 1. Write and **publish** the post in the Ghost admin at http://localhost:2368/ghost (drafts are ignored by the sync)
 2. `npm run sync-posts` — pulls published posts and their images into the repo
 3. Commit `content/` and `public/images/blog/`, then push — the normal deploy takes it live

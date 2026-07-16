@@ -4,7 +4,7 @@
 // creates it, creates a "Site Sync" integration, and writes .env.local.
 // Idempotent: if Ghost is already set up, prints manual instructions instead.
 import { createInterface } from 'node:readline/promises';
-import { writeFileSync, existsSync } from 'node:fs';
+import { writeFileSync, existsSync, chmodSync } from 'node:fs';
 
 const GHOST_URL = process.env.GHOST_URL || 'http://localhost:2368';
 
@@ -24,6 +24,12 @@ async function waitForGhost() {
 
 async function ask(question, hide = false) {
   const rl = createInterface({ input: process.stdin, output: process.stdout });
+  if (hide) {
+    // Mask input by intercepting readline's echo. `_writeToOutput` is internal
+    // API, but acceptable for a local bootstrap script.
+    const orig = rl._writeToOutput.bind(rl);
+    rl._writeToOutput = (s) => orig(s.includes(question) ? s : '*');
+  }
   const answer = await rl.question(question);
   rl.close();
   if (hide) process.stdout.write('\n');
@@ -52,6 +58,12 @@ To (re)generate API keys manually:
   if (!name) name = await ask('Owner name: ');
   if (!email) email = await ask('Owner email: ');
   if (!password) password = await ask('Owner password (10+ chars): ', true);
+  // Narrow the setup race: re-check right before claiming ownership in case
+  // someone else completed setup while we were prompting.
+  const recheck = await fetch(`${GHOST_URL}/ghost/api/admin/authentication/setup/`);
+  if (recheck.ok && (await recheck.json()).setup[0].status) {
+    throw new Error('Ghost was set up by someone else since the check — investigate before proceeding.');
+  }
   const res = await fetch(`${GHOST_URL}/ghost/api/admin/authentication/setup/`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -84,5 +96,6 @@ const adminKeyString = adminKey.secret.includes(':') ? adminKey.secret : `${admi
 const envPath = new URL('../.env.local', import.meta.url).pathname;
 const lines = `GHOST_URL=${GHOST_URL}\nGHOST_CONTENT_KEY=${contentKey}\nGHOST_ADMIN_KEY=${adminKeyString}\n`;
 if (existsSync(envPath)) console.log('NOTE: .env.local exists — appending Ghost keys.');
-writeFileSync(envPath, lines, { flag: existsSync(envPath) ? 'a' : 'w' });
+writeFileSync(envPath, lines, { flag: existsSync(envPath) ? 'a' : 'w', mode: 0o600 });
+chmodSync(envPath, 0o600); // keys are secrets — owner read/write only
 console.log(`Wrote Ghost keys to .env.local — you're ready: write at ${GHOST_URL}/ghost, then \`npm run sync-posts\`.`);

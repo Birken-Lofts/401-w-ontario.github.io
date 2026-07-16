@@ -8,7 +8,8 @@ services:
     container_name: birken-ghost
     restart: unless-stopped
     ports:
-      - '2368:2368'
+      # Loopback only — never expose the editor (or its one-time setup endpoint) to the network.
+      - '127.0.0.1:2368:2368'
     environment:
       url: http://localhost:2368
       NODE_ENV: development
