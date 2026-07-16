@@ -12,6 +12,14 @@ services:
       - '127.0.0.1:2368:2368'
     environment:
       url: http://localhost:2368
-      NODE_ENV: development
+      # NOTE: do NOT set NODE_ENV=development here — the official image has no
+      # development config, so Ghost would silently keep its database OUTSIDE the
+      # mounted volume and lose everything on container recreate.
+      # SQLite inside the mounted volume (production mode defaults to MySQL).
+      database__client: sqlite3
+      database__connection__filename: /var/lib/ghost/content/data/ghost.db
+      # No mail service locally — disable the emailed device-verification code
+      # (loopback-only editor; without this, browser logins fail with EmailError).
+      security__staffDeviceVerification: 'false'
     volumes:
       - ~/.birken-ghost:/var/lib/ghost/content
