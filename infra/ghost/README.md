@@ -33,6 +33,10 @@ GHOST_ADMIN_KEY=<admin key>
 2. `npm run sync-posts` — pulls published posts and their images into the repo
 3. Commit `content/` and `public/images/blog/`, then push — the normal deploy takes it live
 
+To unpublish **all** posts, run `npm run sync-posts -- --allow-empty` — the script refuses to sync an empty set otherwise, as a safety against accidentally wiping the journal.
+
+Note: `sync-posts` is macOS-only (it shells out to `sips` for image dimensions). That's fine — it runs on the author's Mac, never in CI.
+
 ## Pushing a draft from a file
 
 To seed a post from an existing HTML file instead of writing it in the editor:

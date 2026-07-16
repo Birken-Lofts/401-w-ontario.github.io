@@ -4,7 +4,7 @@
 // creates it, creates a "Site Sync" integration, and writes .env.local.
 // Idempotent: if Ghost is already set up, prints manual instructions instead.
 import { createInterface } from 'node:readline/promises';
-import { writeFileSync, existsSync, chmodSync } from 'node:fs';
+import { writeFileSync, readFileSync, existsSync, chmodSync } from 'node:fs';
 
 const GHOST_URL = process.env.GHOST_URL || 'http://localhost:2368';
 
@@ -94,8 +94,13 @@ const adminKey = keys.find((k) => k.type === 'admin');
 const adminKeyString = adminKey.secret.includes(':') ? adminKey.secret : `${adminKey.id}:${adminKey.secret}`;
 
 const envPath = new URL('../.env.local', import.meta.url).pathname;
-const lines = `GHOST_URL=${GHOST_URL}\nGHOST_CONTENT_KEY=${contentKey}\nGHOST_ADMIN_KEY=${adminKeyString}\n`;
-if (existsSync(envPath)) console.log('NOTE: .env.local exists — appending Ghost keys.');
-writeFileSync(envPath, lines, { flag: existsSync(envPath) ? 'a' : 'w', mode: 0o600 });
+const fresh = { GHOST_URL, GHOST_CONTENT_KEY: contentKey, GHOST_ADMIN_KEY: adminKeyString };
+let existing = existsSync(envPath) ? readFileSync(envPath, 'utf8') : '';
+if (existing && !existing.endsWith('\n')) existing += '\n';
+const kept = existing
+  .split('\n')
+  .filter((l) => l && !/^GHOST_(URL|CONTENT_KEY|ADMIN_KEY)=/.test(l));
+const lines = [...kept, ...Object.entries(fresh).map(([k, v]) => `${k}=${v}`)].join('\n') + '\n';
+writeFileSync(envPath, lines, { mode: 0o600 });
 chmodSync(envPath, 0o600); // keys are secrets — owner read/write only
 console.log(`Wrote Ghost keys to .env.local — you're ready: write at ${GHOST_URL}/ghost, then \`npm run sync-posts\`.`);
