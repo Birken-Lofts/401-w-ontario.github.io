@@ -16,11 +16,13 @@ export default function Nav() {
   const onCam = pathname.startsWith('/ohio-feeder-ramp-cam');
   const onHistory = pathname.startsWith('/history');
   const onFinishes = pathname.startsWith('/finishes');
+  const onBlog = pathname.startsWith('/blog');
 
   const links = [
     { href: '/#plans', label: 'Residences', current: onHome && active === 'plans' },
     { href: '/finishes/', label: 'Finishes', current: onFinishes },
     { href: '/history/', label: 'History', current: onHistory },
+    { href: '/blog/', label: 'Journal', current: onBlog },
     { href: '/#amenities', label: 'Amenities', current: onHome && active === 'amenities' },
     { href: '/#neighborhood', label: 'Neighborhood', current: onHome && active === 'neighborhood' },
     { href: '/ohio-feeder-ramp-cam/', label: 'Traffic Cam', current: onCam },

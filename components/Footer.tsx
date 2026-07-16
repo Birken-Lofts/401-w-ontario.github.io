@@ -15,6 +15,7 @@ export default function Footer() {
         <Link href="/#plans">Residences</Link>
         <Link href="/finishes/">Finishes</Link>
         <Link href="/history/">History</Link>
+        <Link href="/blog/">Journal</Link>
         <Link href="/ohio-feeder-ramp-cam/">Traffic Cam</Link>
         <Link href="/#contact">Contact</Link>
       </div>
