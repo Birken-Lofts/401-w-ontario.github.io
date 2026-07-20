@@ -1,10 +1,22 @@
 'use client';
 
+import { useEffect, useRef, useState } from 'react';
 import dynamic from 'next/dynamic';
+import MobileMap from '@/components/map/MobileMap';
+
+// The static SVG doubles as the placeholder: on phones it IS the final map,
+// so the swap to NeighborhoodMap is DOM-identical (no layout shift, no tiles).
+function MapPlaceholder() {
+  return (
+    <div className="map-frame map-frame--svg map-frame--placeholder" aria-hidden="true">
+      <MobileMap />
+    </div>
+  );
+}
 
 const NeighborhoodMap = dynamic(() => import('@/components/map/NeighborhoodMap'), {
   ssr: false,
-  loading: () => <div className="map-frame" style={{ minHeight: 520 }} aria-hidden />,
+  loading: () => <MapPlaceholder />,
 });
 
 const cards = [
@@ -14,6 +26,27 @@ const cards = [
 ];
 
 export default function Neighborhood() {
+  const mapRef = useRef<HTMLDivElement>(null);
+  const [nearView, setNearView] = useState(false);
+
+  // The map is below the fold on every viewport — don't load Leaflet (~120KB)
+  // until the section approaches the viewport.
+  useEffect(() => {
+    const el = mapRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          setNearView(true);
+          io.disconnect();
+        }
+      },
+      { rootMargin: '600px 0px' },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
   return (
     <section id="neighborhood" className="neighborhood-section">
       <div className="section-shell">
@@ -25,7 +58,7 @@ export default function Neighborhood() {
             minutes away.
           </p>
         </div>
-        <NeighborhoodMap />
+        <div ref={mapRef}>{nearView ? <NeighborhoodMap /> : <MapPlaceholder />}</div>
         <div className="nbhd-cards">
           {cards.map((c) => (
             <div key={c.kicker} className="nbhd-card">

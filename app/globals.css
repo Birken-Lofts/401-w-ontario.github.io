@@ -26,8 +26,8 @@
   --color-neutral-800: #c4bbac;
   --color-neutral-900: #0c0b0a;
 
-  --font-heading: "Big Shoulders Display", "Arial Narrow", sans-serif;
-  --font-body: "Libre Franklin", "Franklin Gothic Medium", sans-serif;
+  --font-heading: var(--font-heading-gf), "Arial Narrow", sans-serif;
+  --font-body: var(--font-body-gf), "Franklin Gothic Medium", sans-serif;
 }
 
 *,

@@ -39,7 +39,7 @@ export default function MobileMap() {
       </g>
       <g
         fill="#6E675B"
-        fontFamily="Libre Franklin, sans-serif"
+        style={{ fontFamily: 'var(--font-body)' }}
         fontSize="10"
         letterSpacing="1.2"
         paintOrder="stroke"
@@ -60,7 +60,7 @@ export default function MobileMap() {
         x="70"
         y="200"
         fill="#5D7885"
-        fontFamily="Libre Franklin, sans-serif"
+        style={{ fontFamily: 'var(--font-body)' }}
         fontSize="10"
         letterSpacing="1.6"
         transform="rotate(70 70 200)"
@@ -74,13 +74,13 @@ export default function MobileMap() {
         x="230"
         y="458"
         fill="#5D7885"
-        fontFamily="Libre Franklin, sans-serif"
+        style={{ fontFamily: 'var(--font-body)' }}
         fontSize="10"
         letterSpacing="1.6"
       >
         MAIN BRANCH
       </text>
-      <g fontFamily="Libre Franklin, sans-serif" paintOrder="stroke" stroke="#14120F" strokeWidth="4">
+      <g style={{ fontFamily: 'var(--font-body)' }} paintOrder="stroke" stroke="#14120F" strokeWidth="4">
         <circle cx="252" cy="50" r="5" fill="#14120F" stroke="#8A7B5C" strokeWidth="1.8" />
         <text x="243" y="72" fill="#B0A793" fontSize="10" fontWeight="600">BROWN LINE</text>
         <circle cx="376" cy="50" r="5" fill="#14120F" stroke="#8A7B5C" strokeWidth="1.8" />
@@ -92,11 +92,11 @@ export default function MobileMap() {
         <circle cx="320" cy="430" r="5" fill="#14120F" stroke="#8A7B5C" strokeWidth="1.8" />
         <text x="314" y="416" fill="#B0A793" fontSize="10" fontWeight="600" textAnchor="end">MERCHANDISE MART</text>
       </g>
-      <g fontFamily="Big Shoulders Display, sans-serif" paintOrder="stroke" stroke="#14120F" strokeWidth="4">
+      <g style={{ fontFamily: 'var(--font-heading)' }} paintOrder="stroke" stroke="#14120F" strokeWidth="4">
         <rect x="108" y="140" width="22" height="22" fill="#B4553C" stroke="none" />
         <rect x="108" y="140" width="22" height="22" fill="none" stroke="#EDE6DB" strokeWidth="1.2" />
         <text x="138" y="150" fill="#EDE6DB" fontSize="14" fontWeight="700" letterSpacing="1.2">BIRKEN LOFTS</text>
-        <text x="138" y="164" fill="#8F8677" fontSize="9" fontFamily="Libre Franklin, sans-serif" letterSpacing="0.8">401 W. ONTARIO ST</text>
+        <text x="138" y="164" fill="#8F8677" fontSize="9" style={{ fontFamily: 'var(--font-body)' }} letterSpacing="0.8">401 W. ONTARIO ST</text>
       </g>
     </svg>
   );

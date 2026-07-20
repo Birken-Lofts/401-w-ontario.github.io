@@ -639,6 +639,18 @@
   display: block;
 }
 
+/* Pre-Leaflet placeholder: holds the interactive map's height on wide
+   viewports; below 640px the SVG inside is the final artwork. */
+.map-frame--placeholder {
+  min-height: 522px;
+}
+
+@media (min-width: 641px) {
+  .map-frame--placeholder .mobile-map {
+    display: none;
+  }
+}
+
 .mobile-map {
   display: block;
   width: 100%;
@@ -1384,6 +1396,12 @@
   text-wrap: pretty;
 }
 
+/* Links inside running text must not rely on color alone (a11y). */
+.post-prose a {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
 .post-prose h2 {
   margin: 44px 0 18px;
   color: var(--color-text);
@@ -1787,6 +1805,10 @@
     margin-bottom: 28px;
   }
 
+  .map-frame--placeholder {
+    min-height: 342px;
+  }
+
   .map-panel {
     display: none;
   }
@@ -2071,5 +2093,11 @@
   .lightbox-prev,
   .lightbox-next {
     display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .map-frame--placeholder {
+    min-height: 0;
   }
 }
