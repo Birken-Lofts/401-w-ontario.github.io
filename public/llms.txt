@@ -18,7 +18,8 @@ Website: https://monroeresidential.com
 - Address: 401 W. Ontario Street, Chicago, IL 60654
 - Neighborhood: River North
 - Coordinates: 41.8935, -87.6388
-- Nearby: Chicago & Grand CTA (3 min walk), Magnificent Mile (8 min walk), The Loop (10 min walk), Chicago Riverwalk (5 min walk)
+- Transit: CTA Chicago station (Brown & Purple Lines) at Chicago & Franklin, 3 min walk — six minutes to the Loop
+- Nearby: River North Gallery District (2 min walk), Chicago Riverwalk (5 min walk), Whole Foods Market (6 min walk), East Bank Club (6 min walk), Ward Park (7 min walk), Magnificent Mile (8 min walk); 0.2 mi to the Chicago River
 
 ## Residences
 
@@ -47,10 +48,10 @@ Charcoal stone, warm cabinetry, and satin nickel are guiding the finish selectio
 
 ## Timeline
 
-- 2025: Design & Planning — Architectural plans developed honoring the 1905 heritage.
-- Early 2026: Permits & Approvals — Historic preservation review and building permits secured.
-- October 2026: Construction Begins — Adaptive reuse construction commences.
-- October 2027: First Deliveries — Residents move into their new loft homes.
+- 2025: Design & Planning (complete) — Architectural plans developed honoring the 1905 heritage.
+- Early 2026: Permits & Approvals (complete) — Historic preservation review passed and building permits secured.
+- October 2026: Construction Begins (next) — Adaptive reuse construction commences.
+- October 2027: First Deliveries (planned) — Residents move into their new loft homes.
 
 ## Building History
 
@@ -59,6 +60,10 @@ The building is the S. Birkenstein & Sons Building, constructed in 1905 for one 
 ## Journal
 
 The Birken Lofts Journal publishes construction updates, finds from the archives, and stories from River North: https://birkenlofts.com/blog/
+
+Published posts:
+- Where the conversion stands: construction begins October 2026 — https://birkenlofts.com/blog/where-the-conversion-stands-construction-begins-october-2026/
+- The House of Birkenstein: a century at 401 W. Ontario — https://birkenlofts.com/blog/the-house-of-birkenstein-a-century-at-401-w-ontario/
 
 ## Contact
 
