@@ -42,14 +42,16 @@ export default function FloorPlans() {
   };
 
   return (
-    <section id="plans" className="section container">
-      <h2>Floor plans</h2>
-      <p className="section-intro">
-        Studios to two-bedrooms, no two exactly alike. Original posts and beams in every plan.
-      </p>
+    <section id="plans" className="section section-shell">
+      <div className="section-heading-row">
+        <h2>Floor plans</h2>
+        <p className="section-intro">
+          Studios to two-bedrooms, no two exactly alike. Original posts and beams in every plan.
+        </p>
+      </div>
       <div className="cards-3">
         {plans.map((p, i) => (
-          <div key={p.title} className="card elev-sm plan-card">
+          <article key={p.title} className="plan-card">
             <button
               type="button"
               className="plan-media plan-zoom"
@@ -61,11 +63,13 @@ export default function FloorPlans() {
             >
               <ImageSlot src={p.thumb} alt={p.alt} label={p.alt} fit="contain" />
             </button>
-            <span className="tag tag-accent-2" style={{ alignSelf: 'flex-start' }}>Interest list open</span>
-            <div className="card-title">{p.title}</div>
-            <div className="card-body">{p.body}</div>
-            <a className="btn btn-secondary" href="#contact" style={{ alignSelf: 'flex-start' }}>Inquire</a>
-          </div>
+            <div className="plan-card-body">
+              <span className="plan-status">Interest list open</span>
+              <h3>{p.title}</h3>
+              <p>{p.body}</p>
+              <a className="text-link" href="#contact">Inquire &rarr;</a>
+            </div>
+          </article>
         ))}
       </div>
       <PlanLightbox

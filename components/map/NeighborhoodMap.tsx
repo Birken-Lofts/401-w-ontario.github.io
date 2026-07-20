@@ -4,23 +4,40 @@ import { useEffect, useRef, useState } from 'react';
 import * as L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { categories, pois, HOME, type Poi } from '@/data/location';
+import MobileMap from '@/components/map/MobileMap';
 
 const colorOf = (catId: string) => categories.find((c) => c.id === catId)?.color ?? '#c67139';
 const allOn = () => Object.fromEntries(categories.map((c) => [c.id, true]));
+
+// Below this width the tile map's labels are illegible — the design handoff
+// swaps in a dedicated portrait SVG instead of scaling the desktop map down.
+const MOBILE_QUERY = '(max-width: 640px)';
 
 export default function NeighborhoodMap() {
   const mapEl = useRef<HTMLDivElement>(null);
   const mapRef = useRef<L.Map | null>(null);
   const markersRef = useRef<{ poi: Poi; marker: L.Marker }[]>([]);
   const [active, setActive] = useState<Record<string, boolean>>(allOn);
+  const [isMobile, setIsMobile] = useState(
+    () => typeof window !== 'undefined' && window.matchMedia(MOBILE_QUERY).matches,
+  );
+
+  useEffect(() => {
+    const mq = window.matchMedia(MOBILE_QUERY);
+    const update = () => setIsMobile(mq.matches);
+    update();
+    mq.addEventListener('change', update);
+    return () => mq.removeEventListener('change', update);
+  }, []);
 
   // Initialize the map once (cleaned up fully so StrictMode's double-mount is safe).
+  // Re-runs when the mobile SVG swaps in/out so Leaflet tears down and reinitializes.
   useEffect(() => {
     if (!mapEl.current) return;
     const map = L.map(mapEl.current, { zoomControl: false, scrollWheelZoom: false }).setView(HOME, 15);
     mapRef.current = map;
     L.control.zoom({ position: 'bottomright' }).addTo(map);
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
       attribution: '© OpenStreetMap, © CARTO',
       subdomains: 'abcd',
       maxZoom: 20,
@@ -63,7 +80,7 @@ export default function NeighborhoodMap() {
       mapRef.current = null;
       markersRef.current = [];
     };
-  }, []);
+  }, [isMobile]);
 
   // Add/remove pins as category filters change (also runs on mount → initial render).
   useEffect(() => {
@@ -79,6 +96,19 @@ export default function NeighborhoodMap() {
 
   const toggle = (id: string) => setActive((s) => ({ ...s, [id]: !s[id] }));
 
+  const showAllLocations = () => {
+    const map = mapRef.current;
+    if (!map) return;
+    setActive(allOn());
+    map.closePopup();
+    map.fitBounds(L.latLngBounds([HOME, ...pois.map((poi) => poi.ll)]), {
+      animate: true,
+      duration: 0.8,
+      maxZoom: 15,
+      padding: [28, 28],
+    });
+  };
+
   const selectPlace = (poi: Poi) => {
     const map = mapRef.current;
     if (!map) return;
@@ -92,13 +122,21 @@ export default function NeighborhoodMap() {
 
   const visiblePois = pois.filter((p) => active[p.cat]);
 
+  if (isMobile) {
+    return (
+      <div className="map-frame map-frame--svg">
+        <MobileMap />
+      </div>
+    );
+  }
+
   return (
     <div className="map-frame">
       <div className="map-panel">
         <div className="map-filter-head">
           <div className="map-filter-label">Explore by</div>
           <div className="map-chips">
-            <button className="map-chip" onClick={() => setActive(allOn())}>All</button>
+            <button className="map-chip" onClick={showAllLocations}>All</button>
             {categories.map((c) => {
               const on = active[c.id];
               return (
@@ -145,6 +183,9 @@ export default function NeighborhoodMap() {
           <br />
           Chicago, IL 60654
         </div>
+        <button type="button" className="map-reset" onClick={showAllLocations}>
+          View all locations
+        </button>
       </div>
     </div>
   );

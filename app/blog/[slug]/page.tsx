@@ -39,7 +39,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
               ...(post.feature_image_alt ? { alt: post.feature_image_alt } : {}),
             },
           ]
-        : undefined,
+        : [{ url: 'https://birkenlofts.com/images/og/birken-lofts-og.jpg', width: 1200, height: 630 }],
     },
     twitter: { card: 'summary_large_image' },
   };
@@ -69,36 +69,38 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c') }}
       />
-      <article className="post container">
-        <header className="post-header">
+      <header className="post-header-band">
+        <div className="post-header post-shell">
           <Link className="post-back" href="/blog/">
             &larr; Journal
           </Link>
-          {post.tags.length > 0 && <span className="tag tag-accent-2">{post.tags[0]}</span>}
           <h1>{post.title}</h1>
-          <p className="post-meta">
-            {formatPostDate(post.published_at)} · {Math.max(1, post.reading_time)} min read
-          </p>
-        </header>
-        {post.feature_image && post.feature_image_width && post.feature_image_height && (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            src={post.feature_image}
-            alt={post.feature_image_alt ?? ''}
-            width={post.feature_image_width}
-            height={post.feature_image_height}
-            className="post-feature"
-            fetchPriority="high"
-          />
-        )}
-        <div className="post-prose" dangerouslySetInnerHTML={{ __html: post.html }} />
-        <section className="history-cta">
-          <p>Come see the building behind the stories.</p>
-          <div className="history-cta-btns">
-            <Link className="btn btn-primary" href="/#contact">Join the interest list</Link>
-            <Link className="btn btn-secondary" href="/#plans">View floor plans</Link>
+          <div className="post-meta">
+            <span>{formatPostDate(post.published_at)}</span>
+            <span className="post-meta-dot">&bull;</span>
+            <span>{post.tags[0] ?? `${Math.max(1, post.reading_time)} min read`}</span>
           </div>
-        </section>
+        </div>
+      </header>
+      <article className="post-body">
+        <div className="post-shell">
+          {post.feature_image && post.feature_image_width && post.feature_image_height && (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={post.feature_image}
+              alt={post.feature_image_alt ?? ''}
+              width={post.feature_image_width}
+              height={post.feature_image_height}
+              className="post-feature"
+              fetchPriority="high"
+            />
+          )}
+          <div className="post-prose" dangerouslySetInnerHTML={{ __html: post.html }} />
+          <div className="post-end">
+            <Link className="btn btn-primary" href="/#contact">Join the interest list</Link>
+            <Link className="btn btn-secondary" href="/blog/">More from the Journal</Link>
+          </div>
+        </div>
       </article>
     </main>
   );

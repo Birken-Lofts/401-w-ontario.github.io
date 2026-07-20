@@ -20,7 +20,7 @@ export const metadata: Metadata = {
       '57 residences within the historic 1905 S. Birkenstein & Sons Building in River North, Chicago.',
     type: 'website',
     url: 'https://birkenlofts.com',
-    images: ['https://birkenlofts.com/images/elevations/401-W-Ontario-No-Signs-1024w.webp'],
+    images: [{ url: 'https://birkenlofts.com/images/og/birken-lofts-og.jpg', width: 1200, height: 630 }],
   },
 };
 
@@ -47,7 +47,7 @@ const jsonLd = {
     { '@type': 'LocationFeatureSpecification', name: 'Oversized Windows' },
     { '@type': 'LocationFeatureSpecification', name: 'In-Unit Laundry' },
     { '@type': 'LocationFeatureSpecification', name: 'Fitness Center' },
-    { '@type': 'LocationFeatureSpecification', name: 'Garage Parking' },
+    { '@type': 'LocationFeatureSpecification', name: 'Community Lounge' },
     { '@type': 'LocationFeatureSpecification', name: 'Pet Friendly' },
   ],
   developer: {

@@ -3,10 +3,10 @@ import ImageSlot from '@/components/ImageSlot';
 
 export default function HistoryBand() {
   return (
-    <section id="history" className="container">
-      <div className="history-band">
+    <section className="history-teaser">
+      <div className="history-teaser-inner section-shell">
         <div>
-          <span className="tag tag-accent">Since 1905</span>
+          <span className="eyebrow">Since 1905</span>
           <h2>The House of Birkenstein</h2>
           <p>
             Built for a family scrap-trade firm at the height of Smokey Hollow&rsquo;s industrial
@@ -23,6 +23,7 @@ export default function HistoryBand() {
             alt="The S. Birkenstein & Sons Building"
             label="Archival photo or 1916 advertisement"
           />
+          <span className="history-photo-frame" aria-hidden="true" />
         </div>
       </div>
     </section>

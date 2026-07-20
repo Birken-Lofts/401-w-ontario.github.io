@@ -11,9 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     { url: `${BASE}/`, lastModified: '2026-03-18', changeFrequency: 'weekly', priority: 1.0 },
     { url: `${BASE}/history/`, lastModified: '2026-07-15', changeFrequency: 'monthly', priority: 0.7 },
-    { url: `${BASE}/finishes/`, lastModified: '2026-07-15', changeFrequency: 'monthly', priority: 0.7 },
     { url: `${BASE}/blog/`, lastModified: newestPost ?? '2026-07-16', changeFrequency: 'weekly', priority: 0.7 },
-    { url: `${BASE}/ohio-feeder-ramp-cam/`, lastModified: '2026-07-14', changeFrequency: 'monthly', priority: 0.6 },
     ...posts.map((p) => ({
       url: `${BASE}/blog/${p.slug}/`,
       lastModified: p.updated_at,

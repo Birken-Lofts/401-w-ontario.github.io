@@ -1,6 +1,6 @@
-# CLAUDE.md
+# AGENTS.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance to Codex (Codex.ai/code) when working with code in this repository.
 
 ## What this is
 
@@ -25,7 +25,7 @@ Pushing to `main` triggers `.github/workflows/deploy.yml`, which runs `npm ci &&
 
 Next.js 15 App Router with `output: 'export'` and `trailingSlash: true` — every route is plain static HTML. Routes: `/` (`app/page.tsx`), `/history/`, and `/blog/` + `/blog/[slug]/` (the Journal). The former `/finishes/` and `/ohio-feeder-ramp-cam/` pages were **removed by the 2026 redesign** — don't reintroduce them or link to them (finishes is a "Coming soon" teaser on the home page; the highway ramp is deliberately never mentioned). The root layout (`app/layout.tsx`) renders `Nav` + `Footer` on every page, loads fonts via `next/font` (Big Shoulders Display headings, Libre Franklin body), and injects the GA tag. `app/sitemap.ts` generates `/sitemap.xml` at build time (static routes + Journal posts).
 
-**Journal (blog)**: posts are authored in a local Docker Ghost (editor-only; `infra/ghost/README.md` is the full guide), then `npm run sync-posts` snapshots published posts into `content/posts/*.json` with images localized to `public/images/blog/` — both committed. `app/blog/` renders from those files via `lib/posts.ts`; CI never contacts Ghost. **Never hand-write files in `content/posts/`** — the sync owns that directory. To draft a post, use the `journal-post` skill (`.claude/skills/journal-post/`).
+**Journal (blog)**: posts are authored in a local Docker Ghost (editor-only; `infra/ghost/README.md` is the full guide), then `npm run sync-posts` snapshots published posts into `content/posts/*.json` with images localized to `public/images/blog/` — both committed. `app/blog/` renders from those files via `lib/posts.ts`; CI never contacts Ghost. **Never hand-write files in `content/posts/`** — the sync owns that directory. To draft a post, use the `journal-post` skill (`.agents/skills/journal-post/`).
 
 - Home is composed of section components under `components/home/`, each owning its section `id` (`plans`, `history`, `amenities`, `neighborhood`, `schedule`, `contact`). `Nav.tsx` links to `/#id` and `hooks/useScrollSpy.ts` observes the same ids — its `sections` array must match the section ids or nav highlighting silently breaks.
 - Content data lives in `data/` (`location.ts` for the map POIs, `timeline.ts` for the construction milestones). Floor-plan and amenity copy is design-final and hardcoded in the section components (see `reference/design-2026/`).

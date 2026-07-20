@@ -1,42 +1,35 @@
 import { milestones, type MilestoneState } from '@/data/timeline';
 
-const tagFor: Record<MilestoneState, { cls: string; text: string }> = {
-  complete: { cls: 'tag-accent-2', text: 'Complete' },
-  next: { cls: 'tag-accent', text: 'Next' },
-  upcoming: { cls: 'tag-neutral', text: 'Planned' },
-};
-
-const dotCls: Record<MilestoneState, string> = {
-  complete: 'tl-dot-complete',
-  next: 'tl-dot-next',
-  upcoming: 'tl-dot-upcoming',
+const statusFor: Record<MilestoneState, string> = {
+  complete: 'Complete',
+  next: 'Next',
+  upcoming: 'Planned',
 };
 
 export default function Schedule() {
   return (
-    <section id="schedule" className="section container">
-      <h2>Construction schedule</h2>
-      <p className="section-intro">
-        The building&rsquo;s conversion to residences is underway. Here&rsquo;s where things stand.
-      </p>
-      <div className="timeline">
-        {milestones.map((ms, i) => {
-          const next = milestones[i + 1];
+    <section id="schedule" className="section section-shell schedule-section">
+      <div className="section-heading-row">
+        <h2>Construction schedule</h2>
+        <p className="section-intro">
+          The building&rsquo;s conversion to residences is underway. Here&rsquo;s where things stand.
+        </p>
+      </div>
+      <div className="schedule-grid">
+        {milestones.map((ms) => {
           const date = ms.label.split(' · ')[0];
           return (
-            <div key={ms.title} className="tl-item">
-              <div className="tl-track">
-                {next && <div className={`tl-connector tl-connector-${next.state}`} />}
-                <span className={`tl-dot ${dotCls[ms.state]}`} />
-              </div>
-              <div className="tl-content">
-                <span className={`tag ${tagFor[ms.state].cls}`}>
-                  {tagFor[ms.state].text}
-                  <span className="tl-tag-date"> · {date}</span>
+            <div key={ms.title} className="schedule-item">
+              <span className="schedule-rail" aria-hidden="true">
+                <span className={`schedule-dot schedule-dot--${ms.state}`} />
+              </span>
+              <div className="schedule-copy">
+                <span className={`schedule-status schedule-status--${ms.state}`}>
+                  {statusFor[ms.state]}
                 </span>
-                <div className="tl-date">{date}</div>
-                <h3 className="tl-title">{ms.title}</h3>
-                <p className="tl-body">{ms.description}</p>
+                <div className="schedule-date">{date}</div>
+                <h3>{ms.title}</h3>
+                <p>{ms.description}</p>
               </div>
             </div>
           );

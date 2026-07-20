@@ -14,7 +14,7 @@ export const metadata: Metadata = {
       'Built in 1905 for S. Birkenstein & Sons at the height of Smokey Hollow’s industrial boom — the story of the building that became Birken Lofts.',
     type: 'article',
     url: 'https://birkenlofts.com/history/',
-    images: ['https://birkenlofts.com/images/elevations/401-W-Ontario-No-Signs-1024w.webp'],
+    images: [{ url: 'https://birkenlofts.com/images/og/birken-lofts-og.jpg', width: 1200, height: 630 }],
   },
 };
 
@@ -97,7 +97,7 @@ export default function HistoryPage() {
             </figcaption>
           </figure>
         </section>
-        <section className="history-row rev">
+        <section className="history-row history-row--portrait">
           <div className="history-prose">
             <h2>A rag peddler&rsquo;s empire</h2>
             <p>

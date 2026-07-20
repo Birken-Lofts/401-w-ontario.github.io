@@ -33,8 +33,8 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="container">
-      <div className="contact-band">
+    <section id="contact" className="contact-section">
+      <div className="contact-band section-shell">
         <div>
           <h2>Contact us</h2>
           <p className="contact-blurb">
@@ -67,7 +67,13 @@ export default function Contact() {
             </div>
             <div className="field">
               <label htmlFor="contact-interest">Interested in</label>
-              <input id="contact-interest" className="input" type="text" placeholder="e.g. One bedroom" {...register('interest')} />
+              <select id="contact-interest" className="input" defaultValue="" {...register('interest')}>
+                <option value="" disabled>Select a residence</option>
+                <option>Studio</option>
+                <option>One bedroom</option>
+                <option>Two bedroom</option>
+                <option>Not sure yet</option>
+              </select>
             </div>
             <div className="field full">
               <label htmlFor="contact-message">Message</label>
@@ -81,7 +87,7 @@ export default function Contact() {
                 Something went wrong sending your message — please try again in a moment.
               </p>
             )}
-            <button className="btn btn-primary" type="submit" disabled={isSubmitting} style={{ justifySelf: 'start' }}>
+            <button className="btn btn-primary" type="submit" disabled={isSubmitting}>
               {isSubmitting ? 'Sending…' : 'Send message'}
             </button>
           </form>
