@@ -37,7 +37,7 @@ export default function JournalPage() {
           <p className="journal-empty">First entries are on their way.</p>
         ) : (
           <div className="journal-list">
-            {posts.map((p) => (
+            {posts.map((p, i) => (
               <Link key={p.slug} href={`/blog/${p.slug}/`} className="journal-row">
                 {p.feature_image && p.feature_image_width && p.feature_image_height && (
                   // eslint-disable-next-line @next/next/no-img-element
@@ -46,7 +46,9 @@ export default function JournalPage() {
                     alt={p.feature_image_alt ?? ''}
                     width={p.feature_image_width}
                     height={p.feature_image_height}
-                    loading="lazy"
+                    // The first thumbnail is the page's LCP element — lazy-loading it stalls LCP.
+                    loading={i === 0 ? 'eager' : 'lazy'}
+                    fetchPriority={i === 0 ? 'high' : undefined}
                     className="journal-row-img"
                   />
                 )}
