@@ -12,6 +12,7 @@ const allOn = () => Object.fromEntries(categories.map((c) => [c.id, true]));
 // Below this width the tile map's labels are illegible — the design handoff
 // swaps in a dedicated portrait SVG instead of scaling the desktop map down.
 const MOBILE_QUERY = '(max-width: 640px)';
+const CARTO_KEY = 'cb1_4b2j_1_8ec5d568529e6d5a91b3bf8c';
 
 export default function NeighborhoodMap() {
   const mapEl = useRef<HTMLDivElement>(null);
@@ -37,8 +38,11 @@ export default function NeighborhoodMap() {
     const map = L.map(mapEl.current, { zoomControl: false, scrollWheelZoom: false }).setView(HOME, 15);
     mapRef.current = map;
     L.control.zoom({ position: 'bottomright' }).addTo(map);
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-      attribution: '© OpenStreetMap, © CARTO',
+    // CARTO basemaps require a key (since Sept 2026); without it every tile is watermarked.
+    // The key is public by nature — it ships in every tile URL — so restrict it to
+    // birkenlofts.com in the CARTO dashboard rather than trying to hide it.
+    L.tileLayer(`https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png?key=${CARTO_KEY}`, {
+      attribution: '© OpenStreetMap contributors, © CARTO',
       subdomains: 'abcd',
       maxZoom: 20,
     }).addTo(map);
