@@ -50,4 +50,6 @@ records with proxied `AAAA 100::`.
 
 ## Rules and SSL
 
-_Pending: Redirect / Page / Cache / Transform rules, SSL/TLS mode, Always Use HTTPS._
+- SSL/TLS mode: **Full** (user, 2026-10-06). Irrelevant once the Worker route serves the site — there is no origin fetch.
+- Always Use HTTPS: was **off** (GitHub did the http→https 301); turned **on** 2026-10-06 before cutover, verified (301 without `x-github-request-id`, path + query kept).
+- Rules: Page Rule `www.birkenlofts.com/*` → Forwarding URL 301 `https://birkenlofts.com/$1` added 2026-10-06 before cutover (GitHub did the `www` redirect); verified served by Cloudflare, path + query kept, `http://www` now one hop. Other pre-existing rules: none reported.
