@@ -1,0 +1,275 @@
+[
+  {
+    "path": "/",
+    "status": 200,
+    "location": null,
+    "sha256": "1f286287bdcce829cdb90414a7857555cf463b89323e5e5b775efae9df3e2eea",
+    "cacheControl": "max-age=600"
+  },
+  {
+    "path": "/history/",
+    "status": 200,
+    "location": null,
+    "sha256": "3cd90bd4314513da27d10888ead43d04cb057410b3be7f1329934eca95d9cdc8",
+    "cacheControl": "max-age=600"
+  },
+  {
+    "path": "/things-to-do-river-north/",
+    "status": 200,
+    "location": null,
+    "sha256": "325b0c217015c49d75268dbb389fe785957ad125c1248c3cb7745630f17fd58a",
+    "cacheControl": "max-age=600"
+  },
+  {
+    "path": "/blog/",
+    "status": 200,
+    "location": null,
+    "sha256": "678899693922ffa55e5c1464985862a024ee7909c1ea4e810bc8c648ef998d17",
+    "cacheControl": "max-age=600"
+  },
+  {
+    "path": "/blog/the-house-of-birkenstein-a-century-at-401-w-ontario/",
+    "status": 200,
+    "location": null,
+    "sha256": "a86bcf401a36e07a793ddb824f52f8cfae1ceada6831c4cc0fc9e3e587b96cf8",
+    "cacheControl": "max-age=600"
+  },
+  {
+    "path": "/blog/where-the-conversion-stands-construction-begins-october-2026/",
+    "status": 200,
+    "location": null,
+    "sha256": "b768a49ee1acee865141d2fc467b901d46291d1387efc26f86ad5601a6faf332",
+    "cacheControl": "max-age=600"
+  },
+  {
+    "path": "/history",
+    "status": 301,
+    "location": "/history/",
+    "sha256": null,
+    "cacheControl": "max-age=600"
+  },
+  {
+    "path": "/things-to-do-river-north",
+    "status": 301,
+    "location": "/things-to-do-river-north/",
+    "sha256": null,
+    "cacheControl": "max-age=600"
+  },
+  {
+    "path": "/blog",
+    "status": 301,
+    "location": "/blog/",
+    "sha256": null,
+    "cacheControl": "max-age=600"
+  },
+  {
+    "path": "/blog/the-house-of-birkenstein-a-century-at-401-w-ontario",
+    "status": 301,
+    "location": "/blog/the-house-of-birkenstein-a-century-at-401-w-ontario/",
+    "sha256": null,
+    "cacheControl": "max-age=600"
+  },
+  {
+    "path": "/blog/where-the-conversion-stands-construction-begins-october-2026",
+    "status": 301,
+    "location": "/blog/where-the-conversion-stands-construction-begins-october-2026/",
+    "sha256": null,
+    "cacheControl": "max-age=600"
+  },
+  {
+    "path": "/?utm_source=compare-hosts",
+    "status": 200,
+    "location": null,
+    "sha256": "1f286287bdcce829cdb90414a7857555cf463b89323e5e5b775efae9df3e2eea",
+    "cacheControl": "max-age=600"
+  },
+  {
+    "path": "/robots.txt",
+    "status": 200,
+    "location": null,
+    "sha256": "4f846231d5f7d5a545b73291482f22d4ac8100f886c3108016fa9022748d3cda",
+    "cacheControl": "max-age=2678400"
+  },
+  {
+    "path": "/sitemap.xml",
+    "status": 200,
+    "location": null,
+    "sha256": "9c2c6400f738132c5ee2d1136ab61be566ca861c773f6d3061b1092f9f25953b",
+    "cacheControl": "max-age=600"
+  },
+  {
+    "path": "/llms.txt",
+    "status": 200,
+    "location": null,
+    "sha256": "e214f00ed06ea05cbdcdb083da711723f776fe5ed23e268ac6a4ca232555ed8b",
+    "cacheControl": "max-age=600"
+  },
+  {
+    "path": "/llms-full.txt",
+    "status": 200,
+    "location": null,
+    "sha256": "ae1470d2708b5a72979db1c48faf403cb46d754802708871b0963feacd5a9177",
+    "cacheControl": "max-age=600"
+  },
+  {
+    "path": "/favicon.svg",
+    "status": 200,
+    "location": null,
+    "sha256": "82c27f158da1ba97677bddaded1bfad886bef7bf73551555940906e76de4dbb4",
+    "cacheControl": "max-age=2678400"
+  },
+  {
+    "path": "/this-page-does-not-exist/",
+    "status": 404,
+    "location": null,
+    "sha256": "35a03d36c36174d627835f0c9a12fb54b5531e047e438c7e5068582c9ee27e55",
+    "cacheControl": null
+  },
+  {
+    "path": "/images/guide/360-chicago-observation-deck-with-tilt-480w.webp",
+    "status": 200,
+    "location": null,
+    "sha256": "7a59e9dc74e15687db6e9400393c7db9d33f2d94bc82ece6abea9f609dae1894",
+    "cacheControl": "max-age=2678400"
+  },
+  {
+    "path": "/images/guide/art-on-themart-960w.webp",
+    "status": 200,
+    "location": null,
+    "sha256": "9dc445c11adf215d6b4ef3a9ae484e944020c63507d43ed59e8c3cd52ff25897",
+    "cacheControl": "max-age=2678400"
+  },
+  {
+    "path": "/images/guide/bobby-s-bike-hike-480w.webp",
+    "status": 200,
+    "location": null,
+    "sha256": "e705ca2ee8ae9ba1f8b07c06f6f30af7787bdc6e755d638dc9e2bec72a4c533e",
+    "cacheControl": "max-age=2678400"
+  },
+  {
+    "path": "/images/guide/chicago-architecture-center-960w.webp",
+    "status": 200,
+    "location": null,
+    "sha256": "ffd7985c22c7cd591d2888899ca76d4712037b4d83571e8f97bd09388d45757e",
+    "cacheControl": "max-age=2678400"
+  },
+  {
+    "path": "/images/guide/chicago-pride-parade-480w.webp",
+    "status": 200,
+    "location": null,
+    "sha256": "04661c67119ed038b8f4a941c6b2a6d2beea2c9c31d82480bbc032798936d1cf",
+    "cacheControl": "max-age=2678400"
+  },
+  {
+    "path": "/images/guide/chuan-spa-at-the-langham-chicago-960w.webp",
+    "status": 200,
+    "location": null,
+    "sha256": "dc3f95434d87ec65b19b9ce4c2ff02c63f12b6f3d4b13ca8e0103096c11f92f2",
+    "cacheControl": "max-age=2678400"
+  },
+  {
+    "path": "/images/guide/dry-cleaning-laundry-in-river-north-480w.webp",
+    "status": 200,
+    "location": null,
+    "sha256": "7e078db45ea9f86762a47d6a69fe961c6a749f2892431b8309bfcd89890a87af",
+    "cacheControl": "max-age=2678400"
+  },
+  {
+    "path": "/images/guide/from-here-on-food-hall-market-960w.webp",
+    "status": 200,
+    "location": null,
+    "sha256": "72a56980c54db4fea728d511926467b1486656ce1027818ee35eaa4918bdce63",
+    "cacheControl": "max-age=2678400"
+  },
+  {
+    "path": "/images/guide/grant-park-480w.webp",
+    "status": 200,
+    "location": null,
+    "sha256": "9c3bbccdd7a8ceb25db350416de300b9e5b23bfcdbf2f128a2cf9421f2223ad8",
+    "cacheControl": "max-age=2678400"
+  },
+  {
+    "path": "/images/guide/joe-s-bar-on-weed-st-960w.webp",
+    "status": 200,
+    "location": null,
+    "sha256": "b6f0957849b337ac921dafeb24a766c4eacb5da8f6d6efa6f1afeda0c83c1823",
+    "cacheControl": "max-age=2678400"
+  },
+  {
+    "path": "/images/guide/lincoln-park-zoo-480w.webp",
+    "status": 200,
+    "location": null,
+    "sha256": "d74efa4fe9e5064f1a0adf8bfb8f3bc6f1aa98a4ae8ed47865e992f76b71c694",
+    "cacheControl": "max-age=2678400"
+  },
+  {
+    "path": "/images/guide/mccormick-tribune-ice-rink-at-millennium-park-960w.webp",
+    "status": 200,
+    "location": null,
+    "sha256": "f198ba5a43ad5069e51f5f2ab3fdbde34dd8025216d3ca322635b4c24347f404",
+    "cacheControl": "max-age=2678400"
+  },
+  {
+    "path": "/images/guide/navy-pier-480w.webp",
+    "status": 200,
+    "location": null,
+    "sha256": "53269c0557eee1f618ce2dd7ae2b22271f1a5f173fe76376b2d1694e6bcaad5b",
+    "cacheControl": "max-age=2678400"
+  },
+  {
+    "path": "/images/guide/pizzeria-uno-960w.webp",
+    "status": 200,
+    "location": null,
+    "sha256": "1efe2193d8942b3c46fac460c0a81360db25f022b38f940830debd85984f57a9",
+    "cacheControl": "max-age=2678400"
+  },
+  {
+    "path": "/images/guide/rooftop-at-nobu-hotel-chicago-480w.webp",
+    "status": 200,
+    "location": null,
+    "sha256": "0095896ef0221c1a235b46a86398fee89e0f35249e306e184e4b8562f5110495",
+    "cacheControl": "max-age=2678400"
+  },
+  {
+    "path": "/images/guide/skating-ribbon-at-maggie-daley-park-960w.webp",
+    "status": 200,
+    "location": null,
+    "sha256": "cfe9c865e83ab975055600f34eadc724154d4a8fa6df2fea52cb98692263db6c",
+    "cacheControl": "max-age=2678400"
+  },
+  {
+    "path": "/images/guide/sydney-r-marovitz-golf-course-480w.webp",
+    "status": 200,
+    "location": null,
+    "sha256": "03393cd29f813793577f26b1cc49d13798d5b014e0fbce051f6376e131e30adf",
+    "cacheControl": "max-age=2678400"
+  },
+  {
+    "path": "/images/guide/the-chicago-picasso-960w.webp",
+    "status": 200,
+    "location": null,
+    "sha256": "e4e30fd343feb8966de0442e82fb06a898dbcc497627c5176c409c842b614251",
+    "cacheControl": "max-age=2678400"
+  },
+  {
+    "path": "/images/guide/title-boxing-club-lincoln-park-480w.webp",
+    "status": 200,
+    "location": null,
+    "sha256": "91f7d78f88f1be88df68d2179516c2caa83fc475b31e4b2245624b2a164b72dc",
+    "cacheControl": "max-age=2678400"
+  },
+  {
+    "path": "/images/guide/wintrust-arena-960w.webp",
+    "status": 200,
+    "location": null,
+    "sha256": "04bd9f83c97ea75746d629b35de848369d6a02fc02a0d4b9ec12fd88276589ad",
+    "cacheControl": "max-age=2678400"
+  },
+  {
+    "path": "/_next/static/chunks/255-64e783496c90356a.js",
+    "status": 200,
+    "location": null,
+    "sha256": "5f32bf18e035e92f330b55a64ac6e1e92e71c6e9333469c8ba25d0e27e82dc2f",
+    "cacheControl": "max-age=2678400"
+  }
+]

@@ -22,11 +22,17 @@ export function normalizeLocation(location: string | null, origin: string): stri
 }
 
 /**
- * The Next build id is the commit SHA (next.config.ts), so two commits with the
- * same site content still differ by it. Mask 40-hex runs before hashing text.
+ * Mask what legitimately differs between two builds of the same content:
+ * - the build id, which is the commit SHA (next.config.ts);
+ * - content-hashed `_next/static` filenames and next/font class names, which
+ *   hash the build machine's absolute path, so GitHub's and Cloudflare's
+ *   builds of one commit never match byte for byte.
  */
 export function normalizeBody(text: string): string {
-  return text.replace(/\b[0-9a-f]{40}\b/g, '<sha>');
+  return text
+    .replace(/\b[0-9a-f]{40}\b/g, '<sha>')
+    .replace(/\b[0-9a-f]{16}\.(js|css)\b/g, '<hash>.$1')
+    .replace(/\b(__variable|__className)_[0-9a-f]{6}\b/g, '$1_<hash>');
 }
 
 export function diffProbes(a: Probe, b: Probe): string[] {

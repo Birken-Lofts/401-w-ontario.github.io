@@ -30,6 +30,20 @@ test('normalizeBody masks commit SHAs (the build id) and nothing else', () => {
   assert.equal(normalizeBody('abc123'), 'abc123'); // short hex untouched
 });
 
+test('normalizeBody masks per-build asset hashes and font class names', () => {
+  // Same commit built on GitHub vs Cloudflare (verified 2026-10-06): only these differ.
+  const gh = '<html class="__variable_623631 __variable_142199"><link href="/_next/static/css/88b50612fb0ffbce.css"/>'
+    + '<script src="/_next/static/chunks/main-app-27055c4c9ac83587.js">';
+  const cf = '<html class="__variable_623631 __variable_39f3b5"><link href="/_next/static/css/97b2e9f9b36e1b21.css"/>'
+    + '<script src="/_next/static/chunks/main-app-2783456bfb8894de.js">';
+  assert.equal(normalizeBody(gh), normalizeBody(cf));
+  // A different chunk name is still a difference.
+  assert.notEqual(
+    normalizeBody('/_next/static/chunks/app/page-275765a881f40fc0.js'),
+    normalizeBody('/_next/static/chunks/app/layout-275765a881f40fc0.js'),
+  );
+});
+
 const p = (o: Partial<Probe>): Probe =>
   ({ path: '/', status: 200, location: null, sha256: 'h', cacheControl: null, ...o });
 
