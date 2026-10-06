@@ -3,7 +3,10 @@ import type { Metadata } from 'next';
 // The feed is the shared Monroe progress-photos service (repo
 // monroeresidential/progress-photos-app). It only answers origins listed for
 // the project, so it is blank on localhost and preview URLs.
-const EMBED_SRC = 'https://progress.monroeresidential.com/embed.js';
+// Pinned release + SRI: a change to the service's embed can't reach this page
+// until we bump both values (run `npm run embed:release` in that repo).
+const EMBED_SRC = 'https://progress.monroeresidential.com/embed/1.0.0.js';
+const EMBED_SRI = 'sha384-m9cxqxrWagmOs6r0xaGXskByQ3tFggNRiEHhVHJTO7Eld7DJRe96JEw2iA3M7ewf';
 
 export const metadata: Metadata = {
   title: 'Construction Progress | Birken Lofts',
@@ -38,7 +41,7 @@ export default function ProgressPage() {
           </p>
         </progress-feed>
       </section>
-      <script type="module" async src={EMBED_SRC} />
+      <script type="module" async src={EMBED_SRC} integrity={EMBED_SRI} crossOrigin="anonymous" />
     </main>
   );
 }
