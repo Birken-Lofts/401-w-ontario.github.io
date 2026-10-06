@@ -15,6 +15,7 @@ export default function Nav() {
   const onHistory = pathname.startsWith('/history');
   const onBlog = pathname.startsWith('/blog');
   const onThingsToDo = pathname.startsWith('/things-to-do-river-north');
+  const onProgress = pathname.startsWith('/progress');
 
   const links = [
     { href: '/#top', label: 'Home', current: onHome && active === '' },
@@ -23,6 +24,7 @@ export default function Nav() {
     { href: '/#neighborhood', label: 'Neighborhood', current: onHome && active === 'neighborhood' },
     { href: '/things-to-do-river-north/', label: 'Things to Do', current: onThingsToDo },
     { href: '/history/', label: 'History', current: onHistory },
+    { href: '/progress/', label: 'Progress', current: onProgress },
     { href: '/blog/', label: 'Journal', current: onBlog },
   ];
 

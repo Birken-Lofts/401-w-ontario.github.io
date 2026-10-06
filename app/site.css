@@ -1078,7 +1078,8 @@
 
 /* History page */
 
-.history-header {
+.history-header,
+.progress-header {
   max-width: 1060px;
   padding-top: clamp(72px, 10vw, 120px);
   padding-bottom: clamp(56px, 8vw, 88px);
@@ -1087,7 +1088,8 @@
   clip-path: inset(0 -100vmax);
 }
 
-.history-header .tag {
+.history-header .tag,
+.progress-header .tag {
   display: inline-flex;
   align-items: center;
   gap: 14px;
@@ -1099,14 +1101,16 @@
   text-transform: uppercase;
 }
 
-.history-header .tag::before {
+.history-header .tag::before,
+.progress-header .tag::before {
   width: 40px;
   height: 1px;
   background: var(--color-accent);
   content: "";
 }
 
-.history-header h1 {
+.history-header h1,
+.progress-header h1 {
   max-width: 900px;
   margin-bottom: 28px;
   font-size: clamp(52px, 7vw, 92px);
@@ -1116,7 +1120,8 @@
   text-wrap: balance;
 }
 
-.history-lede {
+.history-lede,
+.progress-lede {
   max-width: 640px;
   color: var(--color-body);
   font-size: 20px;
@@ -1951,16 +1956,19 @@
     font-size: 11px;
   }
 
-  .history-header {
+  .history-header,
+  .progress-header {
     padding-top: 64px;
     padding-bottom: 48px;
   }
 
-  .history-header h1 {
+  .history-header h1,
+  .progress-header h1 {
     font-size: 44px;
   }
 
-  .history-lede {
+  .history-lede,
+  .progress-lede {
     font-size: 16px;
   }
 
@@ -2499,5 +2507,45 @@
   /* Clear the 60px header plus the taller mobile filter bar (~209px). */
   .guide-section {
     scroll-margin-top: 280px;
+  }
+}
+
+/* ── Progress (/progress/) ─────────────────────────────────────────
+   The feed is <progress-feed> from the progress-photos service; it renders
+   in Shadow DOM and is themed only through these --pf-* properties. */
+.progress-feed {
+  max-width: 1060px;
+  padding-top: clamp(48px, 7vw, 80px);
+  padding-bottom: clamp(72px, 10vw, 120px);
+}
+
+progress-feed {
+  display: block;
+  min-height: 60vh;
+  --pf-bg: transparent;
+  --pf-text: var(--color-text);
+  --pf-muted: var(--color-muted);
+  --pf-accent: var(--color-accent);
+  --pf-font: var(--font-body);
+  --pf-heading-font: var(--font-heading);
+  --pf-heading-transform: uppercase;
+  --pf-gap: 8px;
+  --pf-radius: 0;
+  --pf-columns-min: 300px;
+  --pf-overlay-bg: rgba(12, 11, 10, 0.96);
+}
+
+.progress-fallback {
+  color: var(--color-muted);
+}
+
+@media (max-width: 768px) {
+  .progress-feed {
+    padding-top: 40px;
+  }
+
+  progress-feed {
+    --pf-gap: 6px;
+    --pf-columns-min: 100%;
   }
 }
