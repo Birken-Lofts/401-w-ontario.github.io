@@ -756,7 +756,7 @@ Confirm the Workers Build succeeds and no GitHub Actions run is triggered.
 - [ ] **Step 4: Disable Pages and retire the GitHub IPs**
 
 - `gh api -X DELETE repos/Birken-Lofts/401-w-ontario.github.io/pages`
-- Ask the user, in **DNS → Records**: replace the apex and `www` records that point at GitHub (`185.199.x.x` / `*.github.io`) with **AAAA `100::`, proxied** for both names.
+- Ask the user, in **DNS → Records**: replace the apex and `www` records that point at GitHub (`185.199.x.x` / `*.github.io`) with **AAAA `100::`, proxied** for both names. **Keep both TXT records** — `google-site-verification` and `_github-pages-challenge-birkenlofts` (the GitHub org domain verification that blocks takeover).
 - Re-run: `npm run compare-hosts -- --headers https://birkenlofts.com --redirects` → `OK`, and spot-check `https://birkenlofts.com/`.
 
 - [ ] **Step 5: Update memory**
