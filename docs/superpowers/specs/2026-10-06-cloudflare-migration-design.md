@@ -87,6 +87,10 @@ Cloudflare's default revalidating behaviour so deploys show up immediately.
 
 **`.node-version`**: `22`, so Cloudflare's build matches the current CI.
 
+**`next.config.ts`**: `generateBuildId` returns the git commit SHA, so the
+GitHub and Cloudflare builds of one commit produce byte-identical HTML and
+`compare-hosts` can compare bodies by hash.
+
 **`components/Analytics.tsx`**: load GA only when
 `location.hostname === 'birkenlofts.com'`, so preview and local visits are
 never counted.
@@ -134,25 +138,28 @@ HTTPS" setting. This is the rollback recipe and tells us who performs the
 1. Merge the repo changes; connect Workers Builds; the first deploy serves at
    `birken-lofts.<subdomain>.workers.dev`. GitHub Pages keeps serving
    birkenlofts.com.
-2. `scripts/compare-hosts.mjs` (new): for every URL in `out/sitemap.xml`
+2. `scripts/compare-hosts.mts` (new): for every URL in `out/sitemap.xml`
    plus the fixed list in Success criterion 1, a sample of 20 images, and
    one unknown path, request both hosts with redirects **not** followed and
    compare status, `Location` (normalised to a path) and a SHA-256 of the
-   body. Prints a table; exits non-zero on any mismatch.
+   body. Prints a table; exits non-zero on any mismatch. Both hosts must be
+   serving the same commit. The GitHub-served results are saved as a JSON
+   snapshot, the baseline for the post-switch check.
 3. `npm run verify-guide` against the `workers.dev` URL.
 
 ### Step 3 — Switch (needs explicit go-ahead)
 
-1. Add `birkenlofts.com` and `www.birkenlofts.com` as Custom Domains on the
-   `birken-lofts` Worker. Cloudflare replaces the existing apex/`www` records;
-   the Universal SSL certificate is already active, so there is no gap.
-2. If step 1 showed GitHub was doing the `www` redirect, add a Redirect Rule:
-   `www.birkenlofts.com/*` → `https://birkenlofts.com/${1}`, 301, preserve
-   query string.
-3. Set `workers_dev: false` and redeploy, so production exists only at
-   birkenlofts.com.
-4. Re-run `compare-hosts.mjs` with the live domain against the step-2
-   `workers.dev` baseline, plus `verify-guide` against production; manually
+1. If step 1 showed GitHub was doing the `www` redirect, add a Redirect Rule
+   first (it works with either origin): `www.birkenlofts.com/*` →
+   `https://birkenlofts.com/${1}`, 301, preserve query string.
+2. Add a **Worker route** `birkenlofts.com/*` (zone `birkenlofts.com`) in
+   `wrangler.jsonc` and set `workers_dev: false`, then deploy. The route puts
+   the Worker in front of the existing proxied DNS records, so no DNS record
+   changes and there is no gap; GitHub Pages simply stops receiving traffic.
+   (Custom Domains were rejected: attaching one requires deleting the existing
+   apex records first, which risks a short outage.)
+3. Re-run `compare-hosts` against the live domain using the snapshot of the
+   GitHub-served site saved in step 2, plus `verify-guide` against production; manually
    check the home map (tiles load with the key), a contact-form submission,
    and one PageSpeed Insights mobile run (take the median of 3, per the
    site's PSI notes).
@@ -160,23 +167,27 @@ HTTPS" setting. This is the rollback recipe and tells us who performs the
 ### Step 4 — Fallback window (7 days)
 
 The GitHub Pages workflow keeps deploying on every push, so the old copy
-stays current. **Rollback:** remove the Custom Domains from the Worker and
-restore the apex/`www` records from the step-1 export (proxied). Expected
-time: a few minutes.
+stays current. **Rollback:** delete the Worker route in the dashboard (traffic
+falls through to GitHub Pages immediately), then revert the cutover commit so
+the next deploy does not re-add it. DNS is untouched, so nothing to restore.
 
 ### Step 5 — Cleanup (after 7 clean days)
 
 Delete `.github/workflows/deploy.yml`, `public/CNAME`, `public/.nojekyll`;
-disable Pages in the repo settings; update `CLAUDE.md`/`AGENTS.md` Deploy
+disable Pages in the repo settings; replace the apex/`www` records that still
+point at GitHub's IPs with proxied `AAAA 100::` placeholders (the standard
+target for Worker-only hostnames — leaving GitHub IPs on a domain with Pages
+disabled invites a domain takeover); update `CLAUDE.md`/`AGENTS.md` Deploy
 sections and the site-status memory.
 
 ## Risks
 
 | Risk | Mitigation |
 |---|---|
-| Trailing-slash or 404 behaviour differs from Pages | `compare-hosts.mjs` checks every URL before the switch |
+| Trailing-slash or 404 behaviour differs from Pages | `compare-hosts` checks every URL before the switch |
+| HTML differs between two builds of the same commit (random Next build id) | `generateBuildId` = git commit SHA, so both hosts serve byte-identical HTML |
 | `www` redirect silently disappears | Step 1 identifies who does it; step 3.2 recreates it if needed |
 | Previews indexed by Google | Verify `X-Robots-Tag`; fall back to Access-protected previews |
 | Stale images after regenerating with the same name | 7-day image cache; purge the zone cache when images are regenerated |
 | Build differs on Cloudflare (Node version, missing tools) | `.node-version`; the build needs only Node — no Python, network or browser |
-| Something unforeseen after the switch | 7-day fallback with a recorded DNS rollback |
+| Something unforeseen after the switch | 7-day fallback; rollback is deleting one route |
