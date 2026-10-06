@@ -28,6 +28,8 @@ test('normalizeBody masks commit SHAs (the build id) and nothing else', () => {
   assert.equal(normalizeBody(a), normalizeBody(b));
   assert.notEqual(normalizeBody('<p>Studio</p>'), normalizeBody('<p>Loft</p>'));
   assert.equal(normalizeBody('abc123'), 'abc123'); // short hex untouched
+  // Next also emits the build id truncated to 24 chars in an HTML comment.
+  assert.equal(normalizeBody('<!--77d8db9ae6fbcbc1001e7725-->'), normalizeBody('<!--0595d192165d6faa6d9c2f7e-->'));
 });
 
 test('normalizeBody masks per-build asset hashes and font class names', () => {

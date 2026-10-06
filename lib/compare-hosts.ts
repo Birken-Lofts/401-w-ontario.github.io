@@ -23,7 +23,8 @@ export function normalizeLocation(location: string | null, origin: string): stri
 
 /**
  * Mask what legitimately differs between two builds of the same content:
- * - the build id, which is the commit SHA (next.config.ts);
+ * - the build id, which is the commit SHA (next.config.ts), in full and as
+ *   the 24-char prefix Next writes into an HTML comment;
  * - content-hashed `_next/static` filenames and next/font class names, which
  *   hash the build machine's absolute path, so GitHub's and Cloudflare's
  *   builds of one commit never match byte for byte.
@@ -31,6 +32,7 @@ export function normalizeLocation(location: string | null, origin: string): stri
 export function normalizeBody(text: string): string {
   return text
     .replace(/\b[0-9a-f]{40}\b/g, '<sha>')
+    .replace(/<!--[0-9a-f]{24}-->/g, '<!--<sha>-->') // Next's truncated build-id comment
     .replace(/\b[0-9a-f]{16}\.(js|css)\b/g, '<hash>.$1')
     .replace(/\b(__variable|__className)_[0-9a-f]{6}\b/g, '$1_<hash>');
 }
