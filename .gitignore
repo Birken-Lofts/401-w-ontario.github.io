@@ -41,3 +41,6 @@ next-env.d.ts
 
 # TypeScript incremental build info (tsconfig has incremental: true)
 tsconfig.tsbuildinfo
+
+# wrangler local state
+.wrangler/
