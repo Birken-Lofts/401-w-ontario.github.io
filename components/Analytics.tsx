@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
+import { shouldLoadAnalytics } from '@/lib/analytics';
 
 const GA_ID = 'G-YVPGP24V3P';
 
@@ -19,6 +20,7 @@ declare global {
  */
 export default function Analytics() {
   useEffect(() => {
+    if (!shouldLoadAnalytics(location.hostname)) return;
     const load = () => {
       if (window.__gaLoaded) return;
       window.__gaLoaded = true;
