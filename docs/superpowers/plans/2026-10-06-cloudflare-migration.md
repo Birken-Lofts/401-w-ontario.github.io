@@ -659,6 +659,10 @@ Do **not** push yet if pushing would change the site — this commit only adds a
 
 - [ ] **Step 1: Get explicit go-ahead from the user.** Do not proceed without it.
 
+- [ ] **Step 1b: Turn on Always Use HTTPS first**
+
+GitHub Pages performs today's `http` → `https` 301 (it carries `x-github-request-id`), so once the Worker route is live, plain-HTTP requests would get a 200 over HTTP. Ask the user: **SSL/TLS → Edge Certificates → Always Use HTTPS → On**. Verify: `curl -sI http://birkenlofts.com/ | grep -i -E '^HTTP|^location|x-github'` → `301`, `Location: https://birkenlofts.com/`, and **no** `x-github-request-id`.
+
 - [ ] **Step 2: If GitHub performs the `www` redirect (Task 1 notes), add the Redirect Rule first**
 
 Ask the user: **Rules → Redirect Rules → Create** — *When* hostname equals `www.birkenlofts.com`; *Then* Dynamic, expression `concat("https://birkenlofts.com", http.request.uri.path)`, status 301, **preserve query string** on. Verify: `npm run compare-hosts -- --redirects` → `OK`.
