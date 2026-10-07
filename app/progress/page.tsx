@@ -18,7 +18,14 @@ export const metadata: Metadata = {
     description: 'Photos from the site as 401 W. Ontario Street becomes Birken Lofts.',
     type: 'website',
     url: 'https://birkenlofts.com/progress/',
-    images: [{ url: 'https://birkenlofts.com/images/og/birken-lofts-og.jpg', width: 1200, height: 630 }],
+    images: [
+      {
+        url: 'https://birkenlofts.com/images/og/progress-og.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Birken Lofts progress photos: the timber-framed 4th floor after demolition',
+      },
+    ],
   },
 };
 
