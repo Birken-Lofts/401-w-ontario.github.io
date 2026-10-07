@@ -5,8 +5,8 @@ import type { Metadata } from 'next';
 // the project, so it is blank on localhost and preview URLs.
 // Pinned release + SRI: a change to the service's embed can't reach this page
 // until we bump both values (run `npm run embed:release` in that repo).
-const EMBED_SRC = 'https://progress.monroeresidential.com/embed/1.0.1.js';
-const EMBED_SRI = 'sha384-YkA1rUnt6oWfTFcgnx8JD5LcERFm6IVpiLmmHUVG9jczUsUIHdoAHhbe5tSDL/H/';
+const EMBED_SRC = 'https://progress.monroeresidential.com/embed/1.0.2.js';
+const EMBED_SRI = 'sha384-gEC75a+f5HdcWFTRUFksuKQ/st1iD7bNdZCc64mASxg187X7soLjyN61QfyqYhq6';
 
 export const metadata: Metadata = {
   title: 'Construction Progress | Birken Lofts',
