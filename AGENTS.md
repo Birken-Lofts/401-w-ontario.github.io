@@ -38,7 +38,7 @@ All 270 cards render **server-side** so the content is in the static HTML and wo
 
 - Home is composed of section components under `components/home/`, each owning its section `id` (`plans`, `history`, `amenities`, `neighborhood`, `schedule`, `contact`). `Nav.tsx` links to `/#id` and `hooks/useScrollSpy.ts` observes the same ids — its `sections` array must match the section ids or nav highlighting silently breaks.
 - Content data lives in `data/` (`location.ts` for the map POIs, `timeline.ts` for the construction milestones). Floor-plan and amenity copy is design-final and hardcoded in the section components (see `reference/design-2026/`).
-- Per-page SEO uses Next `metadata` exports; JSON-LD blocks are inline `<script type="application/ld+json">` in the page components.
+- Per-page SEO uses Next `metadata` exports; JSON-LD blocks are inline `<script type="application/ld+json">` in the page components. **Every page's `openGraph` must spread `...OG_DEFAULTS`** (`lib/seo.ts`: `og:site_name`, `og:locale`) — a page-level `openGraph` replaces the layout's wholesale. Site-wide icons/manifest/theme-color live in `app/layout.tsx`; the raster icons (`favicon.ico`, `icon-96.png`, `apple-touch-icon.png`, `icon-192/512.png`) are generated from `public/favicon.svg` by `node scripts/build-icons.mjs` — rerun it if the SVG changes. There is no X/Twitter account, so no `twitter:site`.
 
 ## Styling
 

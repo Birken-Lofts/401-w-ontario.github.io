@@ -9,5 +9,8 @@
   },
   "routes": [{ "pattern": "birkenlofts.com/*", "zone_name": "birkenlofts.com" }],
   "workers_dev": false,
-  "preview_urls": true
+  "preview_urls": true,
+  // Workers Builds runs the beta `wrangler preview` for non-production
+  // branches, which requires this block (empty is fine).
+  "previews": {}
 }

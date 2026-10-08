@@ -8,6 +8,7 @@ import Amenities from '@/components/home/Amenities';
 import Neighborhood from '@/components/home/Neighborhood';
 import Schedule from '@/components/home/Schedule';
 import Contact from '@/components/home/Contact';
+import { OG_DEFAULTS } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: 'Birken Lofts | Historic Loft Living in River North',
@@ -15,6 +16,7 @@ export const metadata: Metadata = {
     '57 residences within the historic 1905 S. Birkenstein & Sons Building in River North, Chicago. Construction begins October 2026.',
   alternates: { canonical: 'https://birkenlofts.com' },
   openGraph: {
+    ...OG_DEFAULTS,
     title: 'Birken Lofts | Historic Loft Living in River North',
     description:
       '57 residences within the historic 1905 S. Birkenstein & Sons Building in River North, Chicago.',
