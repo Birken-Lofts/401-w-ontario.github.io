@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import StaticImg from '@/components/StaticImg';
+import { OG_DEFAULTS } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: 'The House of Birkenstein | Birken Lofts',
@@ -9,6 +10,7 @@ export const metadata: Metadata = {
     'The story of 401 W. Ontario Street: built in 1905 for S. Birkenstein & Sons, one of Chicago’s largest scrap dealers, and home to a century of Smokey Hollow industry before becoming Birken Lofts.',
   alternates: { canonical: 'https://birkenlofts.com/history/' },
   openGraph: {
+    ...OG_DEFAULTS,
     title: 'The House of Birkenstein',
     description:
       'Built in 1905 for S. Birkenstein & Sons at the height of Smokey Hollow’s industrial boom — the story of the building that became Birken Lofts.',

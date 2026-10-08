@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { formatPostDate, getAllPosts, getPost } from '@/lib/posts';
+import { OG_DEFAULTS } from '@/lib/seo';
 
 export const dynamicParams = false;
 
@@ -23,6 +24,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     description,
     alternates: { canonical: `https://birkenlofts.com/blog/${post.slug}/` },
     openGraph: {
+      ...OG_DEFAULTS,
       title: post.title,
       description,
       type: 'article',

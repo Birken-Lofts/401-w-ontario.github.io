@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Libre_Franklin } from 'next/font/google';
 import localFont from 'next/font/local';
 import './globals.css';
@@ -28,7 +28,21 @@ const body = Libre_Franklin({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://birkenlofts.com'),
-  icons: { icon: '/favicon.svg' },
+  // Raster icons are generated from favicon.svg by scripts/build-icons.mjs.
+  // Google Search ignores SVG-only favicons, hence the .ico/.png.
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/icon-96.png', type: 'image/png', sizes: '96x96' },
+    ],
+    apple: { url: '/apple-touch-icon.png', sizes: '180x180' },
+  },
+  manifest: '/site.webmanifest',
+};
+
+export const viewport: Viewport = {
+  themeColor: '#121110', // --color-bg
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

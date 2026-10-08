@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { formatPostDate, getAllPosts } from '@/lib/posts';
+import { OG_DEFAULTS } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: 'Journal | Birken Lofts',
@@ -8,6 +9,7 @@ export const metadata: Metadata = {
     'Notes from the conversion of the 1905 S. Birkenstein & Sons Building into Birken Lofts — construction updates, archive finds, and life in River North.',
   alternates: { canonical: 'https://birkenlofts.com/blog/' },
   openGraph: {
+    ...OG_DEFAULTS,
     title: 'The Birken Lofts Journal',
     description:
       'Construction updates, archive finds, and River North history from Birken Lofts.',

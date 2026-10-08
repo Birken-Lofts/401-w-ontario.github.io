@@ -3,6 +3,7 @@ import Link from 'next/link';
 import GuideCard from '@/components/guide/GuideCard';
 import GuideFilters from '@/components/guide/GuideFilters';
 import { CATEGORIES, getListingsByCategory, getPhotoIds, TOTAL_LISTINGS } from '@/lib/guide';
+import { OG_DEFAULTS } from '@/lib/seo';
 
 const URL = 'https://birkenlofts.com/things-to-do-river-north/';
 
@@ -12,6 +13,7 @@ export const metadata: Metadata = {
     `${TOTAL_LISTINGS} places to eat, drink, move, explore and spend a Saturday — all within roughly one to three miles of 401 W. Ontario Street in Chicago's River North.`,
   alternates: { canonical: URL },
   openGraph: {
+    ...OG_DEFAULTS,
     title: 'Things to Do Around Birken Lofts',
     description:
       `The complete neighborhood guide to River North and beyond — ${TOTAL_LISTINGS} places within walking distance of 401 W. Ontario Street.`,
