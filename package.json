@@ -3,6 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
+    "prebuild": "node scripts/check-node.mjs",
     "dev": "next dev",
     "build": "next build && node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/write-redirects.mts",
     "lint": "eslint .",
@@ -30,6 +31,12 @@
     "eslint-config-next": "^15.5.0",
     "sharp": "^0.35.3",
     "typescript": "~5.9.3",
-    "wrangler": "^4.147.0"
+    "wrangler": "^4.152.0"
+  },
+  "engines": {
+    "node": ">=22.23.4 <23 || >=24.22.1 <25 || >=26.12.1 <27"
+  },
+  "overrides": {
+    "undici": "8.12.3"
   }
 }
