@@ -26,8 +26,15 @@ export default function Analytics() {
       window.__gaLoaded = true;
       events.forEach(([t, o]) => removeEventListener(t, load, o));
       window.dataLayer = window.dataLayer || [];
-      function gtag(...args: unknown[]) {
-        window.dataLayer!.push(args);
+      // Must push the `arguments` object, exactly as Google's snippet does:
+      // gtag.js only treats [object Arguments] entries as commands. A rest
+      // parameter produces a real Array, which it silently ignores — that
+      // left `config` unprocessed and GA recorded nothing from 2026-07-20
+      // to 2026-10-24.
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      function gtag(..._args: unknown[]) {
+        // eslint-disable-next-line prefer-rest-params
+        window.dataLayer!.push(arguments);
       }
       gtag('js', new Date());
       gtag('config', GA_ID);
